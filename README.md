@@ -1,2 +1,19 @@
-# cabify-frontend
-Proyecto final grupo 3 - Mvp de Cabify
+# cabify-app
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
