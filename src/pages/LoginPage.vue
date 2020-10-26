@@ -26,7 +26,7 @@
           </div>
           <div class="field">
             <p class="control">
-              <button class="button is-success">Login</button>              
+              <button class="button is-dark is-focused">Login</button>              
             </p>
           </div>
         </section>
@@ -36,7 +36,7 @@
               <a>Don't have an account yet? Sign up here!</a> 
             </p>
             <p class="control">              
-              <a>Forget Password</a> 
+              <a>Forgot Password?</a> 
             </p>
           </div>
         </footer>
@@ -50,4 +50,11 @@ export default {};
 </script>
 
 <style>
+  .modal-background {
+    background: #279D79
+  }
+
+  
+
+  
 </style>

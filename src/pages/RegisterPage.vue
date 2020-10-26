@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-4">
+  <div id="maindiv" class="container mt-4">
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Username</label>
@@ -89,6 +89,7 @@
         </div>
       </div>
     </div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia aspernatur et non enim quia dolorem repudiandae sint a ullam, delectus incidunt tempora aperiam cumque labore maiores! Alias eius vel cum.</p>
   </div>
 </template>
 
@@ -99,4 +100,7 @@ export default {
 </script>
 
 <style>
+  #maindiv {
+    background-color: green;
+  }
 </style>
