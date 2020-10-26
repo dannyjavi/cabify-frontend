@@ -1,31 +1,53 @@
 <template>
-  <div class="modal is-active">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Account Login</p>
-      <button class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
-      <label class="label">User Email</label>
-      <input class="input" type="email">
-      <label class="label">User Password</label>
-      <input class="input" type="text">
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success">Log In</button>
-      <button class="button is-info">Remember Me</button>
-    </footer>
+  <div>
+    <div class="modal is-active">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Account Login</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" type="email" placeholder="Email" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>              
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="password" placeholder="Password" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <button class="button is-success">Login</button>              
+            </p>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <div class="field is-grouped">
+            <p class="control">              
+              <a>Don't have an account yet? Sign up here!</a> 
+            </p>
+            <p class="control">              
+              <a>Forget Password</a> 
+            </p>
+          </div>
+        </footer>
+      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

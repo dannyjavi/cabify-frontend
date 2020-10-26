@@ -6,16 +6,8 @@ import LoginPage from "../pages/LoginPage";
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: HomePage
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: LoginPage
-  }
+  { path: "/", name: "Home", component: HomePage },
+  { path: "/login", name: "Login", component: LoginPage }
 ];
 
 const router = new VueRouter({
