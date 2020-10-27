@@ -1,12 +1,14 @@
 <template>
   <div>
     <header class="mt-6">
-      <p class="title is-2 has-text-centered has-text-white">Account Login</p>
+      <p class="title is-2 has-text-centered has-text-white">
+        Account Login
+      </p>
     </header>
-    <section class="card-content has-background-success">
+    <section class="card-content">
       <div class="field">
         <p class="control has-icons-left has-icons-right">
-          <input class="input is-medium" type="email" placeholder="Email" />
+          <input v-model="loginPayload.email" class="input is-medium" type="email" placeholder="Email" />
           <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
           </span>
@@ -14,7 +16,7 @@
       </div>
       <div class="field">
         <p class="control has-icons-left">
-          <input class="input is-medium" type="password" placeholder="Password" />
+          <input v-model="loginPayload.password" class="input is-medium" type="password" placeholder="Password" />
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
@@ -22,7 +24,7 @@
       </div>
       <div class="field">
         <p class="control">
-          <button class="button is-dark is-focused is-medium is-fullwidth title">Login</button>
+          <button @click="login" class="button is-dark is-focused is-medium is-fullwidth title">Login</button>
         </p>
       </div>
     </section>
@@ -41,11 +43,34 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'LoginPage',
+  data() {
+    return {
+      loginPayload: {
+        email: "",
+        password: ""
+      }
+    }
+  },
+  methods: {
+    async login() {
+      const response = await this.axios.post('http://localhost:3000/auth/login', this.loginPayload)
+      console.log("logeado")
+      window.localStorage.setItem("token", response.data.token)
+      console.log(response.data.token)
+      this.$router.push("/");
+    }
+  }
+};
 </script>
 
 <style>
  .container {
    width: 80%;
  }
+
+ 
+
+
 </style>
