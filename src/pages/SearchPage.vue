@@ -1,33 +1,23 @@
 <template>
-  <div class="container mt-6">
-    <div class="map">
+  <div class="card">
+    <div class="card-image">
       <Map />
     </div>
-    <div>
-      <header class="mt-4">¡Hola Persona!</header>
-    </div>
-
-    <div>
-      <h1 class="mt-3">¿A dónde quieres ir?</h1>
-    </div>
-    <div class="field-label is-normal">
-      <input
-        class="input is-rounded"
-        type="text"
-        placeholder="Introduce un destino"
-      />
-    </div>
-
-    <footer class="container mt-4">
-      <div class="field">
-        <p class="control has-text-centered">
-          <a class="has-text-primary-light title is-4"
-            >Don't have an account yet? Sign up here! Forgot Password?</a
-          >
-        </p>
-        
+    <div class="card-content">
+      <div class="media">
+        <div class="media-left">
+          
+        </div>
+        <div class="media-content">
+          <p class="title is-4">¡Hola Persona!</p>
+          <p>¿A dónde quieres ir?</p>
+        </div>
       </div>
-    </footer>
+
+      <div class="content">
+        <input class="input is-rounded has-background-light" type="text" placeholder="Introduce tu destino">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,9 +30,7 @@ export default {
 </script>
 
 <style>
-.mt-4 {
-  font-size: 200%;
+.card {
+  height: 100vh;
 }
-
-
 </style>
