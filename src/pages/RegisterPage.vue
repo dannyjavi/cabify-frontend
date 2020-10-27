@@ -14,7 +14,7 @@
           <p class="control is-expanded has-icons-left">
             <input
               v-model="registrationData.first_name"
-              class="input is-medium"
+              class="input"
               type="text"
               placeholder="First Name"
             />
@@ -27,7 +27,7 @@
           <p class="control is-expanded has-icons-left">
             <input
               v-model="registrationData.last_name"
-              class="input is-medium"
+              class="input"
               type="text"
               placeholder="Last Name"
             />
@@ -47,12 +47,12 @@
         <div class="field is-expanded">
           <div class="field has-addons">
             <p class="control">
-              <a class="button is-static is-medium"> +34 </a>
+              <a class="button is-static"> +34 </a>
             </p>
             <p class="control is-expanded">
               <input
                 v-model="registrationData.phone"
-                class="input is-medium"
+                class="input"
                 type="tel"
                 placeholder="Your phone number"
               />
@@ -63,7 +63,7 @@
           <p class="control is-expanded has-icons-left has-icons-right">
             <input
               v-model="registrationData.email"
-              class="input is-medium"
+              class="input"
               type="email"
               placeholder="Email"
               value=""
@@ -85,7 +85,7 @@
           <p class="control is-expanded has-icons-left">
             <input
               v-model="registrationData.password"
-              class="input is-medium"
+              class="input"
               type="password"
             />
             <span class="icon is-small is-left">
