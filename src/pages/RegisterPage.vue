@@ -1,5 +1,10 @@
 <template>
   <div class="container mt-4">
+    <div class="mt-3 mb-5">
+      <p class="title is-2 has-text-centered has-text-white">
+        Sign Up
+      </p>
+    </div>
     <div class="field is-horizontal">
       <div class="field-label is-normal">
         <label class="label">Username</label>
@@ -7,7 +12,12 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input v-model="registrationData.firstname" class="input" type="text" placeholder="First Name" />
+            <input
+              v-model="registrationData.first_name"
+              class="input is-medium"
+              type="text"
+              placeholder="First Name"
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
@@ -15,7 +25,12 @@
         </div>
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input v-model="registrationData.lastname" class="input" type="text" placeholder="Last Name" />
+            <input
+              v-model="registrationData.last_name"
+              class="input is-medium"
+              type="text"
+              placeholder="Last Name"
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
@@ -32,16 +47,27 @@
         <div class="field is-expanded">
           <div class="field has-addons">
             <p class="control">
-              <a class="button is-static"> +34 </a>
+              <a class="button is-static is-medium"> +34 </a>
             </p>
             <p class="control is-expanded">
-              <input v-model="registrationData.phone" class="input" type="tel" placeholder="Your phone number" />
+              <input
+                v-model="registrationData.phone"
+                class="input is-medium"
+                type="tel"
+                placeholder="Your phone number"
+              />
             </p>
           </div>
         </div>
         <div class="field">
           <p class="control is-expanded has-icons-left has-icons-right">
-            <input v-model="registrationData.email" class="input" type="email" placeholder="Email" value="" />
+            <input
+              v-model="registrationData.email"
+              class="input is-medium"
+              type="email"
+              placeholder="Email"
+              value=""
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
@@ -57,13 +83,20 @@
       <div class="field-body">
         <div class="field">
           <p class="control is-expanded has-icons-left">
-            <input v-model="registrationData.password" class="input" type="text" />            
+            <input
+              v-model="registrationData.password"
+              class="input is-medium"
+              type="password"
+            />
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
           </p>
         </div>
-        <div class="field-label is-normal">
+        <!-- <div class="field-label is-normal">
           <label class="label">Profile</label>
-        </div>
-        <div class="field">
+        </div> -->
+        <!-- <div class="field">
           <div class="control">
             <div class="select is-fullwidth">
               <select v-model="registrationData.profile">
@@ -73,38 +106,42 @@
               </select>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
-    </div>    
+    </div>
 
     <div class="field is-horizontal">
       <div class="field-label">
         <!-- Left empty for spacing -->
       </div>
-      <div class="field-body">
+      <div class="field-body mt-5">
         <div class="field">
           <div class="control">
-            <button class="button is-dark is-focused is-medium is-fullwidth title">Create User</button>
+            <button
+              @click="register"
+              class="button is-dark is-focused is-medium is-fullwidth title"
+            >
+              Create User
+            </button>
           </div>
         </div>
       </div>
-    </div>    
+    </div>
   </div>
 </template>
 
 <script>
+const axios = require("axios");
 export default {
   name: "RegisterPage",
   data() {
     return {
       registrationData: {
-        firstname: "",
-        lastname:"",
-        phone: "",
-        email: "",
-        password: "",
-        profile: "User",
-        isEnabled: true,
+        first_name: "juan",
+        last_name: "herreros",
+        phone: "123",
+        email: "jahs@hotmail.com",
+        password: "1234",
       },
     };
   },
@@ -122,9 +159,10 @@ export default {
         alert(
           "Te has registrado satisfactorizamente. Puedes acceder con tu nueva cuenta desde el formulario de identificación"
         );
-        this.$router.push("/login");
-      }catch{
-
+        this.$router.push("/search");
+      } catch (e) {
+        console.log(e, this.registrationData);
+        alert("Se ha producido un error al enviar el formulario");
       }
     },
   },
@@ -132,5 +170,4 @@ export default {
 </script>
 
 <style>
-  
 </style>

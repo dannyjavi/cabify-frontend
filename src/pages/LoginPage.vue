@@ -1,10 +1,10 @@
 <template>
   <div>
-    <header class="mt-6">
+    <div class="mt-3 mb-5">
       <p class="title is-2 has-text-centered has-text-white">
         Account Login
       </p>
-    </header>
+    </div>
     <section class="card-content">
       <div class="field">
         <p class="control has-icons-left has-icons-right">
