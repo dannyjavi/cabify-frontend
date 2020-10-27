@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div class="main">
     <div>
       <header class="mt-6">
@@ -36,6 +35,7 @@
           </p>
         </div>
       </section>
+    
 
       <footer class="container">
         <div class="field">
@@ -51,8 +51,7 @@
         </div>
       </footer>
     </div>
-=======
-  <div>
+  
     <header class="mt-6">
       <p class="title is-2 has-text-centered has-text-white">
         Account Login
@@ -92,45 +91,40 @@
         </p>
       </div>
     </footer>
->>>>>>> a0fd3b7eb4bb406c029134d27c40459776cf2bcf
   </div>
 </template>
 
 <script>
 export default {
-  name: 'LoginPage',
+  name: "LoginPage",
   data() {
     return {
       loginPayload: {
         email: "",
-        password: ""
-      }
-    }
+        password: "",
+      },
+    };
   },
   methods: {
     async login() {
-      const response = await this.axios.post('http://localhost:3000/auth/login', this.loginPayload)
-      console.log("logeado")
-      window.localStorage.setItem("token", response.data.token)
-      console.log(response.data.token)
+      const response = await this.axios.post(
+        "http://localhost:3000/auth/login",
+        this.loginPayload
+      );
+      console.log("logeado");
+      window.localStorage.setItem("token", response.data.token);
+      console.log(response.data.token);
       this.$router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
-<<<<<<< HEAD
 .container {
   width: 80%;
 }
-=======
- .container {
-   width: 80%;
- }
-
- 
-
->>>>>>> a0fd3b7eb4bb406c029134d27c40459776cf2bcf
-
+.container {
+  width: 80%;
+}
 </style>
