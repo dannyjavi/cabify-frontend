@@ -1,20 +1,20 @@
 <template>
-  <div class="container mt-4">
-    <div class="mt-3 mb-5">
+  <div class="section">
+    <div class="mb-6">
       <p class="title is-2 has-text-centered has-text-white">
         Sign Up
       </p>
     </div>
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Username</label>
+    <div class="field">
+      <div class="field-label is-normal mb-3">
+        <label class="label is-size-4">Username</label>
       </div>
       <div class="field-body">
-        <div class="field">
+        <div class="field mb-5">
           <p class="control is-expanded has-icons-left">
             <input
               v-model="registrationData.first_name"
-              class="input"
+              class="input is-size-5"
               type="text"
               placeholder="First Name"
             />
@@ -23,11 +23,11 @@
             </span>
           </p>
         </div>
-        <div class="field">
+        <div class="field mb-5">
           <p class="control is-expanded has-icons-left">
             <input
               v-model="registrationData.last_name"
-              class="input"
+              class="input is-size-5"
               type="text"
               placeholder="Last Name"
             />
@@ -39,36 +39,36 @@
       </div>
     </div>
 
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Contact Info</label>
+    <div class="field">
+      <div class="field-label is-normal mb-3">
+        <label class="label is-size-4">Contact Info</label>
       </div>
       <div class="field-body">
         <div class="field is-expanded">
-          <div class="field has-addons">
+          <div class="field has-addons mb-5">
             <p class="control">
-              <a class="button is-static"> +34 </a>
+              <a class="button is-medium is-static"> +34 </a>
             </p>
             <p class="control is-expanded">
               <input
                 v-model="registrationData.phone"
-                class="input"
+                class="input is-size-5"
                 type="tel"
                 placeholder="Your phone number"
               />
             </p>
           </div>
         </div>
-        <div class="field">
+        <div class="field mb-6">
           <p class="control is-expanded has-icons-left has-icons-right">
             <input
               v-model="registrationData.email"
-              class="input"
+              class="input is-medium is-size-5"
               type="email"
               placeholder="Email"
               value=""
             />
-            <span class="icon is-small is-left">
+            <span class="icon is-medium is-left">
               <i class="fas fa-envelope"></i>
             </span>
           </p>
@@ -76,16 +76,16 @@
       </div>
     </div>
 
-    <div class="field is-horizontal">
-      <div class="field-label is-normal">
-        <label class="label">Password</label>
+    <div class="field">
+      <div class="field-label is-normal mb-3">
+        <label class="label is-size-4">Password</label>
       </div>
       <div class="field-body">
-        <div class="field">
+        <div class="field mb-6">
           <p class="control is-expanded has-icons-left">
             <input
               v-model="registrationData.password"
-              class="input"
+              class="input is-medium is-size-5"
               type="password"
             />
             <span class="icon is-small is-left">
@@ -110,7 +110,7 @@
       </div>
     </div>
 
-    <div class="field is-horizontal">
+    <div class="field">
       <div class="field-label">
         <!-- Left empty for spacing -->
       </div>
@@ -119,7 +119,7 @@
           <div class="control">
             <button
               @click="register"
-              class="button is-dark is-focused is-medium is-fullwidth title"
+              class="button is-dark is-focused is-fullwidth title is-4"
             >
               Create User
             </button>

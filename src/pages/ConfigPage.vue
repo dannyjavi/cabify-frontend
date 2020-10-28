@@ -1,83 +1,89 @@
 <template>
-
-  <div class="tabs is-boxed" id="tabs">
-    <ul>
-      <li class="is-active">
-        <a>
-          <span class="icon is-small"
-            ><i class="fas fa-user-tie" aria-hidden="true"></i
-          ></span>
-          <span>Datos del conductor</span>
-          
-        </a>
-      </li>
-
-      <li data-tab="2">
-        <a>
-          <span class="icon is-small"
-            ><i class="fas fa-car" aria-hidden="true"></i
-          ></span>
-          <span>Datos del vehículo</span>
-        </a>
-      </li>
-    </ul>
+  <div>
+    <div class="tabs is-boxed" id="tabs">
+      <ul class="columns is-gapless">
+        <li v-for="(item, index) in tabs" :key="index" :class="isSelected" class="column">
+          <a class="has-background-dark has-text-white is-size-4">
+            <span class="icon is-medium"
+              ><i :class="item.icon" aria-hidden="true"></i
+            ></span>
+            <span class="py-2">{{ item.title }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div v-for="(item, index) in contentDriver" :key="index" class="field container">
+      <label class="label is-size-4">{{ item.title }}</label>
+      <div class="control">
+        <input class="input is-medium" :type="item.input" :placeholder="item.placeholder" />
+      </div>
+    </div>
+    <div id="space"></div>
   </div>
-  
-
-  
 </template>
 
 <script>
 export default {
   name: "ConfigPage",
+  data() {
+    return {
+      tabs: [
+        {
+          title: "Conductor",
+          icon: "fas fa-user-tie",
+          selected: true,
+          class: "is-active",
+        },
+        {
+          title: "Vehículo",
+          icon: "fas fa-car",
+          selected: false,
+          class: "",
+        },
+      ],
+      isSelected: "",
+      contentDriver: [
+        { title: "Precio/km",
+          input: "number",
+          placeholder: "Precio/km"
+         },
+        { title: "Vehículo",
+          input: "text",
+          placeholder: "Tipo de vehículo"
+         },
+        { title: "Dirección",
+          input: "text",
+          placeholder: "Dirección"
+        },
+        { title: "Licencia de conducción",
+          input: "text",
+          placeholder: "Licencia"
+        },
+      ]
+    };
+  },
+  methods: {
+    selectTab(item) {
+      let selectedTab = this.tabs.filter((tab) => tab.title == item.title);
+      selectTab.class = "is-active";
+      tab.class = "is-active";
+    },
+  },
 };
 
-const Tabs = [...document.querySelectorAll('#tabs li')];
-const Content = [...document.querySelectorAll('#tab-content p')];
-const Active_class = 'is-active';
-
-function initTabs() {
-    Tabs.forEach((tab) => {
-      tab.addEventListener('click', (e) => {
-        let selected = tab.getAttribute('data-tab');
-        updateActiveTab(tab);
-        updateActiveContent(selected);
-      })
-    })
-}
-
-function updateActiveTab(selected) {
-  Tabs.forEach((tab) => {
-    if (tab && tab.classList.contains(Active_class)) {
-      tab.classList.remove(ACctive_class);
-    }
-  });
-  selected.classList.add(Active_class);
-}
-
-function updateActiveContent(selected) {
-  Content.forEach((item) => {
-    if (item && item.classList.contains(Active_class)) {
-      item.classList.remove(Active_class);
-    }
-    let data = item.getAttribute('data-content');
-    if (data === selected) {
-      item.classList.add(Active_class);
-    }
-  });
-}
-
-initTabs();
 
 </script>
 
 <style>
-
 #tab-content p {
   display: none;
 }
 
 #tab-content p.is-active {
   display: block;
+}
+
+#space {
+  height: 280px;
 }
 </style>

@@ -1,9 +1,10 @@
 <template>
   <div class="container mt-4 has-text-centered has-text-white">
-    <header>Condiciones y términos de uso</header>
-      <div>
-        <p>
-          Aviso legal y condiciones generales de uso El aviso legal y las
+    <h1 class="title is-3">Condiciones y términos de uso</h1>
+      <div class="content">
+        <p class="is small">
+          Aviso legal y condiciones generales de uso.
+          El aviso legal y las
           condiciones generales de uso, o términos y condiciones de uso, está
           pensado para todos aquellos que van a crear una página o sitio web.
           Este documento está adaptado al Reglamento Europeo de Protección de
@@ -43,11 +44,11 @@ export default {
 header {
  font-size: 50px;
  margin: 80px;
+ 
 }
 
 .container mt-4 {
-  display: inline-block; 
-  margin: 10px;
+  text-align: left;
 }
 
 

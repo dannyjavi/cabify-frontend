@@ -45,6 +45,7 @@
         </p>
       </div>
     </section>
+    <div class="space"></div>
   </div>
 </template>
 
@@ -55,4 +56,7 @@ export default {
 </script>
 
 <style>
+.space {
+  height: 300px;
+}
 </style>
