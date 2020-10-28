@@ -5,6 +5,7 @@ import SearchPage from "../pages/SearchPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import TermsPage from "../pages/TermsPage";
+import ConfigPage from "../pages/ConfigPage"
 
 Vue.use(VueRouter);
 
@@ -13,7 +14,8 @@ const routes = [
   { path: "/search", name: "Search", component: SearchPage },
   { path: "/login", name: "Login", component: LoginPage },
   { path: "/register", name: "Register", component: RegisterPage },
-  { path: "/terms", name:"Terms", component: TermsPage }
+  { path: "/terms", name:"Terms", component: TermsPage },
+  { path: "/config", name:"Config", component: ConfigPage }
 ];
 
 const router = new VueRouter({
