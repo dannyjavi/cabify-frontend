@@ -18,7 +18,7 @@ const routes = [
   { path: "/register", name: "Register", component: RegisterPage },
   { path: "/terms", name:"Terms", component: TermsPage },
   { path: "/config", name:"Config", component: ConfigPage },
-  { path: "/order-page", name:"OrderPage", component: OrderPage }
+  { path: "/order-page", name:"OrderPage", component: OrderPage },
   { path: "/list", name:"List", component: ListMap },
 ];
 

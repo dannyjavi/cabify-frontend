@@ -26,7 +26,7 @@
               </div>
               <div class="field is-grouped is-grouped-centered">
                 <p class="control">
-                  <router-link to="/search">
+                  <router-link to="/list">
                     <button 
 										@click="passDataTravel(form)"
 										class="button is-success">Pide ahora</button>
@@ -64,8 +64,12 @@ export default {
 	},
 	methods:{
 		passDataTravel(){
-			this.$store.dispatch('loadTravel', this.form)
-		}
+      this.$store.dispatch('loadTravel', this.form)
+      this.listVehicles()
+    },
+    listVehicles(){
+      this.$store.dispatch('loadVehicles')
+    }
 	}
 };
 </script>

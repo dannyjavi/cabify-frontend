@@ -23,7 +23,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setVehicles(state, payload) {
-      state.vehicles = payload
+      state.vehicles.push(payload)
     },
     setUsers(state, payload) {
       state.users = payload
@@ -38,7 +38,7 @@ export default new Vuex.Store({
   actions: {
     async loadVehicles(context) {
       try {
-        const url = 'http://localhost:3000/vehicles'
+        const url = 'http://192.168.0.106:3000/vehicles'
         const response = await Vue.axios.get(url)
         console.log(response.data)
         context.commit('setVehicles', response.data)
