@@ -30,7 +30,7 @@ export default {
 
 <style>
 #mapid {
-  height: 50vh;
+  height: 100vh;
   width: 100vw;
 }
 </style>
