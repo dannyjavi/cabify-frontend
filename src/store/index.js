@@ -9,8 +9,12 @@ Vue.use(VueAxios, axios)
 export default new Vuex.Store({
   state: {
     vehicles: [],
-    users: [],
-    journeys: []
+    //users: [],
+    //journeys: [],
+    travel:{
+      origen: null,
+      destino: null
+    }
   },
   getters: {
     // readyDrivers(state) {
@@ -26,6 +30,9 @@ export default new Vuex.Store({
     },
     setJourneys(state, payload) {
       state.journeys = payload
+    },
+    setTravel(state, payload) {
+      state.travel = payload
     },
   },
   actions: {
@@ -44,8 +51,12 @@ export default new Vuex.Store({
       context.commit('setUsers', response.data)
     },
     async loadJourneys(context) {
-      const response = await Vue.axios.get('http://localhost:3000/journeys')
-      context.commit('setJourneys', response.data)
+      //const response = await Vue.axios.get('http://localhost:3000/journeys')
+      //context.commit('setJourneys', response.data)
+    },
+    loadTravel(context, form){
+      context.commit('setTravel',form)
+      console.log(form);
     }
   },
   modules: {}

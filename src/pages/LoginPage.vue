@@ -59,7 +59,7 @@ export default {
   methods: {
     async login() {
       const response = await this.axios.post(
-        "http://localhost:3000/auth/login",
+        "http://192.168.0.106:3000/auth/login",
         this.loginPayload
       );
       console.log("logeado");
@@ -71,10 +71,7 @@ export default {
 };
 </script>
 
-<style>
-.container {
-  width: 80%;
-}
+<style scoped>
 .container {
   width: 80%;
 }

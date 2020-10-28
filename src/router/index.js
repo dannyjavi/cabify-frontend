@@ -6,6 +6,7 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import TermsPage from "../pages/TermsPage";
 import ConfigPage from "../pages/ConfigPage"
+import OrderPage from "../pages/OrderPage"
 
 Vue.use(VueRouter);
 
@@ -15,7 +16,8 @@ const routes = [
   { path: "/login", name: "Login", component: LoginPage },
   { path: "/register", name: "Register", component: RegisterPage },
   { path: "/terms", name:"Terms", component: TermsPage },
-  { path: "/config", name:"Config", component: ConfigPage }
+  { path: "/config", name:"Config", component: ConfigPage },
+  { path: "/order-page", name:"OrderPage", component: OrderPage }
 ];
 
 const router = new VueRouter({

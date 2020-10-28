@@ -88,8 +88,6 @@ export default {
   height: 50vh;
 }
 #driver {
-  height: 80px;
-  position: ;
-  
+  height: 80px;  
 }
 </style>

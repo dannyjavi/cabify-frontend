@@ -1,5 +1,5 @@
 <template>
-  <div id="mapid" class="container"></div>
+  <div id="mapid"></div>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
 
 <style>
 #mapid {
-  height: 50vh;
-  width: 100vw;
+  height: 80vh;
+  width: 100vh;
 }
 </style>
