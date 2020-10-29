@@ -63,6 +63,7 @@ export default {
         "http://localhost:3000/auth/login",
         this.formLogin
       );
+      
       //guardo el token en el localStorage
       window.localStorage.setItem("token", response.data.token);
        
