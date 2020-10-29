@@ -73,15 +73,25 @@ export default {
     },
     async searchPos() {
       try {
-        let url =
-          (await "http://api.openweathermap.org/data/2.5/weather?q=") +
+        let url_origen = (await "http://api.openweathermap.org/data/2.5/weather?q=") +
           this.form.origen +
           "&appid=3408896f1d019f9845f9f0726d4dab41&units=metric&lang=es";
-        let response = await this.axios.get(url);
-        let lat = response.data.coord.lat;
-        let lon = response.data.coord.lon;
-        this.form.location = [lat, lon];
-        console.log(this.form.location);
+          
+        let url_destino = (await "http://api.openweathermap.org/data/2.5/weather?q=") +
+          this.form.destino +
+          "&appid=3408896f1d019f9845f9f0726d4dab41&units=metric&lang=es";
+
+        const [coord_origen,coord_destino] = await Promise.all([
+              this.axios.get(url_origen),
+              this.axios.get(url_destino)
+              ])
+
+        const obj_travel = {
+          // terminar de completar...
+          long: coord_origen,
+         lat: coord_destino,
+         //datos del viaje.
+        }
       } catch (err) {
         console.log(err);
       }
