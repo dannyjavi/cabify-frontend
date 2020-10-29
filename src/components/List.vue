@@ -4,10 +4,10 @@
     v-for="(vehicle,index) in drivers" :key="index"
     id="driver" class="button is-fullwidth has-text-left columns mb-4">
       <div class="column">
-        {{ vehicle.precio}} <br />
+        {{ vehicle.position.coordinates }} <br />
         te recogerá en 5 minutos
       </div>
-      <div class="column has-text-right">6,60€</div>
+      <div class="column has-text-right">{{ vehicle.precio }}</div>
     </button>
     
   </div>
@@ -17,9 +17,7 @@
 export default {
   name: "List",
   computed:{
-    drivers(){
-      console.log('computada drivers');
-      
+    drivers() {   
       return this.$store.getters.alldriversAvailable
     }
   },
