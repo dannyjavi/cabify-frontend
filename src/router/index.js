@@ -6,6 +6,8 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import TermsPage from "../pages/TermsPage";
 import ConfigPage from "../pages/ConfigPage"
+import OrderPage from "../pages/OrderPage"
+import ListMap from "../pages/ListMap"
 
 Vue.use(VueRouter);
 
@@ -15,7 +17,9 @@ const routes = [
   { path: "/login", name: "Login", component: LoginPage },
   { path: "/register", name: "Register", component: RegisterPage },
   { path: "/terms", name:"Terms", component: TermsPage },
-  { path: "/config", name:"Config", component: ConfigPage }
+  { path: "/config", name:"Config", component: ConfigPage },
+  { path: "/order-page", name:"OrderPage", component: OrderPage },
+  { path: "/list", name:"List", component: ListMap },
 ];
 
 const router = new VueRouter({

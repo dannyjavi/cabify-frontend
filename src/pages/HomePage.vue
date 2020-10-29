@@ -11,7 +11,7 @@
     <section class="card-content container">
       <div class="field">
         <p class="control">
-          <router-link to="/login">
+          <router-link to="/search">
             <button
               class="button is-white is-focused is-medium is-fullwidth title is-rounded"
             >
@@ -45,15 +45,18 @@
         </p>
       </div>
     </section>
+    <div class="space"></div>
   </div>
 </template>
 
 <script>
-import Map from "../components/Map";
 export default {
   name: "HomePage",
 };
 </script>
 
 <style>
+.space {
+  height: 300px;
+}
 </style>
