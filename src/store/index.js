@@ -17,13 +17,13 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    // readyDrivers(state) {
-    //   return state.vehicles.filter(item => item.state == 1)
-    // }
+    alldriversAvailable(state) {
+      return state.vehicles
+   }
   },
   mutations: {
     setVehicles(state, payload) {
-      state.vehicles.push(payload)
+      state.vehicles = payload
     },
     setUsers(state, payload) {
       state.users = payload
@@ -40,6 +40,7 @@ export default new Vuex.Store({
       try {
         const url = 'http://localhost:3000/vehicles'
         const response = await Vue.axios.get(url)
+        console.log('actionsdel store');
         console.log(response.data)
         context.commit('setVehicles', response.data)
       } catch(err) {
