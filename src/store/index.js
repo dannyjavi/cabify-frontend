@@ -13,10 +13,6 @@ export default new Vuex.Store({
     user: null,
     token: null,
     vehicles: [],
-    travel:{
-      origen: null,
-      destino: null
-    },
   },
   getters: {
     alldriversAvailable(state) {
@@ -33,9 +29,6 @@ export default new Vuex.Store({
     setJourneys(state, payload) {
       state.journeys = payload
     },
-    setTravel(state, payload) {
-      state.travel = payload
-    },
     setToken(state, token){
       state.token = token
       state.isAuth = (token !== null)
@@ -48,7 +41,7 @@ export default new Vuex.Store({
   actions: {
     async loadVehicles(context) {
       try {
-        const url = 'http://localhost:3000/vehicles'
+        const url = 'http://192.168.0.106:3000/vehicles'
         const response = await Vue.axios.get(url)
         context.commit('setVehicles', response.data)
       } catch(err) {
@@ -58,14 +51,6 @@ export default new Vuex.Store({
     async loadUsers(context) {
       const response = await Vue.axios.get('http://localhost:3000/users')
       context.commit('setUsers', response.data)
-    },
-    async loadJourneys(context) {
-      //const response = await Vue.axios.get('http://localhost:3000/journeys')
-      //context.commit('setJourneys', response.data)
-    },
-    loadTravel(context, form){
-      context.commit('setTravel',form)
-      console.log(form);
     },
     login(context, token = null){
       context.commit('setToken', token)

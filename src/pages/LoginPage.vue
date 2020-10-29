@@ -63,6 +63,7 @@ export default {
         "http://192.168.0.106:3000/auth/login",
         this.formLogin
       );
+      
       //guardo el token en el localStorage
       window.localStorage.setItem("token", response.data.token);
        
