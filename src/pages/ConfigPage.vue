@@ -294,9 +294,9 @@ export default {
   },
   methods: {
     loadUserData() {
-      // let currentUserId = this.$store.state.user.id;
-      this.currentUserId = "5f9b041da0293501c9350469";
-      
+           
+      this.currentUserId = this.$store.state.user.id
+      console.log(this.currentUserId)
     },
     async enviar() {
       console.log(this.currentUserId)
