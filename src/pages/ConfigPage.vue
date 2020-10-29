@@ -278,9 +278,9 @@ export default {
       registrationData: {
         price_km: 2,
         address: "",
-        diver_license: "",
+        driver_license: "",
 
-        position: "",
+        position: [ 140,250],
         vehicle_model: "",
         capacity: 4,
         adapted_children: true,
@@ -295,12 +295,13 @@ export default {
   methods: {
     loadUserData() {
       // let currentUserId = this.$store.state.user.id;
-      this.currentUserId = "5f9ac1c45d68a51c91cc9b82";
+      this.currentUserId = "5f9b041da0293501c9350469";
       
     },
     async enviar() {
       console.log(this.currentUserId)
       try{
+        console.log(this.registrationData)
         let result = await this.axios.patch("http://localhost:3000/users/"+this.currentUserId, this.registrationData)
         alert('TODO BIEN')        
 
