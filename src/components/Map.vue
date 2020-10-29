@@ -5,7 +5,7 @@
 <script>
 export default {
   name: "Map",
-  props: ['position'],
+  props: ['vehicles', 'currentPosition'],
   mounted() {
     let mymap = L.map("mapid").setView([36.72, -4.42], 13);
     
@@ -19,6 +19,10 @@ export default {
       tileSize: 512,
       zoomOffset: -1,
     }).addTo(mymap);
+    this.vehicles.forEach(item => {
+      let marker = L.marker(item.position.coordinates).addTo(mymap)
+    })
+    // function createMarkers()
     // mymap.on("locationfound", (e) => {
     //   const coords = [e.latlng.lat, e.latlng.lng];
     //   let marker = L.marker(coords).bindPopup("You are here!").addTo(mymap);

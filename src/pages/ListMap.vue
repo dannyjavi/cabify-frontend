@@ -27,7 +27,7 @@
     <div class="container">
       <List v-show="driversSelected" />
     </div>
-    <Map v-show="mapSelected" />
+    <Map :vehicles="drivers" v-show="mapSelected" />
     <div id="space"></div>
   </div>
 </template>
@@ -59,6 +59,12 @@ export default {
       this.mapClass = ['is-active column', 'has-background-white has-text-black is-size-4']
       this.driverClass = ['column', 'has-background-dark has-text-white is-size-4']
     },
+    
+  },
+  computed:{
+    drivers() {   
+      return this.$store.getters.alldriversAvailable
+    }
   },
 };
 </script>
