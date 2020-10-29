@@ -6,7 +6,7 @@
           Viaja con
           <span class="is-italic">CoffeBy</span>
         </p>
-        <p class="title is-2 has-text-centered has-text-white">
+        <p class="title is-2 mb-5 has-text-centered has-text-white">
           ¡Estamos a un click de tí!
         </p>
       </div>
