@@ -20,7 +20,7 @@ export default {
       zoomOffset: -1,
     }).addTo(mymap);
     this.vehicles.forEach(item => {
-      let marker = L.marker(item.position.coordinates).addTo(mymap)
+      let marker = L.marker(item.position.coordinates).bindPopup("You are here!").addTo(mymap)
     })
     // function createMarkers()
     // mymap.on("locationfound", (e) => {

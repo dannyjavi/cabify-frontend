@@ -8,6 +8,7 @@ import TermsPage from "../pages/TermsPage";
 import ConfigPage from "../pages/ConfigPage"
 import OrderPage from "../pages/OrderPage"
 import ListMap from "../pages/ListMap"
+import Admin from "../pages/admin/AdminPage"
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,7 @@ const routes = [
   { path: "/config", name:"Config", component: ConfigPage },
   { path: "/order-page", name:"OrderPage", component: OrderPage },
   { path: "/list", name:"List", component: ListMap },
+  { path: "/dashboard", name:"Dashboard", component: Admin},
 ];
 
 const router = new VueRouter({

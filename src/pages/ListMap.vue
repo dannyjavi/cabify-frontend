@@ -62,7 +62,8 @@ export default {
     
   },
   computed:{
-    drivers() {   
+    drivers() {
+      // this.$store.state.vehicles -> otra opción
       return this.$store.getters.alldriversAvailable
     }
   },
