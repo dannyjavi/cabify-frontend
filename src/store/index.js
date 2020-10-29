@@ -8,6 +8,7 @@ Vue.use(VueAxios, axios)
 
 export default new Vuex.Store({
   state: {
+    
     vehicles: [],
     //users: [],
     //journeys: [],

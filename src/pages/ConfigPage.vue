@@ -276,15 +276,15 @@ export default {
       token: "",
       currentUserId:"",
       registrationData: {
-        price_km: "",
+        price_km: 2,
         address: "",
         diver_license: "",
 
         position: "",
         vehicle_model: "",
-        capacity: "",
-        adapted_children: "",
-        covid_measures: "",
+        capacity: 4,
+        adapted_children: true,
+        covid_measures: true,
         type_vehicle: "",
         image: "",
         color: "",
@@ -295,16 +295,14 @@ export default {
   methods: {
     loadUserData() {
       // let currentUserId = this.$store.state.user.id;
-      this.currentUserId = "5f9aade484649c7e48172daf";
+      this.currentUserId = "5f9ac1c45d68a51c91cc9b82";
       
     },
     async enviar() {
       console.log(this.currentUserId)
       try{
-        let result = await this.axios.patch(
-          "http://localhost:3000/users/"+this.currentUserId,
-          this.registrationData
-        );
+        let result = await this.axios.patch("http://localhost:3000/users/"+this.currentUserId, this.registrationData)
+        alert('TODO BIEN')        
 
       }catch(e){
         alert('Error al realizar la actualización')
