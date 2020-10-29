@@ -2,6 +2,7 @@
   <div>
     <div>
       <div class="container mt-6 is-fluid">
+        <router-link to="/config"><i class="fas fa-cogs"></i></router-link>
         <p class="title is-2 has-text-centered has-text-white">
           Viaja con
           <span class="is-italic">CoffeBy</span>
