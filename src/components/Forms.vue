@@ -58,7 +58,8 @@ export default {
     return {
       form: {
         origen: "málaga",
-        destino: "sevilla"
+        destino: "sevilla",
+        location: []
       }
     };
 	},
@@ -69,7 +70,22 @@ export default {
     },
     listVehicles(){
       this.$store.dispatch('loadVehicles')
-    }
+    },
+    async searchPos() {
+      try {
+        let url =
+          (await "http://api.openweathermap.org/data/2.5/weather?q=") +
+          this.form.origen +
+          "&appid=3408896f1d019f9845f9f0726d4dab41&units=metric&lang=es";
+        let response = await this.axios.get(url);
+        let lat = response.data.coord.lat;
+        let lon = response.data.coord.lon;
+        this.form.location = [lat, lon];
+        console.log(this.form.location);
+      } catch (err) {
+        console.log(err);
+      }
+    },
 	}
 };
 </script>
