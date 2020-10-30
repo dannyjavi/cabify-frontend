@@ -43,16 +43,19 @@ export default new Vuex.Store({
     login(context, token = null){
       context.commit('setToken', token)
     },
+    logout(context){
+      context.commit('setToken', null)
+    },
     isToken(context){
-      let token = localStorage.getItem('token')
-      if (token === null) {
+      let token = window.localStorage.getItem('token')
+      if (token === 'null') {
         token = null
       }
       context.commit('setToken', token)
     },
     async loadVehicles(context) {
       try {
-        const url = 'http://192.168.0.106:3000/vehicles'
+        const url = 'http://localhost:3000/vehicles'
         const response = await Vue.axios.get(url)
         context.commit('setVehicles', response.data)
       } catch(err) {
@@ -60,7 +63,7 @@ export default new Vuex.Store({
       }
     },
     async loadUsers(context) {
-      const response = await Vue.axios.get('http://192.168.0.106:3000/users')
+      const response = await Vue.axios.get('http://localhost:3000/users')
       context.commit('setUsers', response.data)
     }
   },
