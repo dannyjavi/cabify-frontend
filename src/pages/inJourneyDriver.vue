@@ -10,8 +10,8 @@
             <strong>Punto de recogida:</strong> {{journey.start_point.name }} <br />
             <strong>Destino:</strong> {{ journey.destiny_point.name }}
             <br />
-            <strong>Distancia:</strong> {{endedJourney.travel_distance }}Km <br />
-            <strong>Precio:</strong> {{ endedJourney.journey_price }}€
+            <strong>Distancia:</strong> {{journey.travel_distance }} Km <br />
+            <strong>Precio:</strong> {{ journey.journey_price }} €
           </p>
         </div>
         <div class="p-3 container">
@@ -28,11 +28,6 @@ export default {
   name: "inJourneyDriver",
   data() {
     return {
-      endedJourney:{
-          journey_price:"",
-          travel_distance:"",
-          points:"",
-        },
       requestHeaders: "",
       journey: "",
       driver:""
@@ -84,18 +79,13 @@ export default {
     async terminar(){
       try {
         let id = this.$store.state.currentJourneyId;
-        let endedJpurney={
-          journey_price:this.endedJpurney.journey_price,      
-          travel_distance:this.endedJpurney.travel_distance,      
-          points:this.endedJpurney.points
-        }
         let result = await this.axios.patch(
-          "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",endedJpurney,this.requestHeaders
+          "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
         );
         alert('Viaje terminado correctamente')
         this.$router.push('/journey-driver')
       } catch (e) {
-        console.log("Error al cargar el viaje");
+        console.log("Error al cargar el viaje"+e);
       }
     }
   },
