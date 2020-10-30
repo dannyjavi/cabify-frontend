@@ -4,7 +4,7 @@
     <nav class="navbar is-dark">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item brand-text" href="/order-page">CoffeBy</a>
+          <a class="navbar-item brand-text" href="/order-page">{{ userName }}</a>
           <div @click="toggleMenu" class="navbar-burger burger" data-target="navMenu">
             <span></span>
             <span></span>
@@ -17,8 +17,8 @@
             <router-link class="navbar-item" to="/profile">Account</router-link>
             <router-link class="navbar-item" to="/journey-driver">My Travels</router-link>
             <router-link class="navbar-item" to="/dashboard">Bonus Points</router-link>
-            <router-link class="navbar-item" to="/login">Login</router-link>
-            <a @click.prevent="logout" :class="navbar-item">Logout</a>
+            <router-link v-show="!isLogged" class="navbar-item" to="/login">Login</router-link>
+            <a @click.prevent="logout" v-show="isLogged" class="navbar-item">Logout</a>
           </div>
         </div>
       </div>
@@ -47,6 +47,19 @@ export default {
       this.$store.dispatch('logout')
       this.$router.push('/')
     }
+  },
+  computed: {
+    isLogged() {
+      return this.$store.state.isAuth
+    },
+    userName() {
+      if(this.$store.state.user != null) {
+        return 'Hola, ' + this.$store.state.user.first_name
+      } else {
+        return 'CoffeBy'
+      }
+    }
+    
   }
 };
 </script>

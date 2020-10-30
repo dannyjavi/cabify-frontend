@@ -21,12 +21,12 @@
         </span>
         Mis datos
       </a>
-      <a class="panel-block is-active">
+      <router-link to="/config" class="panel-block is-active">
         <span class="panel-icon">
           <i class="fas fa-user-tie" aria-hidden="true"></i>
         </span>
         Convertirme en conductor
-      </a>
+      </router-link>
     </nav>
   
 </template>

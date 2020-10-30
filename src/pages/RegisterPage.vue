@@ -92,9 +92,9 @@
           </p>
         </div>
 
-        <label class="checkbox">
+        <label class="checkbox is-size-5 title">
           <input v-model="acepted" type="checkbox" />
-          I agree to the <router-link link to="/terms" >terms and conditions</router-link>
+          I agree to the <router-link link to="/terms">terms and conditions</router-link>
           
         </label>
         <!-- <div class="modal is-active">
