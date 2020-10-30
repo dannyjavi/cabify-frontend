@@ -93,8 +93,8 @@ export default {
         let result = await this.axios.patch(
           "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",endedJpurney,this.requestHeaders
         );
-        this.journey = result.data;
-        this.loadDriverData()
+        alert('Viaje terminado correctamente')
+        this.$router.push('/journey-driver')
       } catch (e) {
         console.log("Error al cargar el viaje");
       }
