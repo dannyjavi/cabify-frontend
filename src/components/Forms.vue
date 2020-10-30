@@ -9,7 +9,7 @@
                 <p class="control has-icons-left has-icons-right">
                   <input
                     v-model="form.origen"
-                    class="input"
+                    class="input is-medium"
                     type="text"
                     placeholder="Ubicación"
                   />
@@ -22,7 +22,7 @@
                 <p class="control has-icons-left">
                   <input
                     v-model="form.destino"
-                    class="input"
+                    class="input is-medium"
                     type="text"
                     placeholder="Destino"
                   />
@@ -36,7 +36,7 @@
                   <!-- <router-link to="/list"> -->
                   <button
                     @click="passDataTravel(form)"
-                    class="button is-dark title is-5"
+                    class="button is-dark title is-5 mt-2"
                   >
                     Pide ahora
                   </button>

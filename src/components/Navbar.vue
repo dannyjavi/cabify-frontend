@@ -1,23 +1,23 @@
 <template>
   <div>
     <!-- START NAV -->
-    <nav class="navbar is-white">
+    <nav class="navbar is-dark">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item brand-text" href="../index.html">Bulma Admin</a>
-          <div class="navbar-burger burger" data-target="navMenu">
+          <a class="navbar-item brand-text" href="../index.html">CoffeBy</a>
+          <div @click="toggleMenu" class="navbar-burger burger" data-target="navMenu">
             <span></span>
             <span></span>
             <span></span>
           </div>
         </div>
-        <div id="navMenu" class="navbar-menu">
+        <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div class="navbar-start">
-            <a class="navbar-item" href="admin.html">Home</a>
-            <a class="navbar-item" href="admin.html">Orders</a>
-            <a class="navbar-item" href="admin.html">Payments</a>
-            <a class="navbar-item" href="admin.html">Exceptions</a>
-            <a class="navbar-item" href="admin.html">Reports</a>
+            <router-link class="navbar-item" to="/">Home</router-link>
+            <router-link class="navbar-item" to="/config">Account</router-link>
+            <router-link class="navbar-item" to="/config">Payments</router-link>
+            <router-link class="navbar-item" to="/dashboard">Bonus Points</router-link>
+            <router-link class="navbar-item" to="/terms">Help</router-link>
           </div>
         </div>
       </div>
@@ -28,7 +28,21 @@
 
 <script>
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  data() {
+    return {
+      menuClass: ''
+    }
+  },
+  methods: {
+    toggleMenu() {
+      if(this.menuClass == '') {
+        this.menuClass = 'is-active'
+      } else {
+        this.menuClass = ''
+      }
+    }
+  }
 };
 </script>
 
