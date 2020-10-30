@@ -4,7 +4,7 @@
     <nav class="navbar is-dark">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item brand-text" href="/order-page">{{ userName }}</a>
+          <router-link class="navbar-item brand-text" to="/order-page">{{ userName }}</router-link>
           <div @click="toggleMenu" class="navbar-burger burger" data-target="navMenu">
             <span></span>
             <span></span>
@@ -13,12 +13,13 @@
         </div>
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
-            <router-link class="navbar-item" to="/">Home</router-link>
-            <router-link class="navbar-item" to="/profile">Account</router-link>
-            <router-link class="navbar-item" to="/journey-driver">My Travels</router-link>
-            <router-link class="navbar-item" to="/dashboard">Bonus Points</router-link>
-            <router-link v-show="!isLogged" class="navbar-item" to="/login">Login</router-link>
-            <a @click.prevent="logout" v-show="isLogged" class="navbar-item">Logout</a>
+            <router-link v-if="isLogged" class="navbar-item" to="/">Home</router-link>
+            <router-link v-if="isLogged" class="navbar-item" to="/order-page">Buscar viaje</router-link>
+            <router-link v-if="isLogged" class="navbar-item" to="/profile">Account</router-link>
+            <router-link v-if="isLogged" class="navbar-item" to="/journey-driver">My Travels</router-link>
+            <router-link v-if="isLogged" class="navbar-item" to="/dashboard">Bonus Points</router-link>
+            <router-link v-if="!isLogged" class="navbar-item" to="/login">Login</router-link>
+            <a @click.prevent="logout" v-if="isLogged" class="navbar-item">Logout</a>
           </div>
         </div>
       </div>
@@ -32,7 +33,20 @@ export default {
   name: "NavBar",
   data() {
     return {
-      menuClass: ''
+      menuClass: '',
+      menuOptions : [
+      {title: "Home", path: "/"},
+      {title: "Register", path: "/register"}
+      ]
+    }
+  },
+  computed:{
+    menu(){
+    let menuOptions = [
+      {title: "Home", path: "Home"},
+      {title: "Terminos us", path: "Terms"}
+      ]
+    return menuOptions
     }
   },
   methods: {
@@ -42,6 +56,7 @@ export default {
       } else {
         this.menuClass = ''
       }
+
     },
     logout(){
       this.$store.dispatch('logout')

@@ -17,7 +17,7 @@ import ErrorPage from "../pages/Error/ErrorPage"
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/", name: "Home", component: HomePage },
+  { path: "/", name: "Home", component: HomePage, alias: 'Home' },
   { path: "/search", name: "Search", component: SearchPage },
   { path: "/login", name: "Login", component: LoginPage },
   { path: "/register", name: "Register", component: RegisterPage },
