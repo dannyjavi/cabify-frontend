@@ -306,7 +306,7 @@ export default {
         console.log(this.registrationData)
         let result = await this.axios.patch("http://localhost:3000/users/"+this.currentUserId, this.registrationData)
         alert('TODO BIEN')        
-
+        this.$router.push('/journey-driver')
       }catch(e){
         alert('Error al realizar la actualización')
       }
