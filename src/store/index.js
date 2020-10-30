@@ -12,6 +12,7 @@ export default new Vuex.Store({
     isAuth: false,
     user: null,
     token: null,
+    currentJourneyId:null,
     vehicles: [],
   },
   getters: {
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     },
     setJourneys(state, payload) {
       state.journeys = payload
+    },
+    setJourneyId(state, payload) {
+      state.currentJourneyId = payload
     },
     setToken(state, token){
       state.token = token
@@ -54,7 +58,11 @@ export default new Vuex.Store({
     },
     login(context, token = null){
       context.commit('setToken', token)
+    },
+    loadJourneyId(context, id){
+      context.commit('setJourneyId', id)
     }
+
   },
   modules: {}
 });
