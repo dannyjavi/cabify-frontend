@@ -1,5 +1,5 @@
 <template>
-  <div v-show="isOpen" class="notification is-danger is-light">
+  <div class="notification is-danger is-light">
     <button @click="closeAlert" class="delete"></button>
     {{ mensaje }}
     <router-link to="/login">Iniciar sesión</router-link><br>
