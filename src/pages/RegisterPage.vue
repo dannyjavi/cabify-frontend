@@ -165,7 +165,7 @@ export default {
         alert(
           "Te has registrado satisfactorizamente. Puedes acceder con tu nueva cuenta desde el formulario de identificación"
         );
-        this.$router.push("/search");
+        this.$router.push("/login");
       } catch (e) {
         console.log(e, this.registrationData);
         alert("Se ha producido un error al enviar el formulario");
