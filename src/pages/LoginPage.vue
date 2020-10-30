@@ -8,7 +8,7 @@
     <section class="card-content section">
       <div class="field mb-5">
         <p class="control has-icons-left has-icons-right">
-          <input v-model="loginPayload.email" class="input is-medium" type="email" placeholder="Email" />
+          <input v-model="formLogin.email" class="input is-medium" type="email" placeholder="Email" />
           <span class="icon is-small is-left">
             <i class="fas fa-envelope"></i>
           </span>
@@ -16,7 +16,7 @@
       </div>
       <div class="field mb-6">
         <p class="control has-icons-left">
-          <input v-model="loginPayload.password" class="input is-medium" type="password" placeholder="Password" />
+          <input v-model="formLogin.password" class="input is-medium" type="password" placeholder="Password" />
           <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
           </span>
@@ -50,7 +50,7 @@ export default {
   name: "LoginPage",
   data() {
     return {
-      loginPayload: {
+      formLogin: {
         email: "",
         password: "",
       },
@@ -58,14 +58,28 @@ export default {
   },
   methods: {
     async login() {
-      const response = await this.axios.post(
-        "http://192.168.0.106:3000/auth/login",
-        this.loginPayload
+     try {
+        let response = await this.axios.post(
+        "http://localhost:3000/auth/login",
+        this.formLogin
       );
-      console.log("logeado");
+      
+      //guardo el token en el localStorage
       window.localStorage.setItem("token", response.data.token);
-      console.log(response.data.token);
-      this.$router.push("/search");
+       
+      // guardo la respuesta en el store
+      this.$store.dispatch('login', response.data.token)
+
+      if (this.$store.state.user.profiles[0] === 'admin') {
+        this.$router.push('/dashboard')
+      }
+      this.$router.push('/order-page')
+     } catch (error) {
+       alert('usuario/password incorrectas');
+     }
+      
+      
+      //this.$router.push("/search");
     },
   },
 };

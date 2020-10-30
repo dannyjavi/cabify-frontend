@@ -280,9 +280,9 @@ export default {
       registrationData: {
         price_km: 2,
         address: "",
-        diver_license: "",
+        driver_license: "",
 
-        position: "",
+        position: [ 140,250],
         vehicle_model: "",
         capacity: 4,
         adapted_children: true,
@@ -296,6 +296,7 @@ export default {
   },
   methods: {
     loadUserData() {
+<<<<<<< HEAD
       // let currentUserId = this.$store.state.user.id;
       this.currentUserId = "5f9ac1c45d68a51c91cc9b82";
     },
@@ -309,6 +310,21 @@ export default {
         alert("TODO BIEN");
       } catch (e) {
         alert("Error al realizar la actualización");
+=======
+           
+      this.currentUserId = this.$store.state.user.id
+      console.log(this.currentUserId)
+    },
+    async enviar() {
+      console.log(this.currentUserId)
+      try{
+        console.log(this.registrationData)
+        let result = await this.axios.patch("http://localhost:3000/users/"+this.currentUserId, this.registrationData)
+        alert('TODO BIEN')        
+
+      }catch(e){
+        alert('Error al realizar la actualización')
+>>>>>>> e32c9eb74e06b847b483b24f8e8e665c6ac2a3d6
       }
     },
   },
