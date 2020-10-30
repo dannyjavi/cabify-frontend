@@ -7,12 +7,16 @@
             <div class="content">
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
+<<<<<<< HEAD
                   <input
                     v-model="form.origen"
                     class="input is-medium"
                     type="text"
                     placeholder="Ubicación"
                   />
+=======
+                  <input v-model="form.origen" class="input" type="text" placeholder="Ubicación" />
+>>>>>>> 862d992230de1af8a26be29aff9677a3e86916db
                   <span class="icon is-small is-left">
                     <i class="fas fa-map-marker-alt"></i>
                   </span>
@@ -20,12 +24,16 @@
               </div>
               <div class="field">
                 <p class="control has-icons-left">
+<<<<<<< HEAD
                   <input
                     v-model="form.destino"
                     class="input is-medium"
                     type="text"
                     placeholder="Destino"
                   />
+=======
+                  <input v-model="form.destino" class="input" type="text" placeholder="Destino" />
+>>>>>>> 862d992230de1af8a26be29aff9677a3e86916db
                   <span class="icon is-small is-left">
                     <i class="fas fa-search"></i>
                   </span>
@@ -34,12 +42,16 @@
               <div class="field is-grouped is-grouped-centered">
                 <p class="control">
                   <!-- <router-link to="/list"> -->
+<<<<<<< HEAD
                   <button
                     @click="passDataTravel(form)"
                     class="button is-dark title is-5 mt-2"
                   >
                     Pide ahora
                   </button>
+=======
+                  <button @click="passDataTravel(form)" class="button is-dark title is-5" :disabled="setDisable">Pide ahora</button>
+>>>>>>> 862d992230de1af8a26be29aff9677a3e86916db
                   <!-- </router-link> -->
                 </p>
               </div>
@@ -63,18 +75,25 @@ import Map from "./Map";
 export default {
   name: "FormComponent",
   components: {
-    Map,
+    Map
   },
   data() {
     return {
+      isDisable: true,
       form: {
         origen: "",
         destino: "",
-        location: [],
+        location: []
       },
-      vehicles: [],
+      vehicles: []
     };
   },
+  computed:{
+    setDisable(){
+      return (this.form.origen !== '' && this.form.destino !== '') ? false : true
+    }
+  }
+  ,
   async mounted() {
     await this.$store.dispatch("loadVehicles");
     this.vehicles = this.$store.getters.alldriversAvailable;
@@ -88,45 +107,76 @@ export default {
       maxZoom: 20,
       id: "mapbox/streets-v11",
       tileSize: 512,
-      zoomOffset: -1,
+      zoomOffset: -1
     }).addTo(mymap);
-    this.vehicles.forEach((item) => {
+    this.vehicles.forEach(item => {
       let marker = L.marker(item.position.coordinates)
-        .bindPopup('Hi there!')
+        .bindPopup("Hi there!")
         .addTo(mymap);
     });
   },
   methods: {
     passDataTravel() {
-      this.$store.dispatch("loadTravel", this.form);
       this.searchPos();
     },
     async searchPos() {
+      /* if (this.$store.state.isAuth === false) {
+        alert('Debes estar logueado para continuar')
+        this.$router.push('/login')
+        return
+      } */
       try {
-        let url_origen = (await "http://api.openweathermap.org/data/2.5/weather?q=") +
+        let url_origen =
+          "http://api.openweathermap.org/data/2.5/weather?q=" +
           this.form.origen +
           "&appid=3408896f1d019f9845f9f0726d4dab41&units=metric&lang=es";
-          
-        let url_destino = (await "http://api.openweathermap.org/data/2.5/weather?q=") +
+
+        let url_destino =
+          "http://api.openweathermap.org/data/2.5/weather?q=" +
           this.form.destino +
           "&appid=3408896f1d019f9845f9f0726d4dab41&units=metric&lang=es";
 
-        const [coord_origen,coord_destino] = await Promise.all([
-              this.axios.get(url_origen),
-              this.axios.get(url_destino)
-              ])
-
+        const [coord_origen, coord_destino] = await Promise.all([
+          this.axios.get(url_origen),
+          this.axios.get(url_destino)
+        ]);
+        
         const obj_travel = {
-          // terminar de completar...
-          long: coord_origen,
-         lat: coord_destino,
-         //datos del viaje.
+          start_point: {
+            lat: coord_origen.data.coord.lat,
+            long: coord_origen.data.coord.lon,
+            name: this.form.origen
+          },
+          destiny_point: {
+            lat: coord_origen.data.coord.lat,
+            long: coord_origen.data.coord.lon,
+            name: this.form.destino
+          },
+          user: this.$store.state.user.id
+        };
+
+        let token = this.$store.state.token
+
+        const header_axios = {
+          headers:{
+            Authorization: `Bearer ${token}`
+          }
         }
+        if (obj_travel.start_point === undefined | obj_travel.destiny_point === undefined) {
+          alert("tu ciudad no existe");
+        }
+
+        const res = await this.axios.post("http://192.168.0.106:3000/journeys", obj_travel,header_axios);
+        console.log(res);
       } catch (err) {
-        console.log(err);
+        alert('Tenemos problemas para gestionar tu petición', err)
       }
     },
-  },
+    async loadJourneys(context) {
+      //const response = await Vue.axios.get('http://localhost:3000/journeys')
+      //context.commit('setJourneys', response.data)
+    }
+  }
 };
 </script>
 
