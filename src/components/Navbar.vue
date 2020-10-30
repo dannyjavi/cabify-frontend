@@ -15,9 +15,9 @@
           <div class="navbar-start">
             <router-link class="navbar-item" to="/">Home</router-link>
             <router-link class="navbar-item" to="/config">Account</router-link>
-            <router-link class="navbar-item" to="/config">Payments</router-link>
+            <router-link class="navbar-item" to="/journey-driver">My Travels</router-link>
             <router-link class="navbar-item" to="/dashboard">Bonus Points</router-link>
-            <router-link class="navbar-item" to="/terms">Help</router-link>
+            <router-link class="navbar-item" to="/login">Login</router-link>
           </div>
         </div>
       </div>

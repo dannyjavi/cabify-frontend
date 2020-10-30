@@ -7,16 +7,12 @@
             <div class="content">
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
-<<<<<<< HEAD
                   <input
                     v-model="form.origen"
                     class="input is-medium"
                     type="text"
                     placeholder="Ubicación"
                   />
-=======
-                  <input v-model="form.origen" class="input" type="text" placeholder="Ubicación" />
->>>>>>> 862d992230de1af8a26be29aff9677a3e86916db
                   <span class="icon is-small is-left">
                     <i class="fas fa-map-marker-alt"></i>
                   </span>
@@ -24,16 +20,12 @@
               </div>
               <div class="field">
                 <p class="control has-icons-left">
-<<<<<<< HEAD
                   <input
                     v-model="form.destino"
                     class="input is-medium"
                     type="text"
                     placeholder="Destino"
                   />
-=======
-                  <input v-model="form.destino" class="input" type="text" placeholder="Destino" />
->>>>>>> 862d992230de1af8a26be29aff9677a3e86916db
                   <span class="icon is-small is-left">
                     <i class="fas fa-search"></i>
                   </span>
@@ -42,16 +34,7 @@
               <div class="field is-grouped is-grouped-centered">
                 <p class="control">
                   <!-- <router-link to="/list"> -->
-<<<<<<< HEAD
-                  <button
-                    @click="passDataTravel(form)"
-                    class="button is-dark title is-5 mt-2"
-                  >
-                    Pide ahora
-                  </button>
-=======
                   <button @click="passDataTravel(form)" class="button is-dark title is-5" :disabled="setDisable">Pide ahora</button>
->>>>>>> 862d992230de1af8a26be29aff9677a3e86916db
                   <!-- </router-link> -->
                 </p>
               </div>
@@ -166,7 +149,7 @@ export default {
           alert("tu ciudad no existe");
         }
 
-        const res = await this.axios.post("http://192.168.0.106:3000/journeys", obj_travel,header_axios);
+        const res = await this.axios.post("http://localhost:3000/journeys", obj_travel,header_axios);
         console.log(res);
       } catch (err) {
         alert('Tenemos problemas para gestionar tu petición', err)

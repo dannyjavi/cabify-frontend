@@ -1,5 +1,8 @@
 <template>
   <div>
+    <buttton @click="loadJourneys" class="button is-dark">
+      Refrescar
+    </buttton>
     <Card  v-for="(item, index) in journeys" :key="index" :num="index" :item="item"  @click="aceptar" />
     
      <section v-if="(journeys.length===0)" class="section">
