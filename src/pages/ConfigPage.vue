@@ -296,13 +296,28 @@ export default {
   },
   methods: {
     loadUserData() {
+
+      // this.currentUserId = this.$store.state.user.id
+      this.currentUserId = "5f9ac1c45d68a51c91cc9b82";
+    },
+    async enviar() {
+      console.log(this.currentUserId);
+      try {
+        let result = await this.axios.patch(
+          "http://localhost:3000/users/" + this.currentUserId,
+          this.registrationData
+        );
+        alert("TODO BIEN");
+      } catch (e) {
+        alert("Error al realizar la actualización");
+      }
            
       this.currentUserId = this.$store.state.user.id
       console.log(this.currentUserId)
     },
     async enviar() {
       console.log(this.currentUserId)
-      try{
+      try {
         console.log(this.registrationData)
         let result = await this.axios.patch("http://localhost:3000/users/"+this.currentUserId, this.registrationData)
         alert('TODO BIEN')        
