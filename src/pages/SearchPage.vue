@@ -17,16 +17,9 @@
 export default {
   name: "SearchPage",
 };
+
 </script>
 
 <style>
-.card {
-  height: 100vh;
-}
-.card-image {
-  height: 50vh;
-}
-#driver {
-  height: 80px;
-}
+
 </style>
