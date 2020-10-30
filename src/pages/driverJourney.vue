@@ -57,6 +57,7 @@ export default {
     Card,
   },
   methods: {
+    
     async loadCurrentUserData() {
       let token = this.$store.state.token
       // let token =
@@ -65,12 +66,14 @@ export default {
         headers: { Authorization: "Bearer " + token },
       };
     },
+    
     async loadJourneys() {
       try {
         let result = await this.axios.get("http://localhost:3000/journeys");
         // console.log(result.data)
         this.journeys = result.data;
         console.log(this.journeys);
+        
       } catch (e) {
         console.log("Error al cargar viajes");
       }
@@ -95,7 +98,12 @@ export default {
   },
   mounted() {
     console.log("MOUNTED");
-    this.loadJourneys();
+    this.loadJourneys()
+    setInterval(() => {
+      this.loadJourneys()
+      console.log("RECARGADO")
+    }, 2000);
+
     this.loadCurrentUserData();
   },
 };
