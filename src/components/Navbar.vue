@@ -14,7 +14,7 @@
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
             <router-link class="navbar-item" to="/">Home</router-link>
-            <router-link class="navbar-item" to="/config">Account</router-link>
+            <router-link class="navbar-item" to="/profile">Account</router-link>
             <router-link class="navbar-item" to="/journey-driver">My Travels</router-link>
             <router-link class="navbar-item" to="/dashboard">Bonus Points</router-link>
             <router-link class="navbar-item" to="/login">Login</router-link>
@@ -52,5 +52,5 @@ export default {
 </script>
 
 <style>
-  
+
 </style>

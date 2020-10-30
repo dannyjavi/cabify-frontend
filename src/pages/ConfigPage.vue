@@ -296,10 +296,8 @@ export default {
   },
   methods: {
     loadUserData() {
-<<<<<<< HEAD
 
-      // this.currentUserId = this.$store.state.user.id
-      this.currentUserId = "5f9ac1c45d68a51c91cc9b82";
+      this.currentUserId = this.$store.state.user.id
     },
     async enviar() {
       console.log(this.currentUserId);
@@ -312,8 +310,6 @@ export default {
       } catch (e) {
         alert("Error al realizar la actualización");
       }
-=======
->>>>>>> 5ec587dffdba465a6697c9a3f9e2019976fc4648
            
       this.currentUserId = this.$store.state.user.id
       console.log(this.currentUserId)
