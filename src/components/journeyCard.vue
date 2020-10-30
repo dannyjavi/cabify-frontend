@@ -1,5 +1,4 @@
-<template>
-  
+<template>  
     <section  @click.prevent="$emit('click', item._id)" class="section">
         <div class="container">
           <div class="columns is-multiline">

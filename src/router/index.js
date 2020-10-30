@@ -1,16 +1,25 @@
-import Vue from "vue";
 import VueRouter from "vue-router";
+import Vue from "vue";
 import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import TermsPage from "../pages/TermsPage";
+<<<<<<< HEAD
 import ConfigPage from "../pages/ConfigPage";
 import OrderPage from "../pages/OrderPage";
 import ListMap from "../pages/ListMap";
 import ProfilePage from "../pages/ProfilePage";
 import Admin from "../pages/admin/AdminPage";
 import driverJourney from "../pages/driverJourney"
+=======
+import ConfigPage from "../pages/ConfigPage"
+import OrderPage from "../pages/OrderPage"
+import ListMap from "../pages/ListMap"
+import Admin from "../pages/admin/AdminPage"
+import driverJourney from "../pages/driverJourney"
+import inJourneyDriver from "../pages/inJourneyDriver"
+>>>>>>> 5ec587dffdba465a6697c9a3f9e2019976fc4648
 
 Vue.use(VueRouter);
 
@@ -24,8 +33,12 @@ const routes = [
   { path: "/order-page", name:"OrderPage", component: OrderPage },
   { path: "/profile", name:"ProfilePage", component: ProfilePage },
   { path: "/list", name:"List", component: ListMap },
+<<<<<<< HEAD
   
+=======
+>>>>>>> 5ec587dffdba465a6697c9a3f9e2019976fc4648
   { path: "/journey-driver", name:"DriverJourney", component: driverJourney },
+  { path: "/in-journey-driver", name:"inJourneyDriver", component: inJourneyDriver },
   { path: "/dashboard", name:"Dashboard", component: Admin},
 ];
 

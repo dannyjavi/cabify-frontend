@@ -1,8 +1,6 @@
 <template>
   <div>
-    <buttton @click="loadJourneys" class="button is-dark mt-4 ml-3">
-      Refrescar
-    </buttton>
+    
     <Card  v-for="(item, index) in journeys" :key="index" :num="index" :item="item"  @click="aceptar" />
     
      <section v-if="(journeys.length===0)" class="section">
@@ -49,6 +47,7 @@ export default {
   name: "DriverJourney",
   data() {
     return {
+      intervalId:"",
       noViajes:{
 
       },
@@ -62,9 +61,9 @@ export default {
   methods: {
     
     async loadCurrentUserData() {
-      let token = this.$store.state.token
-      // let token =
-      //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOWFjMWM0NWQ2OGE1MWM5MWNjOWI4MiIsImZpcnN0X25hbWUiOiJKdWxpbyIsImxhc3RfbmFtZSI6IkVzdGViYW4iLCJwcm9maWxlcyI6WyJ1c2VyIiwiZHJpdmVyIl0sImpvdXJuZXlzIjpbXSwiZHJpdmVyIjoiNWY5YWMzMDk1ZDY4YTUxYzkxY2M5Yjg0IiwiaWF0IjoxNjA0MDAyNDgxLCJleHAiOjE2MDkxODY0ODF9.lPBVZLpxM7in7jqr5Ng7tXs4bOFetNmAruDu8JQBqA8";
+      // let token = this.$store.state.token
+      let token =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmOWFjMWM0NWQ2OGE1MWM5MWNjOWI4MiIsImZpcnN0X25hbWUiOiJKdWxpbyIsImxhc3RfbmFtZSI6IkVzdGViYW4iLCJwcm9maWxlcyI6WyJ1c2VyIiwiZHJpdmVyIl0sImpvdXJuZXlzIjpbXSwiZHJpdmVyIjoiNWY5YWMzMDk1ZDY4YTUxYzkxY2M5Yjg0IiwiaWF0IjoxNjA0MDAyNDgxLCJleHAiOjE2MDkxODY0ODF9.lPBVZLpxM7in7jqr5Ng7tXs4bOFetNmAruDu8JQBqA8";
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token },
       };
@@ -75,7 +74,7 @@ export default {
         let result = await this.axios.get("http://localhost:3000/journeys");
         // console.log(result.data)
         this.journeys = result.data;
-        console.log(this.journeys);
+        // console.log(this.journeys);
         
       } catch (e) {
         console.log("Error al cargar viajes");
@@ -91,8 +90,9 @@ export default {
         {},
         this.requestHeaders
       );
-      alert("TODO BIEN");
-      console.log(result.data);
+      this.$store.dispatch('loadJourneyId', id)
+      this.$router.push('/in-journey-driver')
+      
       }catch(e){
         console.log("Error al aceptar el viaje")
       }
@@ -102,13 +102,17 @@ export default {
   mounted() {
     console.log("MOUNTED");
     this.loadJourneys()
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       this.loadJourneys()
       console.log("RECARGADO")
-    }, 2000);
+    }, 5000);
 
     this.loadCurrentUserData();
   },
+  destroyed(){
+    console.log("DESTROYED")
+    clearInterval(this.intervalId)     
+  }
 };
 </script>
 <style>
