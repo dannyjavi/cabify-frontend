@@ -40,9 +40,23 @@ export default new Vuex.Store({
       if(token !== null){
         state.user = jwtDecode(token)
       }
+      localStorage.setItem('token', token)
     }
   },
   actions: {
+    login(context, token = null){
+      context.commit('setToken', token)
+    },
+    logout(context){
+      context.commit('setToken', null)
+    },
+    isToken(context){
+      let token = window.localStorage.getItem('token')
+      if (token === 'null') {
+        token = null
+      }
+      context.commit('setToken', token)
+    },
     async loadVehicles(context) {
       try {
         const url = 'http://localhost:3000/vehicles'

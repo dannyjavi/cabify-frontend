@@ -4,7 +4,7 @@
     <nav class="navbar is-dark">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item brand-text" href="../index.html">CoffeBy</a>
+          <a class="navbar-item brand-text" href="/order-page">CoffeBy</a>
           <div @click="toggleMenu" class="navbar-burger burger" data-target="navMenu">
             <span></span>
             <span></span>
@@ -18,6 +18,7 @@
             <router-link class="navbar-item" to="/journey-driver">My Travels</router-link>
             <router-link class="navbar-item" to="/dashboard">Bonus Points</router-link>
             <router-link class="navbar-item" to="/login">Login</router-link>
+            <a @click.prevent="logout" class="navbar-item">Logout</a>
           </div>
         </div>
       </div>
@@ -41,6 +42,10 @@ export default {
       } else {
         this.menuClass = ''
       }
+    },
+    logout(){
+      this.$store.dispatch('logout')
+      this.$router.push('/')
     }
   }
 };

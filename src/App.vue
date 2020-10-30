@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <router-view />
+    <router-view></router-view>
     <MainFooter />
   </div>
 </template>
@@ -15,6 +15,9 @@ export default {
   components: { 
     Navbar,
     MainFooter
+  },
+  mounted(){
+    this.$store.dispatch('isToken')
   }
 }
 </script>

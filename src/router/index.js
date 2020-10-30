@@ -1,5 +1,5 @@
-import Vue from "vue";
 import VueRouter from "vue-router";
+import Vue from "vue";
 import HomePage from "../pages/HomePage";
 import SearchPage from "../pages/SearchPage";
 import LoginPage from "../pages/LoginPage";
@@ -27,7 +27,6 @@ const routes = [
   { path: "/in-journey-driver", name:"inJourneyDriver", component: inJourneyDriver },
   { path: "/dashboard", name:"Dashboard", component: Admin},
 ];
-
 
 const router = new VueRouter({
   mode: "history",
