@@ -7,7 +7,12 @@
             <div class="content">
               <div class="field">
                 <p class="control has-icons-left has-icons-right">
-                  <input v-model="form.origen" class="input" type="text" placeholder="Ubicación" />
+                  <input
+                    v-model="form.origen"
+                    class="input is-medium"
+                    type="text"
+                    placeholder="Ubicación"
+                  />
                   <span class="icon is-small is-left">
                     <i class="fas fa-map-marker-alt"></i>
                   </span>
@@ -15,7 +20,12 @@
               </div>
               <div class="field">
                 <p class="control has-icons-left">
-                  <input v-model="form.destino" class="input" type="text" placeholder="Destino" />
+                  <input
+                    v-model="form.destino"
+                    class="input is-medium"
+                    type="text"
+                    placeholder="Destino"
+                  />
                   <span class="icon is-small is-left">
                     <i class="fas fa-search"></i>
                   </span>
@@ -139,7 +149,7 @@ export default {
           alert("tu ciudad no existe");
         }
 
-        const res = await this.axios.post("http://192.168.0.106:3000/journeys", obj_travel,header_axios);
+        const res = await this.axios.post("http://localhost:3000/journeys", obj_travel,header_axios);
         console.log(res);
       } catch (err) {
         alert('Tenemos problemas para gestionar tu petición', err)

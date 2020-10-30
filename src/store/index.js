@@ -41,7 +41,7 @@ export default new Vuex.Store({
   actions: {
     async loadVehicles(context) {
       try {
-        const url = 'http://192.168.0.106:3000/vehicles'
+        const url = 'http://localhost:3000/vehicles'
         const response = await Vue.axios.get(url)
         context.commit('setVehicles', response.data)
       } catch(err) {

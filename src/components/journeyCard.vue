@@ -14,7 +14,7 @@
                   <div class="content">
                     <h1 class="title is-size-4">Viaje pendiente {{num+1}} </h1>
                     <p class="is-size-5 subtitle">
-                     <strong>Origen:</strong> {{item.start_point.name}}
+                     <strong>Origen:</strong> {{item.start_point.name}} <br>
                       <strong>Destino:</strong> {{item.destiny_point.name}}
                     </p>
                   </div>
