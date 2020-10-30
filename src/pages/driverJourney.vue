@@ -93,7 +93,7 @@ export default {
       this.$router.push('/in-journey-driver')
       
       }catch(e){
-        console.log("Error al aceptar el viaje")
+        console.log("Error al aceptar el viaje"+e)
       }
       
     },

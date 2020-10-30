@@ -3,13 +3,19 @@
     <div class="container">
       <article class="message">
         <div class="message-header">
-          <p>¡Hola Persona!</p>
+          <p>¡Hola {{driver.first_name}}!</p>
         </div>
         <div class="message-body">
-          En breve un CoffeDriver te recogerá en tu destino!
+          <p class="is-size-5 subtitle">
+            <strong>Punto de recogida:</strong> {{journey.start_point.name }} <br />
+            <strong>Destino:</strong> {{ journey.destiny_point.name }}
+            <br />
+            <strong>Distancia:</strong> {{endedJpurney.travel_distance }}Km <br />
+            <strong>Precio:</strong> {{ endedJpurney.journey_price }}€
+          </p>
         </div>
         <div class="p-3 container">
-          <button class="button is-dark is-fullwidth">Terminar Viaje</button>
+          <button @click="terminar" class="button is-dark is-fullwidth">Terminar Viaje</button>
         </div>
       </article>
     </div>
@@ -22,33 +28,80 @@ export default {
   name: "inJourneyDriver",
   data() {
     return {
+      endedJpurney:{
+          journey_price:"",
+          travel_distance:"",
+          points:"",
+        },
       requestHeaders: "",
+      journey: "",
+      driver:""
     };
   },
   methods: {
+    calculated(){
+      this.endedJpurney.journey_price = 15
+      this.endedJpurney.travel_distance = 25
+      this.endedJpurney.points = 80
+
+    },
     async loadCurrentUserData() {
-      let token = this.$store.state.token
-      
+      let token = this.$store.state.token;
+
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token },
       };
+      
     },
     async loadJourney() {
       console.log("HOLA");
-       try{
-      let id = this.$store.state.currentJourneyId
+      try {
+        let id = this.$store.state.currentJourneyId;
 
-      console.log("AQUI CHACHI"+id);
-      let result = await this.axios.get(
-        "http://localhost:3000/journeys/" + id,
-        {},
-        this.requestHeaders
-      );
-      console.log(result.data)
-    }catch(e){
-      console.log("Error al cargar el viaje")
-    }
+        let result = await this.axios.get(
+          "http://localhost:3000/journeys/" + id,
+          this.requestHeaders
+        );
+        this.journey = result.data;
+        this.loadDriverData()
+        this.calculated()
+      } catch (e) {
+        console.log("Error al cargar el viaje");
+      }
     },
+    async loadDriverData(){
+      try{
+        console.log("AQUI"+this.journey.driver.user)
+        let id = this.journey.driver.user
+        let result = await this.axios.get("http://localhost:3000/users/"+id)
+        console.log("HOLA")
+        console.log(result.data)
+        this.driver = result.data
+      }catch(e){
+        console.log("Error al cargar nombre del Conductor")
+      }
+     
+    },
+    async terminar(){
+      try {
+        let id = this.$store.state.currentJourneyId;
+        let endedJpurney={
+          journey_price:this.endedJpurney.journey_price,      
+          travel_distance:this.endedJpurney.travel_distance,      
+          points:this.endedJpurney.points
+        }
+        let result = await this.axios.patch(
+          "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",endedJpurney,this.requestHeaders
+        );
+        this.journey = result.data;
+        this.loadDriverData()
+      } catch (e) {
+        console.log("Error al cargar el viaje");
+      }
+    }
+  },
+  created() {
+    this.loadCurrentUserData();
   },
   mounted() {
     this.loadJourney();
