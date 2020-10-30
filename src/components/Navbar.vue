@@ -18,7 +18,7 @@
             <router-link class="navbar-item" to="/journey-driver">My Travels</router-link>
             <router-link class="navbar-item" to="/dashboard">Bonus Points</router-link>
             <router-link class="navbar-item" to="/login">Login</router-link>
-            <a @click.prevent="logout" class="navbar-item">Logout</a>
+            <a @click.prevent="logout" :class="navbar-item">Logout</a>
           </div>
         </div>
       </div>

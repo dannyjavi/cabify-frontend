@@ -12,6 +12,7 @@ import ProfilePage from "../pages/ProfilePage";
 import Admin from "../pages/admin/AdminPage";
 import driverJourney from "../pages/driverJourney"
 import inJourneyDriver from "../pages/inJourneyDriver"
+import ErrorPage from "../pages/Error/ErrorPage"
 
 Vue.use(VueRouter);
 
@@ -27,7 +28,8 @@ const routes = [
   { path: "/list", name:"List", component: ListMap },
   { path: "/journey-driver", name:"DriverJourney", component: driverJourney },
   { path: "/in-journey-driver", name:"inJourneyDriver", component: inJourneyDriver },
-  { path: "/dashboard", name:"Dashboard", component: Admin}
+  { path: "/dashboard", name:"Dashboard", component: Admin},
+  { path: "*", name:"Error", component: ErrorPage},
 ];
 
 const router = new VueRouter({
