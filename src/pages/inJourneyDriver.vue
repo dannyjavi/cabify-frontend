@@ -10,8 +10,8 @@
             <strong>Punto de recogida:</strong> {{journey.start_point.name }} <br />
             <strong>Destino:</strong> {{ journey.destiny_point.name }}
             <br />
-            <strong>Distancia:</strong> {{endedJpurney.travel_distance }}Km <br />
-            <strong>Precio:</strong> {{ endedJpurney.journey_price }}€
+            <strong>Distancia:</strong> {{endedJourney.travel_distance }}Km <br />
+            <strong>Precio:</strong> {{ endedJourney.journey_price }}€
           </p>
         </div>
         <div class="p-3 container">
@@ -28,7 +28,7 @@ export default {
   name: "inJourneyDriver",
   data() {
     return {
-      endedJpurney:{
+      endedJourney:{
           journey_price:"",
           travel_distance:"",
           points:"",
@@ -40,9 +40,9 @@ export default {
   },
   methods: {
     calculated(){
-      this.endedJpurney.journey_price = 15
-      this.endedJpurney.travel_distance = 25
-      this.endedJpurney.points = 80
+      this.endedJourney.journey_price = 15
+      this.endedJourney.travel_distance = 25
+      this.endedJourney.points = 80
 
     },
     async loadCurrentUserData() {
@@ -54,7 +54,6 @@ export default {
       
     },
     async loadJourney() {
-      console.log("HOLA");
       try {
         let id = this.$store.state.currentJourneyId;
 
@@ -71,7 +70,7 @@ export default {
     },
     async loadDriverData(){
       try{
-        console.log("AQUI"+this.journey.driver.user)
+        console.log("AQUI "+this.journey.driver.user)
         let id = this.journey.driver.user
         let result = await this.axios.get("http://localhost:3000/users/"+id)
         console.log("HOLA")
