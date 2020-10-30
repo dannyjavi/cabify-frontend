@@ -2,71 +2,73 @@
   <div class="container">
     <div class="section">
       <div class="mb-6">
-        <div class="level">
-          <div class="level-left">
-            <div class="level-item">
-              <span class="icon is large">
-                <i class="fas fa-user-tie"></i>
-              </span>
-              <p class="title is-3 has-text-centered has-text-white">
-                Datos Conductor
-              </p>
+        <div class="mb-6">
+          <div class="level">
+            <div class="level-left">
+              <div class="level-item">
+                <span class="icon is large">
+                  <i class="fas fa-user-tie"></i>
+                </span>
+                <p class="title is-3 has-text-centered has-text-white">
+                  Datos Conductor
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="field">
-      <div class="field-label is-normal mb-3">
-        <label class="label is-size-4">Precio/km</label>
-      </div>
-      <div class="field-body">
-        <div class="field mb-5">
-          <p class="control is-expanded">
-            <input
-              v-model="registrationData.price_km"
-              class="input is-size-5"
-              type="text"
-              placeholder="precio/km"
-            />
-          </p>
+      <div class="field">
+        <div class="field-label is-normal mb-3">
+          <label class="label is-size-4">Precio/km</label>
+        </div>
+        <div class="field-body">
+          <div class="field mb-5">
+            <p class="control is-expanded">
+              <input
+                v-model="registrationData.price_km"
+                class="input is-size-5"
+                type="text"
+                placeholder="precio/km"
+              />
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="field">
-      <div class="field-label is-normal mb-3">
-        <label class="label is-size-4">Dirección</label>
-      </div>
-      <div class="field-body">
-        <div class="field mb-5">
-          <p class="control is-expanded">
-            <input
-              v-model="registrationData.address"
-              class="input is-size-5"
-              type="text"
-              placeholder="Dirección"
-            />
-          </p>
+      <div class="field">
+        <div class="field-label is-normal mb-3">
+          <label class="label is-size-4">Dirección</label>
+        </div>
+        <div class="field-body">
+          <div class="field mb-5">
+            <p class="control is-expanded">
+              <input
+                v-model="registrationData.address"
+                class="input is-size-5"
+                type="text"
+                placeholder="Dirección"
+              />
+            </p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="field">
-      <div class="field-label is-normal mb-3">
-        <label class="label is-size-4">Licencia de conducir</label>
-      </div>
-      <div class="field-body">
-        <div class="field mb-5">
-          <p class="control is-expanded">
-            <input
-              v-model="registrationData.driver_license"
-              class="input is-size-5"
-              type="text"
-              placeholder="Licencia de conducir"
-            />
-          </p>
+      <div class="field">
+        <div class="field-label is-normal mb-3">
+          <label class="label is-size-4">Licencia de conducir</label>
+        </div>
+        <div class="field-body">
+          <div class="field mb-5">
+            <p class="control is-expanded">
+              <input
+                v-model="registrationData.driver_license"
+                class="input is-size-5"
+                type="text"
+                placeholder="Licencia de conducir"
+              />
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -274,7 +276,7 @@ export default {
   data() {
     return {
       token: "",
-      currentUserId:"",
+      currentUserId: "",
       registrationData: {
         price_km: 2,
         address: "",
@@ -294,6 +296,21 @@ export default {
   },
   methods: {
     loadUserData() {
+<<<<<<< HEAD
+      // let currentUserId = this.$store.state.user.id;
+      this.currentUserId = "5f9ac1c45d68a51c91cc9b82";
+    },
+    async enviar() {
+      console.log(this.currentUserId);
+      try {
+        let result = await this.axios.patch(
+          "http://localhost:3000/users/" + this.currentUserId,
+          this.registrationData
+        );
+        alert("TODO BIEN");
+      } catch (e) {
+        alert("Error al realizar la actualización");
+=======
            
       this.currentUserId = this.$store.state.user.id
       console.log(this.currentUserId)
@@ -307,12 +324,13 @@ export default {
 
       }catch(e){
         alert('Error al realizar la actualización')
+>>>>>>> e32c9eb74e06b847b483b24f8e8e665c6ac2a3d6
       }
     },
   },
   mounted() {
-    console.log("MOUNTED")
-    this.loadUserData()
+    console.log("MOUNTED");
+    this.loadUserData();
   },
 };
 </script>
