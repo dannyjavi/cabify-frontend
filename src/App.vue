@@ -15,6 +15,9 @@ export default {
   components: { 
     Navbar,
     MainFooter
+  },
+  mounted(){
+    this.$store.dispatch('isToken')
   }
 }
 </script>

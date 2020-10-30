@@ -9,17 +9,37 @@
         ¡Estamos a un click de tí!
       </p>
     </div>
-    <Forms />
+    <Notification @closeAlert="closeAlert" :mensaje="mensaje" v-show='isActive'/>
+    <Forms  @showError="showNotification"/>
   </div>
 </template>
 
 <script>
 import Forms from "../components/Forms";
+import Notification from '../components/Notification'
+
 export default {
   name: "OrderPage",
   components: {
     Forms,
+    Notification
   },
+  data(){
+    return {
+      isActive: false,
+      mensaje: null
+    }
+  }
+  ,
+  methods:{
+    showNotification(error){
+      this.isActive = true
+      this.mensaje = error
+    },
+    closeAlert(){
+      this.isActive = false
+    }
+  }
 };
 </script>
 

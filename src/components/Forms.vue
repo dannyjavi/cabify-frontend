@@ -59,14 +59,13 @@ export default {
   name: "FormComponent",
   components: {
     Map
-  },
+   },
   data() {
     return {
       isDisable: true,
       form: {
-        origen: "",
-        destino: "",
-        location: []
+        origen: "sevilla",
+        destino: "bilbao",
       },
       vehicles: []
     };
@@ -149,14 +148,15 @@ export default {
           alert("tu ciudad no existe");
         }
 
-        const res = await this.axios.post("http://localhost:3000/journeys", obj_travel,header_axios);
+        const res = await this.axios.post("http://192.168.0.106:3000/journeys", obj_travel,header_axios);
         console.log(res);
       } catch (err) {
-        alert('Tenemos problemas para gestionar tu petición', err)
+        let msg = 'No sabemos quien eres.'
+        this.$emit('showError',msg)
       }
     },
     async loadJourneys(context) {
-      //const response = await Vue.axios.get('http://localhost:3000/journeys')
+      //const response = await Vue.axios.get('http://192.168.0.106:3000/journeys')
       //context.commit('setJourneys', response.data)
     }
   }

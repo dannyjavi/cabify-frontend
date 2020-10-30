@@ -302,7 +302,7 @@ export default {
       console.log(this.currentUserId)
       try{
         console.log(this.registrationData)
-        let result = await this.axios.patch("http://localhost:3000/users/"+this.currentUserId, this.registrationData)
+        let result = await this.axios.patch("http://192.168.0.106:3000/users/"+this.currentUserId, this.registrationData)
         alert('TODO BIEN')        
 
       }catch(e){

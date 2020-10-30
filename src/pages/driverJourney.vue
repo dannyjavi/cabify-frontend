@@ -72,7 +72,7 @@ export default {
     
     async loadJourneys() {
       try {
-        let result = await this.axios.get("http://localhost:3000/journeys");
+        let result = await this.axios.get("http://192.168.0.106:3000/journeys");
         // console.log(result.data)
         this.journeys = result.data;
         console.log(this.journeys);
@@ -87,7 +87,7 @@ export default {
         console.log(this.requestHeaders);
       console.log(id);
       let result = await this.axios.patch(
-        "http://localhost:3000/journeys/" + id,
+        "http://192.168.0.106:3000/journeys/" + id,
         {},
         this.requestHeaders
       );
