@@ -64,8 +64,8 @@ export default {
     return {
       isDisable: true,
       form: {
-        origen: "sevilla",
-        destino: "bilbao",
+        origen:"",
+        destino:""
       },
       vehicles: []
     };
@@ -76,27 +76,27 @@ export default {
     }
   }
   ,
-  async mounted() {
-    await this.$store.dispatch("loadVehicles");
-    this.vehicles = this.$store.getters.alldriversAvailable;
-    let mymap = L.map("mapid").setView([36.72, -4.42], 13);
-    mymap.locate({ enableHighAccuracy: true });
-    // mymap.locate({ setView: true });
-    let tileURL =
-      "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
-    L.tileLayer(tileURL, {
-      minZoom: 10,
-      maxZoom: 20,
-      id: "mapbox/streets-v11",
-      tileSize: 512,
-      zoomOffset: -1
-    }).addTo(mymap);
-    this.vehicles.forEach(item => {
-      let marker = L.marker(item.position.coordinates)
-        .bindPopup("Hi there!")
-        .addTo(mymap);
-    });
-  },
+  // async mounted() {
+  //   await this.$store.dispatch("loadVehicles");
+  //   this.vehicles = this.$store.getters.alldriversAvailable;
+  //   let mymap = L.map("mapid").setView([36.72, -4.42], 13);
+  //   mymap.locate({ enableHighAccuracy: true });
+  //   // mymap.locate({ setView: true });
+  //   let tileURL =
+  //     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
+  //   L.tileLayer(tileURL, {
+  //     minZoom: 10,
+  //     maxZoom: 20,
+  //     id: "mapbox/streets-v11",
+  //     tileSize: 512,
+  //     zoomOffset: -1
+  //   }).addTo(mymap);
+  //   this.vehicles.forEach(item => {
+  //     let marker = L.marker(item.position.coordinates)
+  //       .bindPopup("Hi there!")
+  //       .addTo(mymap);
+  //   });
+  // },
   methods: {
     passDataTravel() {
       this.searchPos();
@@ -130,8 +130,8 @@ export default {
             name: this.form.origen
           },
           destiny_point: {
-            lat: coord_origen.data.coord.lat,
-            long: coord_origen.data.coord.lon,
+            lat: coord_destino.data.coord.lat,
+            long: coord_destino.data.coord.lon,
             name: this.form.destino
           },
           user: this.$store.state.user.id
@@ -148,15 +148,16 @@ export default {
           alert("tu ciudad no existe");
         }
 
-        const res = await this.axios.post("http://192.168.0.106:3000/journeys", obj_travel,header_axios);
+        const res = await this.axios.post("http://localhost:3000/journeys", obj_travel,header_axios);
         console.log(res);
+        this.$router.push('/search')
       } catch (err) {
         let msg = 'No sabemos quien eres.'
         this.$emit('showError',msg)
       }
     },
     async loadJourneys(context) {
-      //const response = await Vue.axios.get('http://192.168.0.106:3000/journeys')
+      //const response = await Vue.axios.get('http://localhost:3000/journeys')
       //context.commit('setJourneys', response.data)
     }
   }

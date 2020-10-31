@@ -1,4 +1,5 @@
 <template>
+
   <section class="section">
     <div class="container">
       <article class="message">
@@ -11,6 +12,7 @@
       </article>
     </div>
   </section>
+  
 </template>
 
 <script>
