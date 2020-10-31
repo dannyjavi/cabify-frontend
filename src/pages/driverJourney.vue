@@ -39,9 +39,8 @@ export default {
   name: "DriverJourney",
   data() {
     return {
-      precio_km:2,
+      precio_km:"",
       intervalId: "",
-      noViajes: {},
       journeys: [],
       requestHeaders: ""
     };
@@ -66,9 +65,9 @@ export default {
      
 
     },
-    async loadCurrentUserData() {
+    loadCurrentUserData() {
       let token = this.$store.state.token;
-    
+      console.log(token)
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token }
       };

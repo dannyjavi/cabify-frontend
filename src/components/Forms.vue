@@ -150,6 +150,7 @@ export default {
 
         const res = await this.axios.post("http://localhost:3000/journeys", obj_travel,header_axios);
         console.log(res);
+        
         this.$router.push('/search')
       } catch (err) {
         let msg = 'No sabemos quien eres.'
