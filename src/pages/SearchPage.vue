@@ -3,21 +3,21 @@
     <div class="container">
       <article class="message">
         <div class="message-header">
-          <p  v-if="journey.arrived_date !== null"> {{user.first_name}}, has llegado a tu destino </p>
-          <p  v-if="journey.pending === true && journey.arrived_date === null">{{ user.first_name }}, te estamos asignando un conductor</p>
+          <!-- <p  v-if="journey.arrived_date !== null"> {{user.first_name}}, has llegado a tu destino </p> -->
+          <p  v-if="journey.pending === true ">{{ user.first_name }}, te estamos asignando un conductor</p>
           
-          <p  v-if="journey.pending === false && journey.arrived_date === null">¡Listo!, {{driver.first_name}} está en camino.</p>
+          <p  v-if="journey.pending === false">¡Listo!, {{driver.first_name}} está en camino.</p>
         </div>
-        <div
+        <!-- <div
         v-if="journey.arrived_date !== null"
           class="message-body has-text-centered is-size-2"
         >
           <p class="is-size-5 subtitle">
             No olvides pagar y dejar una buena propina.
           </p>
-        </div>
+        </div> -->
         <div
-         v-if="journey.pending === true && journey.arrived_date === null"
+         v-if="journey.pending === true "
           class="message-body has-text-centered is-size-2"
         >
           <span class="icon is-large has-text-success">
@@ -26,7 +26,7 @@
         </div>
 
         <div
-          v-if="journey.pending === false && journey.arrived_date === null"
+          v-if="journey.pending === false"
           class="message-body"
         >
           <p class="is-size-5 subtitle">
