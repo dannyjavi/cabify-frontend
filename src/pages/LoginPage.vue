@@ -87,35 +87,33 @@ export default {
       this.showToggle()
       try {
         let response = await this.axios.post(
-        "http://192.168.0.106:3000/auth/login",
-        this.formLogin
-      );
-      
-      this.$buefy.toast.open({
-        message: 'Succesfull login',
-        type: 'is-success'
-      })
-      //guardo el token en el localStorage
-      window.localStorage.setItem("token", response.data.token);
-       
-      // guardo la respuesta en el store
-      this.$store.dispatch('login', response.data.token)
-      let user_profile = this.$store.state.user.profiles[0]
-      
-      if (user_profile === 'driver') {
-        this.$router.push('/journey-driver')
-        return
+          "http://localhost:3000/auth/login",
+          this.formLogin
+        );
+        this.$buefy.toast.open({
+          message: "Successful login!",
+          type: "is-success",
+        });
+        //guardo el token en el localStorage
+        window.localStorage.setItem("token", response.data.token);
+
+        // guardo la respuesta en el store
+        this.$store.dispatch("login", response.data.token);
+        let user_profile = this.$store.state.user.profiles[1];
+        if (user_profile === "driver") {
+          this.$router.push("/journey-driver");
+          return;
+        }
+        this.$router.push("/order-page");
+      } catch (error) {
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: `Incorrect email or password`,
+          position: "is-bottom",
+          type: "is-danger",
+        });
       }
-        this.$router.push('/order-page')
-       
-     } catch (error) {
-       this.$buefy.toast.open({
-         duration: 5000,
-         message: "Password or email incorrect",
-         position: 'is-buttom',
-         type: 'is-danger'
-       })
-     }     
+
       //this.$router.push("/search");
     },
     showToggle(){

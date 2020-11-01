@@ -4,9 +4,15 @@
     <nav class="navbar is-dark" @mouseleave="closeMenu">
       <div class="container">
         <div class="navbar-brand">
-          <router-link class="navbar-item brand-text" to="/order-page">{{
+          <router-link v-if="!isDriver" class="navbar-item brand-text" to="/">{{
             userName
           }}</router-link>
+          <router-link
+            v-if="isDriver"
+            class="navbar-item brand-text"
+            to="/journey-driver"
+            >{{ userName }}</router-link
+          >
           <div
             @click="toggleMenu"
             class="navbar-burger burger"
@@ -19,13 +25,10 @@
         </div>
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
-            <router-link v-if="isLogged" class="navbar-item" to="/"
+            <router-link v-if="!isDriver" class="navbar-item" to="/"
               >Home</router-link
             >
-            <router-link
-              v-if="isLogged && !isDriver"
-              class="navbar-item"
-              to="/order-page"
+            <router-link v-if="!isDriver" class="navbar-item" to="/order-page"
               >Buscar viaje</router-link
             >
             <router-link v-if="isLogged" class="navbar-item" to="/profile"
@@ -37,15 +40,16 @@
               to="/journey-driver"
               >Pending Travels</router-link
             >
-            <router-link v-if="isLogged" class="navbar-item" to="/dashboard"
-              >Bonus Points</router-link
-            >
             <router-link v-if="!isLogged" class="navbar-item" to="/login"
               >Login</router-link
             >
             <a @click.prevent="logout" v-if="isLogged" class="navbar-item"
               >Logout</a
             >
+            <a class="navbar-item">
+              Driver Mode
+              <b-switch class="ml-3"></b-switch>
+            </a>
           </div>
         </div>
       </div>
@@ -98,6 +102,7 @@ export default {
   },
   computed: {
     isDriver() {
+      if (!this.$store.state.user) return;
       return this.$store.state.user.profiles.includes("driver");
     },
 
