@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <Card
       v-for="(item, index) in journeys"
       :key="index"
@@ -56,7 +56,7 @@ export default {
      let id=this.$store.state.user.id
      console.log(id)
      try{
-      let result = await this.axios.get("http://192.168.0.106:3000/users/"+id)
+      let result = await this.axios.get("http://localhost:3000/users/"+id)
       console.log(result.data.driver.price_km)
       this.price_km = result.data.driver.price_km
      }catch(e){
@@ -75,7 +75,7 @@ export default {
     },
     async loadJourneys() {
       try {
-        let result = await this.axios.get("http://192.168.0.106:3000/journeys",this.requestHeaders);
+        let result = await this.axios.get("http://localhost:3000/journeys",this.requestHeaders);
         console.log(result.data)
         this.journeys = result.data;
 
@@ -85,7 +85,7 @@ export default {
     },
 
     async aceptar(id) {
-      let viaje = await this.axios.get("http://192.168.0.106:3000/journeys/" + id, this.requestHeaders);
+      let viaje = await this.axios.get("http://localhost:3000/journeys/" + id, this.requestHeaders);
       let lat1 =viaje.data.start_point.lat
       let long1=viaje.data.start_point.long
       let lat2=viaje.data.destiny_point.lat
@@ -98,7 +98,7 @@ export default {
         console.log(this.requestHeaders);
         console.log(id);
         let result = await this.axios.patch(
-          "http://192.168.0.106:3000/journeys/" + id,
+          "http://localhost:3000/journeys/" + id,
           {travel_distance:distance, journey_price:journeyPrice },
           this.requestHeaders
         );
@@ -137,4 +137,7 @@ function getKilometros(lat1,lon1,lat2,lon2){
 }
 </script>
 <style>
+.body{
+  height: 100vh;
+}
 </style>

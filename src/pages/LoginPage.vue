@@ -103,30 +103,6 @@ export default {
         });
       }
 
-=======
-        "http://192.168.0.106:3000/auth/login",
-        this.formLogin
-      );
-      
-      //guardo el token en el localStorage
-      window.localStorage.setItem("token", response.data.token);
-       
-      // guardo la respuesta en el store
-      this.$store.dispatch('login', response.data.token)
-      let user_profile = this.$store.state.user.profiles[0]
-      
-      if (user_profile === 'driver') {
-        this.$router.push('/journey-driver')
-        return
-      }
-        this.$router.push('/order-page')
-       
-     } catch (error) {
-       alert('usuario/password incorrectas');
-     }
-      
-      
->>>>>>> f758d8b210b59039e209902695d0bdac200f501d
       //this.$router.push("/search");
     },
   },
