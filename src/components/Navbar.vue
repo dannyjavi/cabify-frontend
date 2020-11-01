@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- START NAV -->
-    <nav class="navbar is-dark">
+    <nav class="navbar is-dark" @mouseleave="closeMenu">
       <div class="container">
         <div class="navbar-brand">
           <router-link class="navbar-item brand-text" to="/order-page">{{ userName }}</router-link>
@@ -57,6 +57,9 @@ export default {
         this.menuClass = ''
       }
 
+    },
+    closeMenu() {
+      this.menuClass = ''
     },
     logout(){
       this.$store.dispatch('logout')

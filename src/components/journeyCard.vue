@@ -1,6 +1,5 @@
 <template>  
-    <section  @click.prevent="$emit('click', item._id)" class="section">
-        <div class="container">
+    <section  @click.prevent="$emit('click', item._id)" class="container mt-4 mx-3">
           <div class="columns is-multiline">
             <div class="column is-one-third">
               <article class="notification media has-background-white">
@@ -21,7 +20,6 @@
               </article>
             </div>
           </div>
-        </div>
       </section>
   
 </template>
