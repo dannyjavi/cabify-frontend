@@ -323,8 +323,9 @@ export default {
           "http://localhost:3000/users/" + this.currentUserId,
           this.registrationData
         );
-        alert("TODO BIEN");
-        this.$router.push("/journey-driver");
+        alert("¡Ya eres conductor!, por favor vuelve a hacer login");
+        this.$store.dispatch('logout')
+        this.$router.push("/login");
       } catch (e) {
         alert("Error al realizar la actualización");
       }
