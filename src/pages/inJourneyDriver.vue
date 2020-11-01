@@ -82,6 +82,7 @@ export default {
         let result = await this.axios.patch(
           "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
         );
+        console.log(result.data)
         alert('Viaje terminado correctamente')
         this.$router.push('/journey-driver')
       } catch (e) {
