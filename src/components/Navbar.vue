@@ -14,9 +14,9 @@
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
             <router-link v-if="isLogged" class="navbar-item" to="/">Home</router-link>
-            <router-link v-if="isLogged" class="navbar-item" to="/order-page">Buscar viaje</router-link>
+            <router-link v-if="isLogged && isUser " class="navbar-item" to="/order-page">Buscar viaje</router-link>
             <router-link v-if="isLogged" class="navbar-item" to="/profile">Account</router-link>
-            <router-link v-if="isLogged" class="navbar-item" to="/journey-driver">My Travels</router-link>
+            <router-link v-if="isLogged && isDriver " class="navbar-item" to="/journey-driver">Pending Travels</router-link>
             <router-link v-if="isLogged" class="navbar-item" to="/dashboard">Bonus Points</router-link>
             <router-link v-if="!isLogged" class="navbar-item" to="/login">Login</router-link>
             <a @click.prevent="logout" v-if="isLogged" class="navbar-item">Logout</a>
@@ -61,9 +61,17 @@ export default {
     logout(){
       this.$store.dispatch('logout')
       this.$router.push('/')
-    }
+    },
+     
   },
   computed: {
+    isUser(){
+      return this.$store.state.user.profiles === 'user'
+    },
+    isDriver(){
+        return this.$store.state.user.profiles.includes('driver')
+        },
+
     isLogged() {
       return this.$store.state.isAuth
     },
@@ -75,7 +83,8 @@ export default {
       }
     }
     
-  }
+  },
+
 };
 </script>
 
