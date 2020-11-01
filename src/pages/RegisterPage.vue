@@ -167,7 +167,7 @@ export default {
       }
       try {
         let result = await this.axios.post(
-          "http://localhost:3000/users",
+          "http://192.168.0.106:3000/users",
           this.registrationData
         );
         console.info(result);

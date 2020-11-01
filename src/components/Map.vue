@@ -22,12 +22,14 @@ export default {
     this.vehicles.forEach(item => {
       let marker = L.marker(item.position.coordinates).bindPopup("You are here!").addTo(mymap)
     })
-    // function createMarkers()
-    // mymap.on("locationfound", (e) => {
-    //   const coords = [e.latlng.lat, e.latlng.lng];
-    //   let marker = L.marker(coords).bindPopup("You are here!").addTo(mymap);
-    //   console.log(e);
-    // });
+
+    // función para ubicar en el mapa según coodernadas.
+    /* function createMarkers()
+    mymap.on("locationfound", (e) => {
+      const coords = [e.latlng.lat, e.latlng.lng];
+      let marker = L.marker(coords).bindPopup("You are here!").addTo(mymap);
+      console.log(e);
+    }); */
   },
 };
 </script>
