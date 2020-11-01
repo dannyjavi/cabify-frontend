@@ -42,6 +42,10 @@
       </div>
     </section>
 
+    <template>
+      <Preloader />
+    </template>
+
     <footer class="container mt-6 mb-6">
       <div class="field">
         <p class="control has-text-centered mb-6">
@@ -62,10 +66,16 @@
 </template>
 
 <script>
+import Preloader from '../components/Preloader'
+
 export default {
   name: "LoginPage",
+  components:{
+    Preloader
+  },
   data() {
     return {
+      show: false,
       formLogin: {
         email: "",
         password: "",
@@ -74,40 +84,17 @@ export default {
   },
   methods: {
     async login() {
+      this.showToggle()
       try {
         let response = await this.axios.post(
-<<<<<<< HEAD
-          "http://localhost:3000/auth/login",
-          this.formLogin
-        );
-        this.$buefy.toast.open({
-          message: "Successful login!",
-          type: "is-success",
-        });
-        //guardo el token en el localStorage
-        window.localStorage.setItem("token", response.data.token);
-
-        // guardo la respuesta en el store
-        this.$store.dispatch("login", response.data.token);
-
-        if (this.$store.state.user.profiles[0] === "admin") {
-          this.$router.push("/dashboard");
-        }
-        this.$router.push("/order-page");
-      } catch (error) {
-        this.$buefy.toast.open({
-          duration: 5000,
-          message: `Incorrect email or password`,
-          position: "is-bottom",
-          type: "is-danger",
-        });
-      }
-
-=======
         "http://192.168.0.106:3000/auth/login",
         this.formLogin
       );
       
+      this.$buefy.toast.open({
+        message: 'Succesfull login',
+        type: 'is-success'
+      })
       //guardo el token en el localStorage
       window.localStorage.setItem("token", response.data.token);
        
@@ -122,13 +109,20 @@ export default {
         this.$router.push('/order-page')
        
      } catch (error) {
-       alert('usuario/password incorrectas');
-     }
-      
-      
->>>>>>> f758d8b210b59039e209902695d0bdac200f501d
+       this.$buefy.toast.open({
+         duration: 5000,
+         message: "Password or email incorrect",
+         position: 'is-buttom',
+         type: 'is-danger'
+       })
+     }     
       //this.$router.push("/search");
     },
+    showToggle(){
+      setTimeout(() => {
+        this.show = false
+      }, 700)
+    }
   },
 };
 </script>
