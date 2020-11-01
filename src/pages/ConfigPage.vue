@@ -307,7 +307,7 @@ export default {
       console.log(this.currentUserId);
       try {
         let result = await this.axios.patch(
-          "http://localhost:3000/users/" + this.currentUserId,
+          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
           this.registrationData
         );
         alert("TODO BIEN");
@@ -326,7 +326,7 @@ export default {
       try {
         console.log(this.registrationData);
         let result = await this.axios.patch(
-          "http://localhost:3000/users/" + this.currentUserId,
+          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
           this.registrationData
         );
         this.$buefy.toast.open({

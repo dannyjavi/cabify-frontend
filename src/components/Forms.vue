@@ -165,7 +165,7 @@ export default {
         }
 
         const res = await this.axios.post(
-          "http://localhost:3000/journeys",
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys",
           obj_travel,
           header_axios
         );
@@ -182,7 +182,7 @@ export default {
       }
     },
     async loadJourneys(context) {
-      //const response = await Vue.axios.get('http://localhost:3000/journeys')
+      //const response = await Vue.axios.get('https://grupo3-backend-coffeby.herokuapp.com/journeys')
       //context.commit('setJourneys', response.data)
     },
   },
