@@ -21,10 +21,10 @@
         </span>
         Mis datos
       </a>
-      <router-link to="/config" class="panel-block is-active">
+      <router-link  v-if="!isDriver" to="/config" class="panel-block is-active">
         <span class="panel-icon">
           <i class="fas fa-user-tie" aria-hidden="true"></i>
-        </span>
+        </span >
         Convertirme en conductor
       </router-link>
     </nav>
@@ -34,6 +34,11 @@
 <script>
 export default {
   name: "ProfilePage",
+  computed:{
+    isDriver(){
+  return this.$store.state.user.profiles.includes('driver')
+  },
+  }
 };
 </script>
 
