@@ -2,7 +2,7 @@
   <div>
     <div class="columns">
       <div class="column is2">
-        <div class="card bg-green-figma">
+        <div class="bg-green-figma">
           <div class="card-content">
             <div class="content">
               <div class="field">

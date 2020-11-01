@@ -169,14 +169,12 @@
         </div>
         <div class="field-body">
           <div class="field mb-5">
-            <p class="control is-expanded">
-              <input
-                v-model="registrationData.covid_measures"
-                class="input is-size-5"
-                type="text"
-                placeholder="Medidas Covid"
-              />
-            </p>
+            <div class="select">
+              <select v-model="registrationData.covid_measures" class="input is-size-5">
+                <option>true</option>
+                <option>false</option>
+              </select>
+            </div>                
           </div>
         </div>
       </div>
@@ -187,19 +185,18 @@
         </div>
         <div class="field-body">
           <div class="field mb-5">
-            <p class="control is-expanded">
-              <input
-                v-model="registrationData.type_vehicle"
-                class="input is-size-5"
-                type="text"
-                placeholder="Tipo de vehículo"
-              />
-            </p>
+            <div class="select">
+              <select v-model="registrationData.type_vehicle" class="input is-size-5">
+                <option>Sedán</option>
+                <option>Furgoneta</option>
+                <option>Todoterreno</option>
+              </select>
+            </div>            
           </div>
         </div>
       </div>
 
-      <div class="field">
+      <!-- <div class="field">
         <div class="field-label is-normal mb-3">
           <label class="label is-size-4">Imagen</label>
         </div>
@@ -215,9 +212,9 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="field">
+      <!-- <div class="field">
         <div class="field-label is-normal mb-3">
           <label class="label is-size-4">Color</label>
         </div>
@@ -233,7 +230,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="field">
         <div class="field-label is-normal mb-3">
@@ -287,7 +284,7 @@ export default {
         capacity: 4,
         adapted_children: true,
         covid_measures: true,
-        type_vehicle: "",
+        type_vehicle: "Sedán",
         image: "",
         color: "",
         enrolment: "",
@@ -296,9 +293,9 @@ export default {
   },
   methods: {
     loadUserData() {
-      if(this.$store.state.user != null) {
+      if (this.$store.state.user != null) {
         this.currentUserId = this.$store.state.user.id;
-      }      
+      }
     },
     async enviar() {
       console.log(this.currentUserId);
@@ -324,7 +321,7 @@ export default {
           this.registrationData
         );
         alert("¡Ya eres conductor!, por favor vuelve a hacer login");
-        this.$store.dispatch('logout')
+        this.$store.dispatch("logout");
         this.$router.push("/login");
       } catch (e) {
         alert("Error al realizar la actualización");
