@@ -59,6 +59,10 @@ export default {
     }
   },
   computed: {
+    isDriver() {
+      if(!this.$store.state.user) return
+      return this.$store.state.user.profiles.includes("driver");
+    },
     isLogged() {
       let profile = 'user'
       if(this.$store.state.isAuth && profile == 'user') {

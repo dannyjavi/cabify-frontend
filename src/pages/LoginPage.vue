@@ -76,7 +76,6 @@ export default {
     async login() {
       try {
         let response = await this.axios.post(
-<<<<<<< HEAD
           "http://localhost:3000/auth/login",
           this.formLogin
         );
@@ -89,9 +88,10 @@ export default {
 
         // guardo la respuesta en el store
         this.$store.dispatch("login", response.data.token);
-
-        if (this.$store.state.user.profiles[0] === "admin") {
-          this.$router.push("/dashboard");
+        let user_profile = this.$store.state.user.profiles[1];
+        if (user_profile === "driver") {
+          this.$router.push("/journey-driver");
+          return;
         }
         this.$router.push("/order-page");
       } catch (error) {
