@@ -7,9 +7,12 @@
           <router-link v-if="!isDriver" class="navbar-item brand-text" to="/">{{
             userName
           }}</router-link>
-          <router-link v-if="isDriver" class="navbar-item brand-text" to="/journey-driver">{{
-            userName
-          }}</router-link>
+          <router-link
+            v-if="isDriver"
+            class="navbar-item brand-text"
+            to="/journey-driver"
+            >{{ userName }}</router-link
+          >
           <div
             @click="toggleMenu"
             class="navbar-burger burger"
@@ -25,10 +28,7 @@
             <router-link v-if="!isDriver" class="navbar-item" to="/"
               >Home</router-link
             >
-            <router-link
-              v-if="!isDriver"
-              class="navbar-item"
-              to="/order-page"
+            <router-link v-if="!isDriver" class="navbar-item" to="/order-page"
               >Buscar viaje</router-link
             >
             <router-link v-if="isLogged" class="navbar-item" to="/profile"
@@ -46,6 +46,10 @@
             <a @click.prevent="logout" v-if="isLogged" class="navbar-item"
               >Logout</a
             >
+            <a class="navbar-item">
+              Driver Mode
+              <b-switch class="ml-3"></b-switch>
+            </a>
           </div>
         </div>
       </div>
@@ -98,7 +102,7 @@ export default {
   },
   computed: {
     isDriver() {
-      if(!this.$store.state.user) return
+      if (!this.$store.state.user) return;
       return this.$store.state.user.profiles.includes("driver");
     },
 
