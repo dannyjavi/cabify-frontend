@@ -21,7 +21,7 @@
         </p>
       </div>
       <br />
-      <div class="field">
+      <div class="field" v-if="!isLogged">
         <p class="control">
           <router-link to="/login">
             <button
@@ -35,11 +35,11 @@
       <br />
       <div class="field">
         <p class="control">
-          <router-link to="/register">
+          <router-link :to="path">
             <button
               class="button is-white is-focused is-medium is-fullwidth title is-rounded"
             >
-              Create Account
+              {{ title }}
             </button>
           </router-link>
         </p>
@@ -52,6 +52,25 @@
 <script>
 export default {
   name: "HomePage",
+  data() {
+    return {
+      path: '',
+      title: ''
+    }
+  },
+  computed: {
+    isLogged() {
+      let profile = 'user'
+      if(this.$store.state.isAuth && profile == 'user') {
+        this.title = 'Convertirme en conductor'
+        this.path = '/config'
+      } else {
+        this.title = 'Create Account'
+        this.path = '/register'
+      }
+      return this.$store.state.isAuth
+    }
+  }
 };
 </script>
 

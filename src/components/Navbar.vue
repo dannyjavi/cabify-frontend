@@ -62,6 +62,7 @@ export default {
       this.menuClass = ''
     },
     logout(){
+      localStorage.removeItem('Viajes')
       this.$store.dispatch('logout')
       this.$router.push('/')
     },
