@@ -11,7 +11,7 @@
     <section class="card-content container">
       <div class="field">
         <p class="control">
-          <router-link to="/search">
+          <router-link to="/order-page">
             <button
               class="button is-white is-focused is-medium is-fullwidth title is-rounded"
             >

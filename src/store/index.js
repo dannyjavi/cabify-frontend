@@ -36,6 +36,7 @@ export default new Vuex.Store({
     setToken(state, token){
       state.token = token
       state.isAuth = (token !== null)
+      state.user = null
 
       if(token !== null){
         state.user = jwtDecode(token)

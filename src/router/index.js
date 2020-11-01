@@ -12,11 +12,12 @@ import ProfilePage from "../pages/ProfilePage";
 import Admin from "../pages/admin/AdminPage";
 import driverJourney from "../pages/driverJourney"
 import inJourneyDriver from "../pages/inJourneyDriver"
+import ErrorPage from "../pages/Error/ErrorPage"
 
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/", name: "Home", component: HomePage },
+  { path: "/", name: "Home", component: HomePage, alias: 'Home' },
   { path: "/search", name: "Search", component: SearchPage },
   { path: "/login", name: "Login", component: LoginPage },
   { path: "/register", name: "Register", component: RegisterPage },
@@ -25,10 +26,14 @@ const routes = [
   { path: "/order-page", name:"OrderPage", component: OrderPage },
   { path: "/profile", name:"ProfilePage", component: ProfilePage },
   { path: "/list", name:"List", component: ListMap },
+<<<<<<< HEAD
   
+=======
+>>>>>>> 1ac9a2f3dd570ed10d841b7adeff0e1dd3196403
   { path: "/journey-driver", name:"DriverJourney", component: driverJourney },
   { path: "/in-journey-driver", name:"inJourneyDriver", component: inJourneyDriver },
   { path: "/dashboard", name:"Dashboard", component: Admin},
+  { path: "*", name:"Error", component: ErrorPage},
 ];
 
 const router = new VueRouter({

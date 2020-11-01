@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "HeroPage",
+  name: "JourneyPage",
   props: {
     item: {
       type: Object,

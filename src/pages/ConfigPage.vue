@@ -6,10 +6,10 @@
           <div class="level">
             <div class="level-left">
               <div class="level-item">
-                <span class="icon is large">
-                  <i class="fas fa-user-tie"></i>
-                </span>
                 <p class="title is-3 has-text-centered has-text-white">
+                  <span class="icon mr-4">
+                    <i class="fas fa-user-tie"></i>
+                  </span>
                   Datos Conductor
                 </p>
               </div>
@@ -28,8 +28,8 @@
               <input
                 v-model="registrationData.price_km"
                 class="input is-size-5"
-                type="text"
-                placeholder="precio/km"
+                type="number"
+                placeholder="Precio/km"
               />
             </p>
           </div>
@@ -59,7 +59,7 @@
           <label class="label is-size-4">Licencia de conducir</label>
         </div>
         <div class="field-body">
-          <div class="field mb-5">
+          <div class="field">
             <p class="control is-expanded">
               <input
                 v-model="registrationData.driver_license"
@@ -79,10 +79,10 @@
           <div class="level">
             <div class="level-left">
               <div class="level-item">
-                <span class="icon is-large">
-                  <i class="fas fa-car"></i>
-                </span>
                 <p class="title is-3 has-text-centered has-text-white">
+                  <span class="icon is-large">
+                    <i class="fas fa-car"></i>
+                  </span>
                   Datos Vehículo
                 </p>
               </div>
@@ -137,7 +137,7 @@
               <input
                 v-model="registrationData.capacity"
                 class="input is-size-5"
-                type="text"
+                type="number"
                 placeholder="Numero de plazas"
               />
             </p>
@@ -282,7 +282,7 @@ export default {
         address: "",
         driver_license: "",
 
-        position: [ 140,250],
+        position: [36.72, -4.42],
         vehicle_model: "",
         capacity: 4,
         adapted_children: true,
@@ -296,9 +296,15 @@ export default {
   },
   methods: {
     loadUserData() {
+<<<<<<< HEAD
 
     this.currentUserId = this.$store.state.user.id
       
+=======
+      if(this.$store.state.user != null) {
+        this.currentUserId = this.$store.state.user.id;
+      }      
+>>>>>>> 1ac9a2f3dd570ed10d841b7adeff0e1dd3196403
     },
     async enviar() {
       console.log(this.currentUserId);
@@ -311,19 +317,23 @@ export default {
       } catch (e) {
         alert("Error al realizar la actualización");
       }
-           
-      this.currentUserId = this.$store.state.user.id
-      console.log(this.currentUserId)
+
+      this.currentUserId = this.$store.state.user.id;
+      console.log(this.currentUserId);
     },
     async enviar() {
-      console.log(this.currentUserId)
+      console.log(this.currentUserId);
       try {
-        console.log(this.registrationData)
-        let result = await this.axios.patch("http://localhost:3000/users/"+this.currentUserId, this.registrationData)
-        alert('TODO BIEN')        
-        this.$router.push('/journey-driver')
-      }catch(e){
-        alert('Error al realizar la actualización')
+        console.log(this.registrationData);
+        let result = await this.axios.patch(
+          "http://localhost:3000/users/" + this.currentUserId,
+          this.registrationData
+        );
+        alert("¡Ya eres conductor!, por favor vuelve a hacer login");
+        this.$store.dispatch('logout')
+        this.$router.push("/login");
+      } catch (e) {
+        alert("Error al realizar la actualización");
       }
     },
   },

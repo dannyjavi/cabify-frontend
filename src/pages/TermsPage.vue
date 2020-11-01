@@ -1,8 +1,8 @@
 <template>
   <div class="container is-mobile mt-4 has-text-centered has-text-white">
-    <h1 class="title is-3">Condiciones y términos de uso</h1>
+    <h1 class="title is-3 mb-2">Condiciones <br> y términos de uso</h1>
       <div class="container ">
-        <div class="column ">
+        <div class="column mr-4 ml-4 has-text-justified ">
           <div>
             <p class="is small">
               Aviso legal y condiciones generales de uso.
