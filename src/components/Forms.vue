@@ -2,7 +2,7 @@
   <div>
     <div class="columns">
       <div class="column is2">
-        <div class="card bg-green-figma">
+        <div class="bg-green-figma">
           <div class="card-content">
             <div class="content">
               <div class="field">
@@ -95,7 +95,7 @@ export default {
     }).addTo(mymap);
     this.vehicles.forEach((item) => {
       let marker = L.marker(item.position.coordinates)
-        .bindPopup("Hi there!")
+        .bindPopup("Pocisión actual")
         .addTo(mymap);
     });
 
@@ -165,7 +165,7 @@ export default {
         }
 
         const res = await this.axios.post(
-          "http://localhost:3000/journeys",
+          "http://192.168.0.106:3000/journeys",
           obj_travel,
           header_axios
         );
@@ -182,7 +182,7 @@ export default {
       }
     },
     async loadJourneys(context) {
-      //const response = await Vue.axios.get('http://localhost:3000/journeys')
+      //const response = await Vue.axios.get('http://192.168.0.106:3000/journeys')
       //context.commit('setJourneys', response.data)
     },
   },
