@@ -18,7 +18,8 @@ export default {
   },
   created(){
     this.$store.dispatch('isToken')
-  }
+  },
+
 }
 </script>
 

@@ -138,6 +138,7 @@ export default {
         };
 
         let token = this.$store.state.token
+        console.log(token)
 
         const header_axios = {
           headers:{

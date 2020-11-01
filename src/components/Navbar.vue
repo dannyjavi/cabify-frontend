@@ -14,7 +14,7 @@
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
             <router-link v-if="isLogged" class="navbar-item" to="/">Home</router-link>
-            <router-link v-if="isLogged " class="navbar-item" to="/order-page">Buscar viaje</router-link>
+            <router-link v-if="isLogged && !isDriver " class="navbar-item" to="/order-page">Buscar viaje</router-link>
             <router-link v-if="isLogged" class="navbar-item" to="/profile">Account</router-link>
             <router-link v-if="isLogged && isDriver " class="navbar-item" to="/journey-driver">Pending Travels</router-link>
             <router-link v-if="isLogged" class="navbar-item" to="/dashboard">Bonus Points</router-link>

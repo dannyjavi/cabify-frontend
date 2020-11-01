@@ -3,21 +3,15 @@
     <div class="container">
       <article class="message">
         <div class="message-header">
-          <!-- <p  v-if="journey.arrived_date !== null"> {{user.first_name}}, has llegado a tu destino </p> -->
-          <p  v-if="journey.pending === true ">{{ user.first_name }}, te estamos asignando un conductor</p>
           
-          <p  v-if="journey.pending === false">¡Listo!, {{driver.first_name}} está en camino.</p>
+          <p  v-if="journey.pending === true && journey.end===false">{{ user.first_name }}, te estamos asignando un conductor</p>
+          
+          <p  v-if="journey.pending === false && journey.end===false">¡Listo!, {{driver.first_name}} está en camino.</p>
+          <p  v-if="journey.pending === false && journey.end===true"> {{user.first_name}}, has llegado a tu destino </p>
         </div>
-        <!-- <div
-        v-if="journey.arrived_date !== null"
-          class="message-body has-text-centered is-size-2"
-        >
-          <p class="is-size-5 subtitle">
-            No olvides pagar y dejar una buena propina.
-          </p>
-        </div> -->
+       
         <div
-         v-if="journey.pending === true "
+         v-if="journey.pending === true && journey.end===false "
           class="message-body has-text-centered is-size-2"
         >
           <span class="icon is-large has-text-success">
@@ -26,7 +20,7 @@
         </div>
 
         <div
-          v-if="journey.pending === false"
+          v-if="journey.pending === false && journey.end===false"
           class="message-body"
         >
           <p class="is-size-5 subtitle">
@@ -39,7 +33,14 @@
             <strong>Modelo:</strong> {{ journey.vehicle.vehicle_model }}  <br />
             <strong>Color:</strong> {{ journey.vehicle.color }}  <br />
 
-            <!-- <strong>Conductor:</strong> {{ journey.journey_price }} € <br /> -->
+          </p>
+        </div>
+         <div
+         v-if="journey.pending === false && journey.end===true"
+          class="message-body has-text-centered is-size-2"
+        >
+          <p class="is-size-5 subtitle">
+            No olvides pagar.
           </p>
         </div>
       </article>
@@ -93,6 +94,7 @@ export default {
         console.log(result.data[0]);
         this.journey = result.data[0];
         if(this.journey.pending === false) this.loadDriverData()
+        console.log(this.journey.driver)
       } catch (e) {
         console.log("Error al cargar viajes" + e);
       }

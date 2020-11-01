@@ -26,6 +26,10 @@ const routes = [
   { path: "/order-page", name:"OrderPage", component: OrderPage },
   { path: "/profile", name:"ProfilePage", component: ProfilePage },
   { path: "/list", name:"List", component: ListMap },
+<<<<<<< HEAD
+  
+=======
+>>>>>>> 1ac9a2f3dd570ed10d841b7adeff0e1dd3196403
   { path: "/journey-driver", name:"DriverJourney", component: driverJourney },
   { path: "/in-journey-driver", name:"inJourneyDriver", component: inJourneyDriver },
   { path: "/dashboard", name:"Dashboard", component: Admin},
