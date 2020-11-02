@@ -281,6 +281,8 @@ export default {
   data() {
     return {
       token: "",
+      requestHeaders: "",
+
       currentUserId: "",
       registrationData: {
         price_km: "",
@@ -307,23 +309,30 @@ export default {
         this.currentUserId = this.$store.state.user.id;
       }      
     },
-    async enviar() {
-      console.log(this.currentUserId);
-      try {
-        let result = await this.axios.patch(
-          "http://localhost:3000/users/" + this.currentUserId,
-          this.registrationData
-        );
-        alert("TODO BIEN");
-      } catch (e) {
-        alert("Error al realizar la actualización");
-      }
-
-      this.currentUserId = this.$store.state.user.id;
-      console.log(this.currentUserId);
+    loadCurrentUserData() {
+      let token = this.$store.state.token;
+      this.user = this.$store.state.user;
+      this.requestHeaders = {
+        headers: { Authorization: "Bearer " + token },
+      };
+      console.log(token);
     },
+    // async enviar() {
+    //   console.log(this.currentUserId);
+    //   try {
+    //     let result = await this.axios.patch(
+    //       "http://localhost:3000/users/" + this.currentUserId,
+    //       this.registrationData
+    //     );
+    //     alert("TODO BIEN");
+    //   } catch (e) {
+    //     alert("Error al realizar la actualización");
+    //   }
+
+    //   this.currentUserId = this.$store.state.user.id;
+    //   console.log(this.currentUserId);
+    // },
     async enviar() {
-      console.log(this.currentUserId);
       this.registrationData.adapted_children = Boolean(
         this.registrationData.adapted_children
       );
@@ -331,17 +340,16 @@ export default {
         this.registrationData.covid_measures
       );
       try {
-        console.log(this.registrationData);
         let result = await this.axios.patch(
-          "http://localhost:3000/users/" + this.currentUserId,
-          this.registrationData
-        );
+        "http://localhost:3000/users/" + this.currentUserId,
+        this.registrationData, this.requestHeaders        );
         this.$buefy.toast.open({
           duration: 5000,
           message: "You are already a driver!",
           type: "is-success",
         });
         console.log(this.registrationData)
+
         this.$store.dispatch("logout");
         this.$router.push("/login");
       } catch (e) {
@@ -352,6 +360,9 @@ export default {
         });
       }
     },
+  },
+  created(){
+    this.loadCurrentUserData()
   },
   mounted() {
     console.log("MOUNTED");
