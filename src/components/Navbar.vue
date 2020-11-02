@@ -120,7 +120,7 @@ export default {
         this.$router.push("/journey-driver")        
       } else {
         this.driverProfile = false;        
-        this.$router.push("/")        
+        this.$router.push("/order-page")        
       }
     },
   },
