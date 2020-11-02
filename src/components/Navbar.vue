@@ -37,16 +37,11 @@
         </div>
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
-<<<<<<< HEAD
-            <router-link v-if="!isDriver" class="navbar-item" to="/"
-            >Home</router-link
-=======
             <router-link
               v-if="!isDriver | !driverProfile"
               class="navbar-item"
               to="/"
               >Home</router-link
->>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
             >
             <router-link
               v-if="!isDriver | !driverProfile"
@@ -91,14 +86,9 @@ export default {
       menuClass: "",
       menuOptions: [
         { title: "Home", path: "/" },
-<<<<<<< HEAD
-        { title: "Register", path: "/register" }
-      ]
-=======
         { title: "Register", path: "/register" },
       ],
       driverProfile: true,
->>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
     };
   },
   computed: {
@@ -129,9 +119,6 @@ export default {
       });
       this.$store.dispatch("logout");
       this.$router.push("/");
-<<<<<<< HEAD
-    }
-=======
     },
     driverSwitch() {
       if (this.driverProfile == true) {
@@ -143,7 +130,6 @@ export default {
         this.driverProfile = true;        
       } 
     },
->>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
   },
   computed: {
     isDriver() {
