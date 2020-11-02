@@ -1,15 +1,10 @@
 <template>
   <div  id="app">
     <Navbar />
-<<<<<<< HEAD
-    <router-view></router-view>
-    <MainFooter class="bajo"/>
-=======
     <transition name='fade' mode='out-in'>
       <router-view />
     </transition>
-    <MainFooter />
->>>>>>> a635a80b2959827d07af04e7b8bab44c689be2b1
+    <MainFooter class="bajo"/>
   </div>
 </template>
 
