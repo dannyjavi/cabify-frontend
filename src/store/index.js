@@ -60,11 +60,7 @@ export default new Vuex.Store({
     },
     async loadVehicles(context) {
       try {
-<<<<<<< HEAD
-        const url = 'http://192.168.0.106:3000/vehicles'
-=======
         const url = 'http://localhost:3000/vehicles'
->>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
         const response = await Vue.axios.get(url)
         context.commit('setVehicles', response.data)
       } catch(err) {
@@ -72,11 +68,7 @@ export default new Vuex.Store({
       }
     },
     async loadUsers(context) {
-<<<<<<< HEAD
-      const response = await Vue.axios.get('http://192.168.0.106:3000/users')
-=======
       const response = await Vue.axios.get('http://localhost:3000/users')
->>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
       context.commit('setUsers', response.data)
     },
     login(context, token = null){

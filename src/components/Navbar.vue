@@ -22,7 +22,7 @@
             class="navbar-item"
           >
             Driver Mode
-            <b-switch class="ml-3" :value="driverProfile" :trueValue="driverProfile">
+            <b-switch @click="driverSwitch" class="ml-3" :value="driverProfile" :trueValue="driverProfile">
             </b-switch>
           </a>
           <div
@@ -121,13 +121,16 @@ export default {
       this.$router.push("/");
     },
     driverSwitch() {
-      if (this.driverProfile == true) {
-        this.$router.push("/")        
-        this.driverProfile = false;        
-      }
       if (this.driverProfile == false) {
         this.$router.push("/journey-driver")        
-        this.driverProfile = true;        
+        this.driverProfile = true; 
+        console.log('funciona!'); 
+        return      
+      } 
+      if (this.driverProfile == true) {
+        this.$router.push("/order-page")        
+        this.driverProfile = false;  
+        return      
       } 
     },
   },

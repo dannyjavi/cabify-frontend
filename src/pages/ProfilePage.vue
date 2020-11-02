@@ -86,7 +86,7 @@ export default {
       console.log('enviando datos...');
       try {
         console.log(formObject);
-        const send = await this.axios.put("http://192.168.0.106:3000/users/" + this.userId+'/update',formObject)
+        const send = await this.axios.put("http://localhost:3000/users/" + this.userId+'/update',formObject)
         console.log(send);
         if (send.statusCode === 200) {
           this.loadCurrentUserData()
@@ -99,7 +99,7 @@ export default {
       this.userId = this.$store.state.user.id;
 
       try {
-        const result = await this.axios.get("http://192.168.0.106:3000/users/" + this.userId
+        const result = await this.axios.get("http://localhost:3000/users/" + this.userId
         );
         console.log(result.data);
         this.edit = result.data;
@@ -111,7 +111,7 @@ export default {
     async loadJouerneyData() {
       try {
         const result = await this.axios.get(
-          "http://192.168.0.106:3000/journeys/me",
+          "http://localhost:3000/journeys/me",
           this.requestHeaders
         );
 
