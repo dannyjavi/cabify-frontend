@@ -342,7 +342,7 @@ export default {
       try {
         let result = await this.axios.patch(
         "http://localhost:3000/users/" + this.currentUserId,
-        this.registrationData, this.requestHeaders        );
+        this.registrationData, this.requestHeaders);
         this.$buefy.toast.open({
           duration: 5000,
           message: "You are already a driver!",

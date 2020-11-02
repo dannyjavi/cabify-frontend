@@ -122,7 +122,7 @@ export default {
     },
     driverSwitch() {
       if (this.driverProfile == true) {
-        this.$router.push("/")        
+        this.$router.push("/order-page")        
         this.driverProfile = false;   
         return     
       }
