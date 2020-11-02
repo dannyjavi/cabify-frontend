@@ -137,7 +137,7 @@ function getKilometros(lat1,lon1,lat2,lon2){
 }
 </script>
 <style>
-.body{
-  height: 100vh;
-}
+/* .body{
+  height: 85vh;
+} */
 </style>

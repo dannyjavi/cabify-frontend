@@ -1,4 +1,35 @@
 <template>
+<<<<<<< HEAD
+  <div>
+    <nav class="panel">
+      <p class="panel-heading">Mi perfil</p>
+      <router-link v-if="!isDriver" to="/config" class="panel-block is-active">
+        <span class="panel-icon">
+          <i class="fas fa-user-tie" aria-hidden="true"></i>
+        </span>
+        Convertirme en conductor
+      </router-link>
+      <a class="panel-block is-active">
+        <span class="panel-icon">
+          <i class="fas fa-car-side" aria-hidden="true"></i>
+        </span>
+        Mis viajes
+      </a>
+      <a class="panel-block is-active">
+        <span class="panel-icon">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+        </span>
+        Mis puntos
+      </a>
+      <a class="panel-block is-active">
+        <span class="panel-icon">
+          <i class="fas fa-table" aria-hidden="true"></i>
+        </span>
+        Mis datos
+      </a>
+    </nav>
+  </div>
+=======
   <section class="section">
     <div class="container">
       <article class="message">
@@ -33,11 +64,25 @@
       </article>
     </div>
   </section>
+>>>>>>> 53b70d45c8f5b2cbae753e579e672abb55719c3f
 </template>
 
 <script>
 export default {
   data() {
+<<<<<<< HEAD
+      return {
+          driver: "",
+      }
+  },
+  computed: {
+    isDriver() {
+      return this.$store.state.user.profiles.includes("driver");
+    },
+  },
+};
+</script>
+=======
     return {
       journey: "",
       requestHeaders: "",
@@ -48,6 +93,7 @@ export default {
   methods: {
     async user() {
       this.userId = this.$store.state.user.id;
+>>>>>>> 53b70d45c8f5b2cbae753e579e672abb55719c3f
 
       try {
         const result = await this.axios.get(

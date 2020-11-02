@@ -298,9 +298,18 @@ export default {
   },
   methods: {
     loadUserData() {
+<<<<<<< HEAD
+
+    this.currentUserId = this.$store.state.user.id
+      
+      if(this.$store.state.user != null) {
+        this.currentUserId = this.$store.state.user.id;
+      }      
+=======
       if (this.$store.state.user != null) {
         this.currentUserId = this.$store.state.user.id;
       }
+>>>>>>> 53b70d45c8f5b2cbae753e579e672abb55719c3f
     },
     async enviar() {
       console.log(this.currentUserId);
