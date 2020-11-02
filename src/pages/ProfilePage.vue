@@ -80,15 +80,19 @@ export default {
   methods: {
     async editProfile(formObject) {
       this.userId = this.$store.state.user.id;
+      console.log("**aquí uno");
       try {
-        console.log(formObject);
-        const send = await this.axios.put(
-          "http://localhost:3000/users/" + this.userId + "/update",
+        // con la baseUrl se usa asi? = this.axios.put(baseUrl + ':3000/users + this.userId + '/update)
+        const send = await this.axios.put("http://192.168.0.106:3000/users/" + this.userId + "/update",
           formObject,
           this.requestHeaders
         );
-        if (send.statusCode === 200) {
-          this.loadCurrentUserData();
+        console.log(send, " **aquí dos");
+        if (send.status === 200) {
+          let value_token = send.data.token
+          this.$store.dispatch('updateProfile', value_token)
+
+          //this.loadCurrentUserData();
         }
       } catch (e) {
         throw new Error('No se han podido cambiar los datos!')
@@ -104,7 +108,6 @@ export default {
         );
         console.log(result.data);
         this.edit = result.data;
-        this.userData = result.data;
       } catch (e) {
         throw new Error('Error al cargar los datos')
       }

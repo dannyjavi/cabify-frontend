@@ -4,6 +4,8 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import jwtDecode from 'jwt-decode'
 
+axios.defaults.baseURL = 'https://192.168.0.106';
+
 Vue.use(Vuex);
 Vue.use(VueAxios, axios)
 
@@ -47,6 +49,9 @@ export default new Vuex.Store({
     },
     logout(context){
       context.commit('setToken', null)
+    },
+    updateProfile(context, token){
+      context.commit('setToken', token )
     },
     isToken(context){
       let token = window.localStorage.getItem('token')
