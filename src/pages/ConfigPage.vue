@@ -284,7 +284,6 @@ export default {
         price_km: 2,
         address: "",
         driver_license: "",
-
         position: [36.72, -4.42],
         vehicle_model: "",
         capacity: 4,

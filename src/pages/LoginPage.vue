@@ -62,8 +62,11 @@
 </template>
 
 <script>
+
 export default {
   name: "LoginPage",
+  components:{
+  },
   data() {
     return {
       formLogin: {
@@ -102,9 +105,7 @@ export default {
           type: "is-danger",
         });
       }
-
-      //this.$router.push("/search");
-    },
+    }
   },
 };
 </script>

@@ -1,3 +1,79 @@
 .bg-green-figma{
     background-color: #279D79;
 }
+
+.preloader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 9999;
+}
+
+.logo{
+    width: 12.5rem;
+    height: 12.5rem;
+    background: url('http://lorempixel.com/200/200/nature/1');
+    background-repeat: no-repeat;
+}
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 1rem;
+}
+
+.fade-enter, .fade-leave-to{
+    opacity: 0;
+}
+
+@keyframes scaleOut{
+    0% {
+    transform: scale(1)
+    }
+    100%{
+        transform: scale(0);
+    }
+}
+
+@keyframes scaleIn{
+    0% {
+        transform: scale(0)
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+
+.circles{
+display: flex;
+margin-top: 1rem;
+}
+.circle{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: .75rem;
+    background-color: #ffffff;
+    border-radius: 50% ;
+    animation-name: scaleIn;
+    animation-duration: .7s;
+    transform: scale(0);
+}
+.circle:nth-child(1){
+    animation-delay: 0s
+}
+.circle:nth-child(2){
+    animation-delay: .05s
+}
+.circle:nth-child(3){
+    animation-delay: .1s
+}
+.circle:nth-child(4){
+    animation-delay: .15s
+}
+.circle:nth-child(5){
+    animation-delay: .2s
+}

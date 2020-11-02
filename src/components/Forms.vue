@@ -182,6 +182,7 @@ export default {
       }
     },
     async loadJourneys(context) {
+      //const response = await Vue.axios.get('http://localhost/journeys')
       //const response = await Vue.axios.get('http://localhost:3000/journeys')
       //context.commit('setJourneys', response.data)
     },
