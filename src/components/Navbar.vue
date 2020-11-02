@@ -16,15 +16,16 @@
             to="/journey-driver"
             >{{ userName }}</router-link
           >
-          <a
-            v-if="isLogged && isDriver"
-            @click="driverSwitch"
+          <span 
+            v-if="isLogged && isDriver"            
             class="navbar-item"
           >
             Driver Mode
-            <b-switch @click="driverSwitch" class="ml-3" :value="driverProfile" :trueValue="driverProfile">
+          </span>
+          <a class="navbar-item" v-if="isLogged && isDriver">
+            <b-switch @click="driverSwitch"  v-model="driverProfile" class="ml-3">
             </b-switch>
-          </a>
+          </a>          
           <div
             @click="toggleMenu"
             class="navbar-burger burger"
@@ -98,6 +99,20 @@ export default {
         { title: "Terminos us", path: "Terms" }
       ];
       return menuOptions;
+    },
+    isDriver() {
+      if (!this.$store.state.user) return;
+      return this.$store.state.user.profiles.includes("driver");
+    },    
+    isLogged() {
+      return this.$store.state.isAuth;
+    },
+    userName() {
+      if (this.$store.state.user != null) {
+        return "Hola, " + this.$store.state.user.first_name;
+      } else {
+        return "CoffeBy";
+      }
     }
   },
   methods: {
@@ -113,6 +128,8 @@ export default {
     },
     logout() {
       localStorage.removeItem("Viajes");
+      this.driverProfile = true
+      this.isSwitched = true
       this.$buefy.toast.open({
         message: "Successful logout!",
         type: "is-info"
@@ -123,32 +140,13 @@ export default {
     driverSwitch() {
       if (this.driverProfile == true) {
         this.$router.push("/order-page")        
-        this.driverProfile = false;   
         return     
       }
       if (this.driverProfile == false) {
         this.$router.push("/journey-driver")        
-        this.driverProfile = true;  
         return      
       } 
     },
-  },
-  computed: {
-    isDriver() {
-      if (!this.$store.state.user) return;
-      return this.$store.state.user.profiles.includes("driver");
-    },
-
-    isLogged() {
-      return this.$store.state.isAuth;
-    },
-    userName() {
-      if (this.$store.state.user != null) {
-        return "Hola, " + this.$store.state.user.first_name;
-      } else {
-        return "CoffeBy";
-      }
-    }
   }
 };
 </script>
