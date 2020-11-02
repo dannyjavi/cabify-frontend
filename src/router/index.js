@@ -17,7 +17,11 @@ import ErrorPage from "../pages/Error/ErrorPage"
 Vue.use(VueRouter);
 
 const routes = [
+<<<<<<< HEAD
   { path: "/", name: "Home", component: HomePage},
+=======
+  { path: "/", name: "Home", component: HomePage },
+>>>>>>> 53b70d45c8f5b2cbae753e579e672abb55719c3f
   { path: "/search", name: "Search", component: SearchPage },
   { path: "/login", name: "Login", component: LoginPage },
   { path: "/register", name: "Register", component: RegisterPage },

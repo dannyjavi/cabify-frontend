@@ -169,14 +169,15 @@
         </div>
         <div class="field-body">
           <div class="field mb-5">
-            <p class="control is-expanded">
-              <input
+            <div class="select">
+              <select
                 v-model="registrationData.covid_measures"
                 class="input is-size-5"
-                type="text"
-                placeholder="Medidas Covid"
-              />
-            </p>
+              >
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -187,14 +188,16 @@
         </div>
         <div class="field-body">
           <div class="field mb-5">
-            <p class="control is-expanded">
-              <input
+            <div class="select">
+              <select
                 v-model="registrationData.type_vehicle"
                 class="input is-size-5"
-                type="text"
-                placeholder="Tipo de vehículo"
-              />
-            </p>
+              >
+                <option>Sedán</option>
+                <option>Furgoneta</option>
+                <option>Todoterreno</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -281,13 +284,12 @@ export default {
         price_km: 2,
         address: "",
         driver_license: "",
-
         position: [36.72, -4.42],
         vehicle_model: "",
         capacity: 4,
         adapted_children: true,
         covid_measures: true,
-        type_vehicle: "",
+        type_vehicle: "Sedán",
         image: "",
         color: "",
         enrolment: "",
@@ -296,12 +298,18 @@ export default {
   },
   methods: {
     loadUserData() {
+<<<<<<< HEAD
 
     this.currentUserId = this.$store.state.user.id
       
       if(this.$store.state.user != null) {
         this.currentUserId = this.$store.state.user.id;
       }      
+=======
+      if (this.$store.state.user != null) {
+        this.currentUserId = this.$store.state.user.id;
+      }
+>>>>>>> 53b70d45c8f5b2cbae753e579e672abb55719c3f
     },
     async enviar() {
       console.log(this.currentUserId);
@@ -320,17 +328,28 @@ export default {
     },
     async enviar() {
       console.log(this.currentUserId);
+      this.registrationData.adapted_children = Boolean(
+        this.registrationData.adapted_children
+      );
       try {
         console.log(this.registrationData);
         let result = await this.axios.patch(
           "http://localhost:3000/users/" + this.currentUserId,
           this.registrationData
         );
-        alert("¡Ya eres conductor!, por favor vuelve a hacer login");
-        this.$store.dispatch('logout')
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: "You are already a driver!",
+          type: "is-success",
+        });
+        this.$store.dispatch("logout");
         this.$router.push("/login");
       } catch (e) {
-        alert("Error al realizar la actualización");
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: "Something went wrong 😲",
+          type: "is-danger",
+        });
       }
     },
   },

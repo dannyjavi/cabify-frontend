@@ -95,6 +95,7 @@ export default {
         this.journey = result.data[0];
         if(this.journey.pending === false) this.loadDriverData()
         console.log(this.journey.driver)
+        if(this.journey.end == true) clearInterval(this.intervalId)
       } catch (e) {
         console.log("Error al cargar viajes" + e);
       }

@@ -2,7 +2,7 @@
   <div>
     <div class="columns">
       <div class="column is2">
-        <div class="card bg-green-figma">
+        <div class="bg-green-figma">
           <div class="card-content">
             <div class="content">
               <div class="field">
@@ -34,7 +34,13 @@
               <div class="field is-grouped is-grouped-centered">
                 <p class="control">
                   <!-- <router-link to="/list"> -->
-                  <button @click="passDataTravel(form)" class="button is-dark title is-5" :disabled="setDisable">Pide ahora</button>
+                  <button
+                    @click="passDataTravel(form)"
+                    class="button is-dark title is-5"
+                    :disabled="setDisable"
+                  >
+                    Pide ahora
+                  </button>
                   <!-- </router-link> -->
                 </p>
               </div>
@@ -43,7 +49,6 @@
           <div class="card-image">
             <figure class="image">
               <div id="mapid"></div>
-              <!-- <Map /> -->
             </figure>
           </div>
         </div>
@@ -53,50 +58,57 @@
 </template>
 
 <script>
-import Map from "./Map";
-
 export default {
   name: "FormComponent",
   components: {
-    Map
-   },
+    Map,
+  },
   data() {
     return {
       isDisable: true,
       form: {
-        origen:"",
-        destino:""
+        origen: "",
+        destino: "",
       },
-      vehicles: []
+      vehicles: [],
     };
   },
-  computed:{
-    setDisable(){
-      return (this.form.origen !== '' && this.form.destino !== '') ? false : true
+  computed: {
+    setDisable() {
+      return this.form.origen !== "" && this.form.destino !== "" ? false : true;
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch("loadVehicles");
+    this.vehicles = this.$store.getters.alldriversAvailable;
+    let mymap = L.map("mapid").setView([36.72, -4.42], 13);
+    mymap.locate({ enableHighAccuracy: true });
+    // mymap.locate({ setView: true });
+    let tileURL =
+      "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
+    L.tileLayer(tileURL, {
+      minZoom: 10,
+      maxZoom: 20,
+      id: "mapbox/streets-v11",
+      tileSize: 512,
+      zoomOffset: -1,
+    }).addTo(mymap);
+    this.vehicles.forEach((item) => {
+      let marker = L.marker(item.position.coordinates)
+        .bindPopup("Pocisión actual")
+        .addTo(mymap);
+    });
+
+    if (localStorage.getItem("Viajes") != null) {
+      if (this.$store.state.isAuth) {
+        let getViajes = localStorage.getItem("Viajes");
+        let viaje = getViajes.split("#");
+        this.form.origen = viaje[0];
+        this.form.destino = viaje[1];
+        console.log(getViajes.split("#"));
+      }
     }
-  }
-  ,
-  // async mounted() {
-  //   await this.$store.dispatch("loadVehicles");
-  //   this.vehicles = this.$store.getters.alldriversAvailable;
-  //   let mymap = L.map("mapid").setView([36.72, -4.42], 13);
-  //   mymap.locate({ enableHighAccuracy: true });
-  //   // mymap.locate({ setView: true });
-  //   let tileURL =
-  //     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
-  //   L.tileLayer(tileURL, {
-  //     minZoom: 10,
-  //     maxZoom: 20,
-  //     id: "mapbox/streets-v11",
-  //     tileSize: 512,
-  //     zoomOffset: -1
-  //   }).addTo(mymap);
-  //   this.vehicles.forEach(item => {
-  //     let marker = L.marker(item.position.coordinates)
-  //       .bindPopup("Hi there!")
-  //       .addTo(mymap);
-  //   });
-  // },
+  },
   methods: {
     passDataTravel() {
       this.searchPos();
@@ -120,49 +132,61 @@ export default {
 
         const [coord_origen, coord_destino] = await Promise.all([
           this.axios.get(url_origen),
-          this.axios.get(url_destino)
+          this.axios.get(url_destino),
         ]);
-        
+
         const obj_travel = {
           start_point: {
             lat: coord_origen.data.coord.lat,
             long: coord_origen.data.coord.lon,
-            name: this.form.origen
+            name: this.form.origen,
           },
           destiny_point: {
             lat: coord_destino.data.coord.lat,
             long: coord_destino.data.coord.lon,
-            name: this.form.destino
+            name: this.form.destino,
           },
-          user: this.$store.state.user.id
+          user: this.$store.state.user.id,
         };
 
-        let token = this.$store.state.token
-        console.log(token)
+        let token = this.$store.state.token;
+        console.log(token);
 
         const header_axios = {
-          headers:{
-            Authorization: `Bearer ${token}`
-          }
-        }
-        if (obj_travel.start_point === undefined | obj_travel.destiny_point === undefined) {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        if (
+          (obj_travel.start_point === undefined) |
+          (obj_travel.destiny_point === undefined)
+        ) {
           alert("tu ciudad no existe");
         }
 
-        const res = await this.axios.post("http://localhost:3000/journeys", obj_travel,header_axios);
+        const res = await this.axios.post(
+          "http://localhost:3000/journeys",
+          obj_travel,
+          header_axios
+        );
         console.log(res);
-        
-        this.$router.push('/search')
+
+        this.$router.push("/search");
       } catch (err) {
-        let msg = 'No sabemos quien eres.'
-        this.$emit('showError',msg)
+        let msg = "No sabemos quien eres.";
+        this.$emit("showError", msg);
+        localStorage.setItem(
+          "Viajes",
+          this.form.origen + "#" + this.form.destino
+        );
       }
     },
     async loadJourneys(context) {
+      //const response = await Vue.axios.get('http://localhost/journeys')
       //const response = await Vue.axios.get('http://localhost:3000/journeys')
       //context.commit('setJourneys', response.data)
-    }
-  }
+    },
+  },
 };
 </script>
 

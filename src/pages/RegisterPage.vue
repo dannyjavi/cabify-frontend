@@ -20,6 +20,7 @@
               <i class="fas fa-user"></i>
             </span>
           </p>
+          <p v-if="showError" class="help is-danger is-size-5">This field is required</p>
         </div>
         <div class="field mb-5">
           <p class="control is-expanded has-icons-left">
@@ -33,6 +34,7 @@
               <i class="fas fa-user"></i>
             </span>
           </p>
+          <p v-if="showError" class="help is-danger is-size-5">This field is required</p>
         </div>
       </div>
     </div>
@@ -43,7 +45,7 @@
       </div>
       <div class="field-body">
         <div class="field is-expanded">
-          <div class="field has-addons mb-5">
+          <div class="field has-addons mb-3">
             <p class="control">
               <a class="button is-medium is-static"> +34 </a>
             </p>
@@ -56,6 +58,7 @@
               />
             </p>
           </div>
+          <p v-if="showError" class="help is-danger is-size-5">This field is required</p>
         </div>
         <div class="field mb-6">
           <p class="control is-expanded has-icons-left has-icons-right">
@@ -70,6 +73,7 @@
               <i class="fas fa-envelope"></i>
             </span>
           </p>
+          <p v-if="showError" class="help is-danger is-size-5">This field is required</p>
         </div>
       </div>
     </div>
@@ -90,12 +94,13 @@
               <i class="fas fa-lock"></i>
             </span>
           </p>
+          <p v-if="showError" class="help is-danger is-size-5">This field is required</p>
         </div>
 
         <label class="checkbox is-size-5 title">
           <input v-model="acepted" type="checkbox" />
-          I agree to the <router-link link to="/terms">terms and conditions</router-link>
-          
+          I agree to the
+          <router-link link to="/terms">terms and conditions</router-link>
         </label>
         <!-- <div class="modal is-active">
           <div class="modal-card">
@@ -105,10 +110,8 @@
             </header>
           </div>
         </div> -->
-
-</div>
-
-    </div>  
+      </div>
+    </div>
 
     <div class="field">
       <div class="field-label">
@@ -136,7 +139,8 @@ export default {
   name: "RegisterPage",
   data() {
     return {
-      acepted:false,
+      showError: false,
+      acepted: false,
       registrationData: {
         first_name: "",
         last_name: "",
@@ -153,8 +157,13 @@ export default {
         "Enviamos los datos para solicitar el registro de un nuevo usuario"
       );
       if (this.acepted === false) {
-        alert('Acepta los términos y condiciones de uso')
-        return
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: `Accept the terms and conditions of use`,
+          position: "is-top",
+          type: "is-warning",
+        });
+        return;
       }
       try {
         let result = await this.axios.post(
@@ -162,13 +171,17 @@ export default {
           this.registrationData
         );
         console.info(result);
-        alert(
-          "Te has registrado satisfactorizamente. Puedes acceder con tu nueva cuenta desde el formulario de identificación"
-        );
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: `You have registered successfully!`,
+          position: "is-top",
+          type: "is-success",
+        });
         this.$router.push("/login");
       } catch (e) {
         console.log(e, this.registrationData);
         alert("Se ha producido un error al enviar el formulario");
+        this.showError = true
       }
     },
   },
@@ -179,5 +192,4 @@ export default {
 .modal-card-title {
   font-size: 27%;
 }
-
 </style>

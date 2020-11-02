@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="body">
     <Card
       v-for="(item, index) in journeys"
       :key="index"
@@ -137,4 +137,7 @@ function getKilometros(lat1,lon1,lat2,lon2){
 }
 </script>
 <style>
+/* .body{
+  height: 85vh;
+} */
 </style>

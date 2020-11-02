@@ -22,7 +22,7 @@ export default {
   name: "OrderPage",
   components: {
     Forms,
-    Notification
+    Notification,
   },
   data(){
     return {
