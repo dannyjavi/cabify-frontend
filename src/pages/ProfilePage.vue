@@ -60,11 +60,9 @@
 </template>
 
 <script>
-
 export default {
   name: "ProfilePage",
-  components: {
-  },
+  components: {},
   data() {
     return {
       journey: "",
@@ -80,32 +78,35 @@ export default {
     };
   },
   methods: {
-    async editProfile(formObject){
+    async editProfile(formObject) {
       this.userId = this.$store.state.user.id;
-      console.log(this.userId);
-      console.log('enviando datos...');
       try {
         console.log(formObject);
-        const send = await this.axios.put("http://192.168.0.106:3000/users/" + this.userId+'/update',formObject)
-        console.log(send);
+        const send = await this.axios.put(
+          "http://192.168.0.106:3000/users/" + this.userId + "/update",
+          formObject,
+          this.requestHeaders
+        );
         if (send.statusCode === 200) {
-          this.loadCurrentUserData()
+          this.loadCurrentUserData();
         }
       } catch (e) {
-        console.log('corrige esto: ',e.message);
+        throw new Error('No se han podido cambiar los datos!')
       }
     },
     async user() {
       this.userId = this.$store.state.user.id;
 
       try {
-        const result = await this.axios.get("http://192.168.0.106:3000/users/" + this.userId
+        const result = await this.axios.get(
+          "http://192.168.0.106:3000/users/" + this.userId,
+          this.requestHeaders
         );
         console.log(result.data);
         this.edit = result.data;
         this.userData = result.data;
       } catch (e) {
-        console.log("Error al cargar datos de Usuario");
+        throw new Error('Error al cargar los datos')
       }
     },
     async loadJouerneyData() {
@@ -135,6 +136,11 @@ export default {
     this.loadCurrentUserData();
   },
   mounted() {
+    let token = this.$store.state.token;
+
+    this.requestHeaders = {
+      headers: { Authorization: "Bearer " + token }
+    };
     this.user();
   }
 };

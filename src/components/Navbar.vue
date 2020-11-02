@@ -123,11 +123,13 @@ export default {
     driverSwitch() {
       if (this.driverProfile == true) {
         this.$router.push("/")        
-        this.driverProfile = false;        
+        this.driverProfile = false;   
+        return     
       }
       if (this.driverProfile == false) {
         this.$router.push("/journey-driver")        
-        this.driverProfile = true;        
+        this.driverProfile = true;  
+        return      
       } 
     },
   },
