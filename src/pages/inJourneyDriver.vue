@@ -53,7 +53,7 @@ export default {
         let id = this.$store.state.currentJourneyId;
 
         let result = await this.axios.get(
-          "http://localhost:3000/journeys/" + id,
+          "http://192.168.0.106:3000/journeys/" + id,
           this.requestHeaders
         );
         this.journey = result.data;
@@ -67,7 +67,7 @@ export default {
       try{
         console.log("AQUI "+this.journey.driver.user)
         let id = this.journey.driver.user
-        let result = await this.axios.get("http://localhost:3000/users/"+id)
+        let result = await this.axios.get("http://192.168.0.106:3000/users/"+id)
         console.log("HOLA")
         console.log(result.data)
         this.driver = result.data
@@ -80,7 +80,7 @@ export default {
       try {
         let id = this.$store.state.currentJourneyId;
         let result = await this.axios.patch(
-          "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
+          "http://192.168.0.106:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
         );
         console.log(result.data)
         alert('Viaje terminado correctamente')

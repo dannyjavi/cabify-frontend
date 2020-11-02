@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section>
     <!-- START NAV -->
     <nav class="navbar is-dark" @mouseleave="closeMenu">
       <div class="container">
@@ -26,13 +26,16 @@
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
             <router-link v-if="!isDriver" class="navbar-item" to="/"
-              >Home</router-link
+            >Home</router-link
             >
             <router-link v-if="!isDriver" class="navbar-item" to="/order-page"
               >Buscar viaje</router-link
             >
             <router-link v-if="isLogged" class="navbar-item" to="/profile"
               >Account</router-link
+            >
+            <router-link v-if="isLogged" class="navbar-item" to="/dashboard"
+              >Dashboard</router-link
             >
             <router-link
               v-if="isLogged && isDriver"
@@ -55,10 +58,13 @@
       </div>
     </nav>
     <!-- END NAV -->
-  </div>
+
+    
+  </section>
 </template>
 
 <script>
+
 export default {
   name: "NavBar",
   data() {
@@ -66,18 +72,18 @@ export default {
       menuClass: "",
       menuOptions: [
         { title: "Home", path: "/" },
-        { title: "Register", path: "/register" },
-      ],
+        { title: "Register", path: "/register" }
+      ]
     };
   },
   computed: {
     menu() {
       let menuOptions = [
         { title: "Home", path: "Home" },
-        { title: "Terminos us", path: "Terms" },
+        { title: "Terminos us", path: "Terms" }
       ];
       return menuOptions;
-    },
+    }
   },
   methods: {
     toggleMenu() {
@@ -94,11 +100,11 @@ export default {
       localStorage.removeItem("Viajes");
       this.$buefy.toast.open({
         message: "Successful logout!",
-        type: "is-info",
+        type: "is-info"
       });
       this.$store.dispatch("logout");
       this.$router.push("/");
-    },
+    }
   },
   computed: {
     isDriver() {
@@ -115,10 +121,28 @@ export default {
       } else {
         return "CoffeBy";
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style>
+<style lang="css" scoped>
+/* html, body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  height: 100%;
+  background: #ECF0F3;
+}
+nav.navbar {
+  border-top: 4px solid #276cda;
+  margin-bottom: 1rem;
+}
+.navbar-item.brand-text {
+  font-weight: 300;
+}
+.navbar-item, .navbar-link {
+  font-size: 14px;
+  font-weight: 700;
+} */
 </style>

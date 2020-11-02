@@ -66,11 +66,7 @@ export default {
 
       console.log("HOLA");
       try {
-<<<<<<< HEAD
-        let result = await this.axios.get("http://localhost/users/" + id);
-=======
-        let result = await this.axios.get("http://localhost:3000/users/" + id);
->>>>>>> 1e185c0ca54fde52f160b33da5ba48ba5e8ca4e3
+        let result = await this.axios.get("http://192.168.0.106:3000/users/" + id);
         // console.log(result.data)
         this.driver = result.data
         console.log(this.driver)
@@ -91,6 +87,11 @@ export default {
     async loadJourneys() {
       try {
         let result = await this.axios.get(
+          "http://192.168.0.106:3000/journeys/me",
+          this.requestHeaders
+        );
+
+        console.log(result.data[0]);
         this.journey = result.data[0];
         if(this.journey.pending === false) this.loadDriverData()
         console.log(this.journey.driver)

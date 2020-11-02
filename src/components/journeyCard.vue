@@ -20,11 +20,13 @@
               </article>
             </div>
           </div>
+          
       </section>
   
 </template>
 
 <script>
+
 export default {
   name: "JourneyPage",
   props: {
@@ -36,6 +38,9 @@ export default {
     }
    
   },
+  components:{
+  }
+  
 };
 </script>
 

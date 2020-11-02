@@ -9,7 +9,6 @@ import ConfigPage from "../pages/ConfigPage";
 import OrderPage from "../pages/OrderPage";
 import ListMap from "../pages/ListMap";
 import ProfilePage from "../pages/ProfilePage";
-import Admin from "../pages/admin/AdminPage";
 import driverJourney from "../pages/driverJourney"
 import inJourneyDriver from "../pages/inJourneyDriver"
 import ErrorPage from "../pages/Error/ErrorPage"
@@ -28,7 +27,6 @@ const routes = [
   { path: "/list", name:"List", component: ListMap },
   { path: "/journey-driver", name:"DriverJourney", component: driverJourney },
   { path: "/in-journey-driver", name:"inJourneyDriver", component: inJourneyDriver },
-  { path: "/dashboard", name:"Dashboard", component: Admin},
   { path: "*", name:"Error", component: ErrorPage},
 ];
 
