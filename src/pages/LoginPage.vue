@@ -113,7 +113,5 @@ export default {
 .container {
   width: 80%;
 }
-.space {
-  height: 120px;
-}
+
 </style>
