@@ -56,7 +56,7 @@ export default {
      let id=this.$store.state.user.id
      console.log(id)
      try{
-      let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/users/"+id)
+      let result = await this.axios.get("http://localhost/users/"+id)
       console.log(result.data.driver.price_km)
       this.price_km = result.data.driver.price_km
      }catch(e){
@@ -75,7 +75,7 @@ export default {
     },
     async loadJourneys() {
       try {
-        let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/journeys",this.requestHeaders);
+        let result = await this.axios.get("http://localhost/journeys",this.requestHeaders);
         console.log(result.data)
         this.journeys = result.data;
 
@@ -85,7 +85,7 @@ export default {
     },
 
     async aceptar(id) {
-      let viaje = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/journeys/" + id, this.requestHeaders);
+      let viaje = await this.axios.get("http://localhost/journeys/" + id, this.requestHeaders);
       let lat1 =viaje.data.start_point.lat
       let long1=viaje.data.start_point.long
       let lat2=viaje.data.destiny_point.lat
@@ -98,7 +98,7 @@ export default {
         console.log(this.requestHeaders);
         console.log(id);
         let result = await this.axios.patch(
-          "https://grupo3-backend-coffeby.herokuapp.com/journeys/" + id,
+          "http://localhost/journeys/" + id,
           {travel_distance:distance, journey_price:journeyPrice },
           this.requestHeaders
         );

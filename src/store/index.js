@@ -60,7 +60,7 @@ export default new Vuex.Store({
     },
     async loadVehicles(context) {
       try {
-        const url = 'https://grupo3-backend-coffeby.herokuapp.com/vehicles'
+        const url = 'http://localhost/vehicles'
         const response = await Vue.axios.get(url)
         context.commit('setVehicles', response.data)
       } catch(err) {
@@ -68,7 +68,7 @@ export default new Vuex.Store({
       }
     },
     async loadUsers(context) {
-      const response = await Vue.axios.get('https://grupo3-backend-coffeby.herokuapp.com/users')
+      const response = await Vue.axios.get('http://localhost/users')
       context.commit('setUsers', response.data)
     },
     login(context, token = null){

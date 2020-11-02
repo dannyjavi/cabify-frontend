@@ -26,13 +26,17 @@ export default {
 </script>
 
 <style>
-.fade-enter .fade-leave-to{
-  opacity: 0 .5s;
-  transform: translateX(2em);
-}
 
 .fade-enter-active, .fade-leave-active {
-  transition: all .8s ease;
+  transition: all .3s ease;
 }
 
+.fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.fade-enter .fade-leave-to{
+  transform: translateX(10px);
+  opacity: 0;
+}
 </style>

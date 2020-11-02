@@ -42,10 +42,6 @@
       </div>
     </section>
 
-    <template>
-      <Preloader />
-    </template>
-
     <footer class="container mt-6 mb-6">
       <div class="field">
         <p class="control has-text-centered mb-6">
@@ -66,16 +62,13 @@
 </template>
 
 <script>
-import Preloader from '../components/Preloader'
 
 export default {
   name: "LoginPage",
   components:{
-    Preloader
   },
   data() {
     return {
-      show: false,
       formLogin: {
         email: "",
         password: "",
@@ -84,10 +77,9 @@ export default {
   },
   methods: {
     async login() {
-      this.showToggle()
       try {
         let response = await this.axios.post(
-          "https://grupo3-backend-coffeby.herokuapp.com/auth/login",
+          "http://localhost/auth/login",
           this.formLogin
         );
         this.$buefy.toast.open({
@@ -113,13 +105,6 @@ export default {
           type: "is-danger",
         });
       }
-
-      //this.$router.push("/search");
-    },
-    showToggle(){
-      setTimeout(() => {
-        this.show = false
-      }, 700)
     }
   },
 };
