@@ -103,7 +103,7 @@ export default {
 
       try {
         const result = await this.axios.get(
-          "http://192.168.0.106:3000/users/" + this.userId,
+          "http://localhost:3000/users/" + this.userId,
           this.requestHeaders
         );
         console.log(result.data);
@@ -115,7 +115,7 @@ export default {
     async loadJouerneyData() {
       try {
         const result = await this.axios.get(
-          "http://192.168.0.106:3000/journeys/me",
+          "http://localhost:3000/journeys/me",
           this.requestHeaders
         );
 

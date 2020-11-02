@@ -59,7 +59,7 @@ export default {
      try{
        console.log('loaddriverdata');
        console.log(this.requestHeaders);
-      let result = await this.axios.get("http://192.168.0.106:3000/users/"+id , this.requestHeaders)
+      let result = await this.axios.get("http://localhost:3000/users/"+id , this.requestHeaders)
       console.log(result.data);
       console.log(result.data.driver.price_km)
       this.price_km = result.data.driver.price_km
@@ -77,7 +77,7 @@ export default {
     },
     async loadJourneys() {
       try {
-        let result = await this.axios.get("http://192.168.0.106:3000/journeys",this.requestHeaders);
+        let result = await this.axios.get("http://localhost:3000/journeys",this.requestHeaders);
         console.log(result.data)
         this.journeys = result.data;
 
@@ -87,7 +87,7 @@ export default {
     },
 
     async aceptar(id) {
-      let viaje = await this.axios.get("http://192.168.0.106:3000/journeys/" + id, this.requestHeaders);
+      let viaje = await this.axios.get("http://localhost:3000/journeys/" + id, this.requestHeaders);
       let lat1 =viaje.data.start_point.lat
       let long1=viaje.data.start_point.long
       let lat2=viaje.data.destiny_point.lat
@@ -100,7 +100,7 @@ export default {
         console.log(this.requestHeaders);
         console.log(id);
         let result = await this.axios.patch(
-          "http://192.168.0.106:3000/journeys/" + id,
+          "http://localhost:3000/journeys/" + id,
           {travel_distance:distance, journey_price:journeyPrice },
           this.requestHeaders
         );

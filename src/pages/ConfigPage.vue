@@ -26,7 +26,7 @@
           <div class="field mb-5">
             <p class="control is-expanded">
               <input
-                v-model="registrationData.price_km"
+                v-model.number="registrationData.price_km"
                 class="input is-size-5"
                 type="number"
                 placeholder="Precio/km"
@@ -135,7 +135,7 @@
           <div class="field mb-5">
             <p class="control is-expanded">
               <input
-                v-model="registrationData.capacity"
+                v-model.number="registrationData.capacity"
                 class="input is-size-5"
                 type="number"
                 placeholder="Numero de plazas"
@@ -145,20 +145,22 @@
         </div>
       </div>
 
+     
       <div class="field">
         <div class="field-label is-normal mb-3">
           <label class="label is-size-4">Adaptado a niños</label>
         </div>
         <div class="field-body">
           <div class="field mb-5">
-            <p class="control is-expanded">
-              <input
+            <div class="select">
+              <select
                 v-model="registrationData.adapted_children"
                 class="input is-size-5"
-                type="text"
-                placeholder="Adaptado a niños"
-              />
-            </p>
+              >
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -279,16 +281,18 @@ export default {
   data() {
     return {
       token: "",
+      requestHeaders: "",
+
       currentUserId: "",
       registrationData: {
-        price_km: 2,
+        price_km: "",
         address: "",
         driver_license: "",
-        position: [36.72, -4.42],
+        position: [36.62, -4.32],
         vehicle_model: "",
-        capacity: 4,
-        adapted_children: true,
-        covid_measures: true,
+        capacity: "",
+        adapted_children: false,
+        covid_measures: false,
         type_vehicle: "Sedán",
         image: "",
         color: "",
@@ -305,37 +309,47 @@ export default {
         this.currentUserId = this.$store.state.user.id;
       }      
     },
-    async enviar() {
-      console.log(this.currentUserId);
-      try {
-        let result = await this.axios.patch(
-          "http://192.168.0.106:3000/users/" + this.currentUserId,
-          this.registrationData
-        );
-        alert("TODO BIEN");
-      } catch (e) {
-        alert("Error al realizar la actualización");
-      }
-
-      this.currentUserId = this.$store.state.user.id;
-      console.log(this.currentUserId);
+    loadCurrentUserData() {
+      let token = this.$store.state.token;
+      this.user = this.$store.state.user;
+      this.requestHeaders = {
+        headers: { Authorization: "Bearer " + token },
+      };
+      console.log(token);
     },
+    // async enviar() {
+    //   console.log(this.currentUserId);
+    //   try {
+    //     let result = await this.axios.patch(
+    //       "http://localhost:3000/users/" + this.currentUserId,
+    //       this.registrationData
+    //     );
+    //     alert("TODO BIEN");
+    //   } catch (e) {
+    //     alert("Error al realizar la actualización");
+    //   }
+
+    //   this.currentUserId = this.$store.state.user.id;
+    //   console.log(this.currentUserId);
+    // },
     async enviar() {
-      console.log(this.currentUserId);
       this.registrationData.adapted_children = Boolean(
         this.registrationData.adapted_children
       );
+      this.registrationData.covid_measures = Boolean(
+        this.registrationData.covid_measures
+      );
       try {
-        console.log(this.registrationData);
         let result = await this.axios.patch(
-          "http://192.168.0.106:3000/users/" + this.currentUserId,
-          this.registrationData
-        );
+        "http://localhost:3000/users/" + this.currentUserId,
+        this.registrationData, this.requestHeaders);
         this.$buefy.toast.open({
           duration: 5000,
           message: "You are already a driver!",
           type: "is-success",
         });
+        console.log(this.registrationData)
+
         this.$store.dispatch("logout");
         this.$router.push("/login");
       } catch (e) {
@@ -346,6 +360,9 @@ export default {
         });
       }
     },
+  },
+  created(){
+    this.loadCurrentUserData()
   },
   mounted() {
     console.log("MOUNTED");

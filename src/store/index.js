@@ -26,9 +26,6 @@ export default new Vuex.Store({
     setVehicles(state, payload) {
       state.vehicles = payload
     },
-    setUsers(state, payload) {
-      state.users = payload
-    },
     setJourneys(state, payload) {
       state.journeys = payload
     },
@@ -65,16 +62,12 @@ export default new Vuex.Store({
     },
     async loadVehicles(context) {
       try {
-        const url = 'http://192.168.0.106:3000/vehicles'
+        const url = 'http://localhost:3000/vehicles'
         const response = await Vue.axios.get(url)
         context.commit('setVehicles', response.data)
       } catch(err) {
         throw new Error('no se pueden cargar los vehiculos')
       }
-    },
-    async loadUsers(context) {
-      const response = await Vue.axios.get('http://192.168.0.106:3000/users')
-      context.commit('setUsers', response.data)
     },
     login(context, token = null){
       context.commit('setToken', token)

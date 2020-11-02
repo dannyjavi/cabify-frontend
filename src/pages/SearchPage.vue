@@ -66,7 +66,7 @@ export default {
 
       console.log("HOLA");
       try {
-        let result = await this.axios.get("http://192.168.0.106:3000/users/" + id);
+        let result = await this.axios.get("http://localhost:3000/users/" + id, this.requestHeaders);
         // console.log(result.data)
         this.driver = result.data
         console.log(this.driver)
@@ -77,6 +77,7 @@ export default {
      loadCurrentUserData() {
       let token = this.$store.state.token;
       this.user = this.$store.state.user;
+      console.log(this.user, 'loadCurrentUser');
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token },
       };
@@ -87,7 +88,7 @@ export default {
     async loadJourneys() {
       try {
         let result = await this.axios.get(
-          "http://192.168.0.106:3000/journeys/me",
+          "http://localhost:3000/journeys/me",
           this.requestHeaders
         );
 
@@ -103,7 +104,7 @@ export default {
   },
   created() {
     console.log("CREATED");
-    this.loadCurrentUserData();
+    this.loadCurrentUserData();    
   },
   mounted() {
     console.log("MOUNTED");

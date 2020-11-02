@@ -22,7 +22,7 @@
             class="navbar-item"
           >
             Driver Mode
-            <b-switch class="ml-3" :value="driverProfile" :trueValue="driverProfile">
+            <b-switch @click="driverSwitch" class="ml-3" :value="driverProfile" :trueValue="driverProfile">
             </b-switch>
           </a>
           <div
@@ -122,7 +122,7 @@ export default {
     },
     driverSwitch() {
       if (this.driverProfile == true) {
-        this.$router.push("/")        
+        this.$router.push("/order-page")        
         this.driverProfile = false;   
         return     
       }
