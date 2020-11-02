@@ -66,7 +66,7 @@ export default {
 
       console.log("HOLA");
       try {
-        let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/users/" + id);
+        let result = await this.axios.get("http://localhost:3000/users/" + id);
         // console.log(result.data)
         this.driver = result.data
         console.log(this.driver)
@@ -87,7 +87,7 @@ export default {
     async loadJourneys() {
       try {
         let result = await this.axios.get(
-          "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
+          "http://localhost:3000/journeys/me",
           this.requestHeaders
         );
 

@@ -1,88 +1,93 @@
 <template>
-    <section>
-      mi perfil, mis datos, mis viajes, convertirme en conductor
-        
-      
-        <b-tabs v-model="activeTab" :multiline="multiline">
-            <template v-for="tab in tabs">
-                <b-tab-item
-                    v-if="tab.displayed"
-                    :key="tab.id"
-                    :value="tab.id"
-                    :label="tab.label">
-                    {{ tab.content }}
-                </b-tab-item>
-            </template>
-        </b-tabs>
-    </section>
+  <section class="section">
+    <div class="container">
+      <article class="message">
+        <div class="message-header">
+          <p>Mis Datos</p>
+        </div>
+        <div class="message-body">
+         
+            <ul >
+            <li class="is-size-5 subtitle">{{ userData.first_name}} 
+            {{userData.last_name}}</li>
+            <li><strong>Tlf: </strong>{{userData.phone}}</li>
+            <li><strong>Email: </strong>{{userData.email}}</li>
+
+          </ul>
+        </div>
+      </article>
+
+      <article v-if="journey.length > 0" class="message">
+        <div class="message-header">
+          <p>Mis Viajes</p>
+        </div>
+        <div v-for="(item, index) in journey" :key="index" class="message-body">
+          <ul >
+            <li><strong>Origen:</strong> {{item.start_point.name }}</li>
+            <li><strong>Destino:</strong> {{ item.destiny_point.name }}</li>
+            <li><strong>Precio:</strong> {{ item.journey_price }}</li>
+            <li><strong>Distancia:</strong> {{ item.travel_distance }}</li>
+          </ul>
+
+        </div>
+      </article>
+    </div>
+  </section>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                activeTab: 'pictures',
-                showMusic: true,
-                showBooks: false,
-                multiline: true
-            }
-        },
-        computed: {
-            baseTabs() {
-                return [
-                    {
-                        id: 'pictures',
-                        label: 'Pictures',
-                        content: 'Pictures: Lorem ipsum dolor sit amet.',
-                        displayed: true,
-                    },
-                    {
-                        id: 'music',
-                        label: 'Music',
-                        content: 'Music: Lorem ipsum dolor sit amet.',
-                        displayed: this.showMusic,
-                    },
-                    {
-                        id: 'videos',
-                        label: 'Videos',
-                        content: 'Videos: Lorem ipsum dolor sit amet.',
-                        displayed: true,
-                    },
-                    {
-                        id: 'games',
-                        label: 'Games',
-                        content: 'Games: Lorem ipsum dolor sit amet.',
-                        displayed: true,
-                    },
-                    {
-                        id: 'comics',
-                        label: 'Comics',
-                        content: 'Comics: Lorem ipsum dolor sit amet.',
-                        displayed: true,
-                    },
-                    {
-                        id: 'movies',
-                        label: 'Movies',
-                        content: 'Movies: Lorem ipsum dolor sit amet.',
-                        displayed: true,
-                    }
-                ]
-            },
-            tabs() {
-                const tabs = [...this.baseTabs]
-                if (this.showBooks) {
-                    tabs.splice(tabs.length - 2, 0, this.bookTab);
-                }
-                return tabs
-            },
-            bookTab() {
-                return {
-                    id: 'books',
-                    label: 'Books',
-                    content: 'Books: Lorem ipsum dolor sit amet.',
-                    displayed: true,
-                }
-            }
-        }
-    }
+export default {
+  data() {
+    return {
+      journey: "",
+      requestHeaders: "",
+      userId: "",
+      userData: "",
+    };
+  },
+  methods: {
+    async user() {
+      this.userId = this.$store.state.user.id;
+
+      try {
+        const result = await this.axios.get(
+          "http://localhost:3000/users/" + this.userId
+        );
+        console.log(result.data);
+        this.userData = result.data;
+      } catch (e) {
+        console.log("Error al cargar datos de Usuario");
+      }
+    },
+    async loadJouerneyData() {
+      try {
+        const result = await this.axios.get(
+          "http://localhost:3000/journeys/me",
+          this.requestHeaders
+        );
+
+        this.journey = result.data;
+        console.log(this.journey);
+      } catch (e) {
+        console.log("Error al cargar los datos del Viaje");
+      }
+    },
+    loadCurrentUserData() {
+      let token = this.$store.state.token;
+      // userId = this.$store.user.id
+      console.log(token);
+      this.requestHeaders = {
+        headers: { Authorization: "Bearer " + token },
+      };
+      this.loadJouerneyData();
+      this.user();
+    },
+  },
+  created() {
+    this.loadCurrentUserData();
+  },
+  mounted() {
+    this.user();
+  },
+};
 </script>

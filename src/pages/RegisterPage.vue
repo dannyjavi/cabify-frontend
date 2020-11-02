@@ -167,7 +167,7 @@ export default {
       }
       try {
         let result = await this.axios.post(
-          "https://grupo3-backend-coffeby.herokuapp.com/users",
+          "http://localhost:3000/users",
           this.registrationData
         );
         console.info(result);

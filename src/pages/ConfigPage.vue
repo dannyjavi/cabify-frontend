@@ -307,7 +307,7 @@ export default {
       console.log(this.currentUserId);
       try {
         let result = await this.axios.patch(
-          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
+          "http://localhost:3000/users/" + this.currentUserId,
           this.registrationData
         );
         alert("TODO BIEN");
@@ -326,19 +326,14 @@ export default {
       try {
         console.log(this.registrationData);
         let result = await this.axios.patch(
-          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
+          "http://localhost:3000/users/" + this.currentUserId,
           this.registrationData
         );
-<<<<<<< HEAD
-        
-        alert("¡Ya eres conductor!, por favor vuelve a hacer login");
-=======
         this.$buefy.toast.open({
           duration: 5000,
           message: "You are already a driver!",
           type: "is-success",
         });
->>>>>>> f75ea4d03e4477a78eab64c3dafadf1d6a1296ec
         this.$store.dispatch("logout");
         this.$router.push("/login");
       } catch (e) {
