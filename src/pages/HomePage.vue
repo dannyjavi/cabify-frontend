@@ -33,7 +33,7 @@
         </p>
       </div>
       <br />
-      <div class="field">
+      <div v-show="!isDriver" class="field">
         <p class="control">
           <router-link :to="path">
             <button

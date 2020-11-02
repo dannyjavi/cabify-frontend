@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Hero :small="true" subheading="404" title="Upps, página no encontrada" image="images/error.png" />
+    <Hero />
   </div>
 </template>
 
