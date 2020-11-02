@@ -79,7 +79,7 @@ export default {
     async login() {
       try {
         let response = await this.axios.post(
-          "http://localhost/auth/login",
+          "http://localhost:3000/auth/login",
           this.formLogin
         );
         this.$buefy.toast.open({
