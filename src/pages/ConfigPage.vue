@@ -26,7 +26,7 @@
           <div class="field mb-5">
             <p class="control is-expanded">
               <input
-                v-model="registrationData.price_km"
+                v-model.number="registrationData.price_km"
                 class="input is-size-5"
                 type="number"
                 placeholder="Precio/km"
@@ -135,7 +135,7 @@
           <div class="field mb-5">
             <p class="control is-expanded">
               <input
-                v-model="registrationData.capacity"
+                v-model.number="registrationData.capacity"
                 class="input is-size-5"
                 type="number"
                 placeholder="Numero de plazas"
@@ -145,20 +145,22 @@
         </div>
       </div>
 
+     
       <div class="field">
         <div class="field-label is-normal mb-3">
           <label class="label is-size-4">Adaptado a niños</label>
         </div>
         <div class="field-body">
           <div class="field mb-5">
-            <p class="control is-expanded">
-              <input
+            <div class="select">
+              <select
                 v-model="registrationData.adapted_children"
                 class="input is-size-5"
-                type="text"
-                placeholder="Adaptado a niños"
-              />
-            </p>
+              >
+                <option value="true">Sí</option>
+                <option value="false">No</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
@@ -281,14 +283,14 @@ export default {
       token: "",
       currentUserId: "",
       registrationData: {
-        price_km: 2,
+        price_km: "",
         address: "",
         driver_license: "",
-        position: [36.72, -4.42],
+        position: [36.62, -4.32],
         vehicle_model: "",
-        capacity: 4,
-        adapted_children: true,
-        covid_measures: true,
+        capacity: "",
+        adapted_children: false,
+        covid_measures: false,
         type_vehicle: "Sedán",
         image: "",
         color: "",
@@ -325,6 +327,9 @@ export default {
       this.registrationData.adapted_children = Boolean(
         this.registrationData.adapted_children
       );
+      this.registrationData.covid_measures = Boolean(
+        this.registrationData.covid_measures
+      );
       try {
         console.log(this.registrationData);
         let result = await this.axios.patch(
@@ -336,6 +341,7 @@ export default {
           message: "You are already a driver!",
           type: "is-success",
         });
+        console.log(this.registrationData)
         this.$store.dispatch("logout");
         this.$router.push("/login");
       } catch (e) {
