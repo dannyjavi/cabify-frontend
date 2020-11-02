@@ -52,8 +52,8 @@
             <router-link v-if="isLogged" class="navbar-item" to="/profile"
               >Account</router-link
             >
-            <router-link v-if="isLogged" class="navbar-item" to="/dashboard"
-              >Dashboard</router-link
+            <router-link v-if="isLogged" class="navbar-item" to="/history"
+              >History</router-link
             >
             <router-link
               v-if="isLogged && isDriver && driverProfile"

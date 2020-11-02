@@ -30,7 +30,7 @@
         </div>
       </article>
 
-      <article v-if="journey.length > 0" class="message">
+      <!-- <article v-if="journey.length > 0" class="message">
         <div class="message-header">
           <p>Mis Viajes</p>
         </div>
@@ -54,7 +54,7 @@
             </li>
           </ul>
         </div>
-      </article>
+      </article>-->
     </div>
   </section>
 </template>
@@ -65,7 +65,7 @@ export default {
   components: {},
   data() {
     return {
-      journey: "",
+      /* journey: "", */
       requestHeaders: "",
       userId: "",
       userData: "",
@@ -80,22 +80,20 @@ export default {
   methods: {
     async editProfile(formObject) {
       this.userId = this.$store.state.user.id;
-      console.log("**aquí uno");
       try {
         // con la baseUrl se usa asi? = this.axios.put(baseUrl + ':3000/users + this.userId + '/update)
-        const send = await this.axios.put("http://192.168.0.106:3000/users/" + this.userId + "/update",
+        const send = await this.axios.put(
+          "http://localhost:3000/users/" + this.userId + "/update",
           formObject,
           this.requestHeaders
         );
-        console.log(send, " **aquí dos");
-        if (send.status === 200) {
-          let value_token = send.data.token
-          this.$store.dispatch('updateProfile', value_token)
 
-          //this.loadCurrentUserData();
+        if (send.status === 200) {
+          let value_token = send.data.token;
+          this.$store.dispatch("updateProfile", value_token);
         }
       } catch (e) {
-        throw new Error('No se han podido cambiar los datos!')
+        throw new Error("No se han podido cambiar los datos!");
       }
     },
     async user() {
@@ -106,13 +104,12 @@ export default {
           "http://localhost:3000/users/" + this.userId,
           this.requestHeaders
         );
-        console.log(result.data);
         this.edit = result.data;
       } catch (e) {
-        throw new Error('Error al cargar los datos')
+        throw new Error("Error al cargar los datos");
       }
     },
-    async loadJouerneyData() {
+    /* async loadJouerneyData() {
       try {
         const result = await this.axios.get(
           "http://localhost:3000/journeys/me",
@@ -124,14 +121,14 @@ export default {
       } catch (e) {
         console.log("Error al cargar los datos del Viaje");
       }
-    },
+    }, */
     loadCurrentUserData() {
       let token = this.$store.state.token;
       console.log(token);
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token }
       };
-      this.loadJouerneyData();
+      //this.loadJouerneyData();
       this.user();
     }
   },

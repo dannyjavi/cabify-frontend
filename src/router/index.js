@@ -11,6 +11,7 @@ import ListMap from "../pages/ListMap";
 import ProfilePage from "../pages/ProfilePage";
 import driverJourney from "../pages/driverJourney"
 import inJourneyDriver from "../pages/inJourneyDriver"
+import History from "../pages/History"
 import ErrorPage from "../pages/Error/ErrorPage"
 
 Vue.use(VueRouter);
@@ -27,6 +28,7 @@ const routes = [
   { path: "/list", name:"List", component: ListMap },
   { path: "/journey-driver", name:"DriverJourney", component: driverJourney },
   { path: "/in-journey-driver", name:"inJourneyDriver", component: inJourneyDriver },
+  { path: "/history", name:"history", component: History },
   { path: "*", name:"Error", component: ErrorPage},
 ];
 
