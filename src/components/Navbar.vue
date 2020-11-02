@@ -115,13 +115,14 @@ export default {
       this.$router.push("/");
     },
     driverSwitch() {
-      if (this.driverProfile == false) {
-        this.driverProfile = true;        
-        this.$router.push("/journey-driver")        
-      } else {
-        this.driverProfile = false;        
+      if (this.driverProfile == true) {
         this.$router.push("/")        
+        this.driverProfile = false;        
       }
+      if (this.driverProfile == false) {
+        this.$router.push("/journey-driver")        
+        this.driverProfile = true;        
+      } 
     },
   },
   computed: {
