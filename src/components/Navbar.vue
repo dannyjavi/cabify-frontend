@@ -158,12 +158,12 @@ export default {
   line-height: 1.5;
   height: 100%;
   background: #ECF0F3;
-}
+} */
 nav.navbar {
-  border-top: 4px solid #276cda;
-  margin-bottom: 1rem;
+  border-top: 0;
+  /* margin-bottom: 1rem; */
 }
-.navbar-item.brand-text {
+/* .navbar-item.brand-text {
   font-weight: 300;
 }
 .navbar-item, .navbar-link {
