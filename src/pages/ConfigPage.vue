@@ -170,11 +170,14 @@
         <div class="field-body">
           <div class="field mb-5">
             <div class="select">
-              <select v-model="registrationData.covid_measures" class="input is-size-5">
-                <option>true</option>
-                <option>false</option>
+              <select
+                v-model="registrationData.covid_measures"
+                class="input is-size-5"
+              >
+                <option value="true">Sí</option>
+                <option value="false">No</option>
               </select>
-            </div>                
+            </div>
           </div>
         </div>
       </div>
@@ -186,17 +189,20 @@
         <div class="field-body">
           <div class="field mb-5">
             <div class="select">
-              <select v-model="registrationData.type_vehicle" class="input is-size-5">
+              <select
+                v-model="registrationData.type_vehicle"
+                class="input is-size-5"
+              >
                 <option>Sedán</option>
                 <option>Furgoneta</option>
                 <option>Todoterreno</option>
               </select>
-            </div>            
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- <div class="field">
+      <div class="field">
         <div class="field-label is-normal mb-3">
           <label class="label is-size-4">Imagen</label>
         </div>
@@ -212,9 +218,9 @@
             </p>
           </div>
         </div>
-      </div> -->
+      </div>
 
-      <!-- <div class="field">
+      <div class="field">
         <div class="field-label is-normal mb-3">
           <label class="label is-size-4">Color</label>
         </div>
@@ -230,7 +236,7 @@
             </p>
           </div>
         </div>
-      </div> -->
+      </div>
 
       <div class="field">
         <div class="field-label is-normal mb-3">
@@ -301,7 +307,7 @@ export default {
       console.log(this.currentUserId);
       try {
         let result = await this.axios.patch(
-          "http://localhost:3000/users/" + this.currentUserId,
+          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
           this.registrationData
         );
         alert("TODO BIEN");
@@ -314,18 +320,33 @@ export default {
     },
     async enviar() {
       console.log(this.currentUserId);
+      this.registrationData.adapted_children = Boolean(
+        this.registrationData.adapted_children
+      );
       try {
         console.log(this.registrationData);
         let result = await this.axios.patch(
-          "http://localhost:3000/users/" + this.currentUserId,
+          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
           this.registrationData
         );
+<<<<<<< HEAD
         
         alert("¡Ya eres conductor!, por favor vuelve a hacer login");
+=======
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: "You are already a driver!",
+          type: "is-success",
+        });
+>>>>>>> f75ea4d03e4477a78eab64c3dafadf1d6a1296ec
         this.$store.dispatch("logout");
         this.$router.push("/login");
       } catch (e) {
-        alert("Error al realizar la actualización");
+        this.$buefy.toast.open({
+          duration: 5000,
+          message: "Something went wrong 😲",
+          type: "is-danger",
+        });
       }
     },
   },

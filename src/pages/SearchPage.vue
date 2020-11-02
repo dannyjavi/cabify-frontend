@@ -66,7 +66,7 @@ export default {
 
       console.log("HOLA");
       try {
-        let result = await this.axios.get("http://localhost:3000/users/" + id);
+        let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/users/" + id);
         // console.log(result.data)
         this.driver = result.data
         console.log(this.driver)
@@ -87,7 +87,7 @@ export default {
     async loadJourneys() {
       try {
         let result = await this.axios.get(
-          "http://localhost:3000/journeys/me",
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
           this.requestHeaders
         );
 
@@ -95,6 +95,7 @@ export default {
         this.journey = result.data[0];
         if(this.journey.pending === false) this.loadDriverData()
         console.log(this.journey.driver)
+        if(this.journey.end == true) clearInterval(this.intervalId)
       } catch (e) {
         console.log("Error al cargar viajes" + e);
       }

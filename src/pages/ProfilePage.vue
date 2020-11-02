@@ -1,54 +1,88 @@
 <template>
-  <div>
-    <nav class="panel">
-      <p class="panel-heading">Mi perfil</p>
-
-      <a class="panel-block is-active">
-        <span class="panel-icon">
-          <i class="fas fa-plus" aria-hidden="true"></i>
-        </span>
-        Mis puntos
-      </a>
-      <a class="panel-block is-active">
-        <span class="panel-icon">
-          <i class="fas fa-table" aria-hidden="true"></i>
-        </span>
-        Mis datos
-      </a>
-  
-    
-    <a class="panel-block is-active">
-      <span class="panel-icon">
-        <i class="fas fa-car-side" aria-hidden="true"></i>
-      </span>
-      Mis viajes
-    </a>
-    <router-link v-if="!isDriver" to="/config" class="panel-block is-active">
-      <span class="panel-icon">
-        <i class="fas fa-user-tie" aria-hidden="true"></i>
-      </span>
-      Convertirme en conductor
-    </router-link>
-  </nav>
-  </div>
+    <section>
+      mi perfil, mis datos, mis viajes, convertirme en conductor
+        
+      
+        <b-tabs v-model="activeTab" :multiline="multiline">
+            <template v-for="tab in tabs">
+                <b-tab-item
+                    v-if="tab.displayed"
+                    :key="tab.id"
+                    :value="tab.id"
+                    :label="tab.label">
+                    {{ tab.content }}
+                </b-tab-item>
+            </template>
+        </b-tabs>
+    </section>
 </template>
 
 <script>
-export default {
-  name: "ProfilePage",
-  data() {
-    return {
-      driver: "",
+    export default {
+        data() {
+            return {
+                activeTab: 'pictures',
+                showMusic: true,
+                showBooks: false,
+                multiline: true
+            }
+        },
+        computed: {
+            baseTabs() {
+                return [
+                    {
+                        id: 'pictures',
+                        label: 'Pictures',
+                        content: 'Pictures: Lorem ipsum dolor sit amet.',
+                        displayed: true,
+                    },
+                    {
+                        id: 'music',
+                        label: 'Music',
+                        content: 'Music: Lorem ipsum dolor sit amet.',
+                        displayed: this.showMusic,
+                    },
+                    {
+                        id: 'videos',
+                        label: 'Videos',
+                        content: 'Videos: Lorem ipsum dolor sit amet.',
+                        displayed: true,
+                    },
+                    {
+                        id: 'games',
+                        label: 'Games',
+                        content: 'Games: Lorem ipsum dolor sit amet.',
+                        displayed: true,
+                    },
+                    {
+                        id: 'comics',
+                        label: 'Comics',
+                        content: 'Comics: Lorem ipsum dolor sit amet.',
+                        displayed: true,
+                    },
+                    {
+                        id: 'movies',
+                        label: 'Movies',
+                        content: 'Movies: Lorem ipsum dolor sit amet.',
+                        displayed: true,
+                    }
+                ]
+            },
+            tabs() {
+                const tabs = [...this.baseTabs]
+                if (this.showBooks) {
+                    tabs.splice(tabs.length - 2, 0, this.bookTab);
+                }
+                return tabs
+            },
+            bookTab() {
+                return {
+                    id: 'books',
+                    label: 'Books',
+                    content: 'Books: Lorem ipsum dolor sit amet.',
+                    displayed: true,
+                }
+            }
+        }
     }
-  },
-  computed: {
-    isDriver() {
-      return this.$store.state.user.profiles.includes("driver");
-    },
-  },
-};
 </script>
-
-
-<style>
-</style>
