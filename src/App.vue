@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <div  id="app">
     <Navbar />
     <router-view></router-view>
-    <MainFooter />
+    <MainFooter class="bajo"/>
   </div>
 </template>
 
@@ -24,5 +24,16 @@ export default {
 </script>
 
 <style>
+#app{
+  margin-bottom:40px ;
+}
+.bajo {
+ position: fixed;
 
+ padding: 1rem 0 2rem 0 ;
+  bottom: 0;
+  width: 100%;
+  height: 20px;
+background-color: #279d79;
+}
 </style>

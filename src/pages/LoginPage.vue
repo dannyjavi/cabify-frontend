@@ -56,7 +56,7 @@
           <a class="has-text-primary-light title is-4">Forgot Password?</a>
         </p>
       </div>
-      <div class="space"></div>
+
     </footer>
   </div>
 </template>
