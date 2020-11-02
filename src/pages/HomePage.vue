@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <div class="container mt-6">
       <p class="title is-2 has-text-centered has-text-white">
         Welcome to <span class="is-italic">CoffeBy</span>
@@ -33,7 +33,7 @@
         </p>
       </div>
       <br />
-      <div class="field">
+      <div v-show="!isDriver" class="field">
         <p class="control">
           <router-link :to="path">
             <button
@@ -45,8 +45,8 @@
         </p>
       </div>
     </section>
-    <div class="space"></div>
   </div>
+
 </template>
 
 <script>
@@ -79,7 +79,5 @@ export default {
 </script>
 
 <style>
-.space {
-  height: 300px;
-}
+
 </style>

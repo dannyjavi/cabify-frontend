@@ -4,15 +4,27 @@
     <nav class="navbar is-dark" @mouseleave="closeMenu">
       <div class="container">
         <div class="navbar-brand">
-          <router-link v-if="!isDriver" class="navbar-item brand-text" to="/">{{
-            userName
-          }}</router-link>
           <router-link
-            v-if="isDriver"
+            v-if="!isDriver | !driverProfile"
+            class="navbar-item brand-text"
+            to="/"
+            >{{ userName }}</router-link
+          >
+          <router-link
+            v-if="isDriver & driverProfile"
             class="navbar-item brand-text"
             to="/journey-driver"
             >{{ userName }}</router-link
           >
+          <a
+            v-if="isLogged && isDriver"
+            @click="driverSwitch"
+            class="navbar-item"
+          >
+            Driver Mode
+            <b-switch class="ml-3" :value="driverProfile" :trueValue="driverProfile">
+            </b-switch>
+          </a>
           <div
             @click="toggleMenu"
             class="navbar-burger burger"
@@ -25,10 +37,21 @@
         </div>
         <div id="navMenu" class="navbar-menu" :class="menuClass">
           <div @click="toggleMenu" class="navbar-start">
+<<<<<<< HEAD
             <router-link v-if="!isDriver" class="navbar-item" to="/"
             >Home</router-link
+=======
+            <router-link
+              v-if="!isDriver | !driverProfile"
+              class="navbar-item"
+              to="/"
+              >Home</router-link
+>>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
             >
-            <router-link v-if="!isDriver" class="navbar-item" to="/order-page"
+            <router-link
+              v-if="!isDriver | !driverProfile"
+              class="navbar-item"
+              to="/order-page"
               >Buscar viaje</router-link
             >
             <router-link v-if="isLogged" class="navbar-item" to="/profile"
@@ -38,7 +61,7 @@
               >Dashboard</router-link
             >
             <router-link
-              v-if="isLogged && isDriver"
+              v-if="isLogged && isDriver && driverProfile"
               class="navbar-item"
               to="/journey-driver"
               >Pending Travels</router-link
@@ -49,10 +72,6 @@
             <a @click.prevent="logout" v-if="isLogged" class="navbar-item"
               >Logout</a
             >
-            <a class="navbar-item">
-              Driver Mode
-              <b-switch class="ml-3"></b-switch>
-            </a>
           </div>
         </div>
       </div>
@@ -72,8 +91,14 @@ export default {
       menuClass: "",
       menuOptions: [
         { title: "Home", path: "/" },
+<<<<<<< HEAD
         { title: "Register", path: "/register" }
       ]
+=======
+        { title: "Register", path: "/register" },
+      ],
+      driverProfile: true,
+>>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
     };
   },
   computed: {
@@ -104,7 +129,21 @@ export default {
       });
       this.$store.dispatch("logout");
       this.$router.push("/");
+<<<<<<< HEAD
     }
+=======
+    },
+    driverSwitch() {
+      if (this.driverProfile == true) {
+        this.$router.push("/")        
+        this.driverProfile = false;        
+      }
+      if (this.driverProfile == false) {
+        this.$router.push("/journey-driver")        
+        this.driverProfile = true;        
+      } 
+    },
+>>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
   },
   computed: {
     isDriver() {

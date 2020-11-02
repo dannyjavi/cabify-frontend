@@ -165,7 +165,11 @@ export default {
         }
 
         const res = await this.axios.post(
+<<<<<<< HEAD
           "http://192.168.0.106:3000/journeys",
+=======
+          "http://localhost:3000/journeys",
+>>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
           obj_travel,
           header_axios
         );
@@ -182,7 +186,12 @@ export default {
       }
     },
     async loadJourneys(context) {
+<<<<<<< HEAD
       //const response = await Vue.axios.get('http://192.168.0.106:3000/journeys')
+=======
+      //const response = await Vue.axios.get('http://localhost/journeys')
+      //const response = await Vue.axios.get('http://localhost:3000/journeys')
+>>>>>>> 2139382320f7b445200bea0068b17fbe1c3624fb
       //context.commit('setJourneys', response.data)
     },
   },
