@@ -55,15 +55,17 @@ export default {
     async loadDriverData(){
      let id=this.$store.state.user.id
      console.log(id)
+     
      try{
-      let result = await this.axios.get("http://localhost:3000/users/"+id)
+       console.log('loaddriverdata');
+       console.log(this.requestHeaders);
+      let result = await this.axios.get("http://localhost:3000/users/"+id , this.requestHeaders)
+      console.log(result.data);
       console.log(result.data.driver.price_km)
       this.price_km = result.data.driver.price_km
      }catch(e){
        console.log("Error al cargar los datos del conducor"+e)
      }
-     
-
     },
     loadCurrentUserData() {
       let token = this.$store.state.token;
@@ -111,8 +113,6 @@ export default {
     }
   },
   mounted() {
-   
-
     this.loadJourneys();
     
     this.intervalId = setInterval(() => {

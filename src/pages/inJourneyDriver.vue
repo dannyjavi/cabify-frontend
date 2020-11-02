@@ -67,7 +67,7 @@ export default {
       try{
         console.log("AQUI "+this.journey.driver.user)
         let id = this.journey.driver.user
-        let result = await this.axios.get("http://localhost:3000/users/"+id)
+        let result = await this.axios.get("http://localhost:3000/users/"+id, this.requestHeaders)
         console.log("HOLA")
         console.log(result.data)
         this.driver = result.data

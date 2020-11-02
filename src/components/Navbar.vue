@@ -121,15 +121,14 @@ export default {
       this.$router.push("/");
     },
     driverSwitch() {
+      if (this.driverProfile == true) {
+        this.$router.push("/")        
+        this.driverProfile = false;   
+        return     
+      }
       if (this.driverProfile == false) {
         this.$router.push("/journey-driver")        
-        this.driverProfile = true; 
-        console.log('funciona!'); 
-        return      
-      } 
-      if (this.driverProfile == true) {
-        this.$router.push("/order-page")        
-        this.driverProfile = false;  
+        this.driverProfile = true;  
         return      
       } 
     },
