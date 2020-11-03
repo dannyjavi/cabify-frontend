@@ -55,6 +55,9 @@
             <router-link v-if="isLogged" class="navbar-item" to="/profile"
               >Account</router-link
             >
+            <router-link v-if="user" class="navbar-item" to="/history"
+              >History</router-link
+            >
             <router-link v-if="isLogged && !driverProfile " class="navbar-item" to="/history"
               >History</router-link
             >
@@ -103,6 +106,11 @@ export default {
         { title: "Terminos us", path: "Terms" }
       ];
       return menuOptions;
+    },
+    user(){
+      if (!this.$store.state.user) return;
+      console.log(this.$store.state.user.profiles.length)
+      return (this.$store.state.user.profiles.length === 1);
     },
     isDriver() {
       if (!this.$store.state.user) return;
