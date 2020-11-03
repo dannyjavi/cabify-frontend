@@ -31,7 +31,7 @@
         </p>
       </div>
     </section>
-      <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="true"></b-loading>
+    <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="true"></b-loading>
 
     <footer class="container mt-5 mb-6">
       <div class="field">
@@ -53,40 +53,38 @@
 </template>
 
 <script>
-
 export default {
   name: "LoginPage",
-  components:{
-  },
+  components: {},
   data() {
     return {
       isLoading: false,
       isFullPage: true,
       formLogin: {
         email: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
-    openLoading(){
-      this.isLoading = true
+    openLoading() {
+      this.isLoading = true;
     },
-    closeLoading(){
-      this.isLoading = false
+    closeLoading() {
+      this.isLoading = false;
     },
     async login() {
-      this.openLoading()
+      this.openLoading();
       try {
-        let response =  await this.axios.post(
-          "http://192.168.0.106:3000/auth/login",
+        let response = await this.axios.post(
+          "https://grupo3-backend-coffeby.herokuapp.com/auth/login",
           this.formLogin
-        )
+        );
 
         this.$buefy.toast.open({
           duration: 2000,
           message: "Successful login!",
-          type: "is-success",
+          type: "is-success"
         });
         //guardo el token en el localStorage
         window.localStorage.setItem("token", response.data.token);
@@ -96,20 +94,22 @@ export default {
         let user_profile = this.$store.state.user.profiles[1];
         if (user_profile === "driver") {
           this.$router.push("/journey-driver");
-          this.closeLoading()
+          this.closeLoading();
           return;
         }
         this.$router.push("/order-page");
       } catch (error) {
+        this.closeLoading();
+
         this.$buefy.toast.open({
           duration: 2500,
           message: `Incorrect email or password`,
           position: "is-bottom",
-          type: "is-danger",
+          type: "is-danger"
         });
       }
     }
-  },
+  }
 };
 </script>
 

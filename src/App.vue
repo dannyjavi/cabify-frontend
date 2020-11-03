@@ -21,6 +21,9 @@ export default {
   created(){
     this.$store.dispatch('isToken')
   },
+  mounted(){
+    
+  }
 
 }
 </script>

@@ -38,9 +38,7 @@
                     @click="passDataTravel(form)"
                     class="button is-dark title is-5"
                     :disabled="setDisable"
-                  >
-                    Pide ahora
-                  </button>
+                  >Pide ahora</button>
                   <!-- </router-link> -->
                 </p>
               </div>
@@ -59,29 +57,27 @@
 export default {
   name: "FormComponent",
   components: {
-    Map,
+    Map
   },
   data() {
     return {
       isDisable: true,
       form: {
         origen: "",
-        destino: "",
-      },
-      vehicles: [],
+        destino: ""
+      }
     };
   },
   computed: {
     setDisable() {
       return this.form.origen !== "" && this.form.destino !== "" ? false : true;
-    },
+    }
   },
   async mounted() {
     await this.$store.dispatch("loadVehicles");
     this.vehicles = this.$store.getters.alldriversAvailable;
     let mymap = L.map("mapid").setView([36.72, -4.42], 13);
     mymap.locate({ enableHighAccuracy: true });
-    // mymap.locate({ setView: true });
     let tileURL =
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw";
     L.tileLayer(tileURL, {
@@ -89,9 +85,9 @@ export default {
       maxZoom: 20,
       id: "mapbox/streets-v11",
       tileSize: 512,
-      zoomOffset: -1,
+      zoomOffset: -1
     }).addTo(mymap);
-    this.vehicles.forEach((item) => {
+    this.vehicles.forEach(item => {
       let marker = L.marker(item.position.coordinates)
         .bindPopup("Pocisión actual")
         .addTo(mymap);
@@ -103,7 +99,6 @@ export default {
         let viaje = getViajes.split("#");
         this.form.origen = viaje[0];
         this.form.destino = viaje[1];
-        console.log(getViajes.split("#"));
       }
     }
   },
@@ -112,11 +107,6 @@ export default {
       this.searchPos();
     },
     async searchPos() {
-      /* if (this.$store.state.isAuth === false) {
-        alert('Debes estar logueado para continuar')
-        this.$router.push('/login')
-        return
-      } */
       try {
         let url_origen =
           "https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -130,58 +120,42 @@ export default {
 
         const [coord_origen, coord_destino] = await Promise.all([
           this.axios.get(url_origen),
-          this.axios.get(url_destino),
+          this.axios.get(url_destino)
         ]);
 
         const obj_travel = {
           start_point: {
             lat: coord_origen.data.coord.lat,
             long: coord_origen.data.coord.lon,
-            name: this.form.origen,
+            name: this.form.origen
           },
           destiny_point: {
             lat: coord_destino.data.coord.lat,
             long: coord_destino.data.coord.lon,
-            name: this.form.destino,
+            name: this.form.destino
           },
-          user: this.$store.state.user.id,
+          user: this.$store.state.user.id
         };
 
         let token = this.$store.state.token;
-        console.log(token);
 
         const header_axios = {
           headers: {
-            Authorization: `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         };
-        // if (
-        //   (obj_travel.start_point === undefined) |
-        //   (obj_travel.destiny_point === undefined)
-        // ) {
-        //   this.$buefy.toast.open({
-        //   duration: 2500,
-        //   message: `Tu ciudad no existe`,
-        //   position: "is-top",
-        //   type: "is-danger",
-        // });
-        // }
 
         const res = await this.axios.post(
-          "http://192.168.0.106:3000/journeys",
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys",
           obj_travel,
           header_axios
         );
-        console.log(res);
+        if (res.status === 201) {
+          await this.$store.dispatch("isPending", true);
+        }
 
         this.$router.push("/search");
       } catch (err) {
-        this.$buefy.toast.open({
-          duration: 2500,
-          message: `Tu ciudad no existe`,
-          position: "is-top",
-          type: "is-danger",
-        });
         if (this.$store.state.isAuth == false) {
           let msg = "No sabemos quien eres.";
           this.$emit("showError", msg);
@@ -191,13 +165,8 @@ export default {
           );
         }
       }
-    },
-    async loadJourneys(context) {
-      //const response = await Vue.axios.get('http://localhost/journeys')
-      //const response = await Vue.axios.get('http://192.168.0.106:3000/journeys')
-      //context.commit('setJourneys', response.data)
-    },
-  },
+    }
+  }
 };
 </script>
 

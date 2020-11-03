@@ -17,7 +17,7 @@
             <b-field label="Phone number">
               <b-input v-model="edit.phone"></b-input>
             </b-field>
-            <b-field label="email">
+            <b-field label="Email">
               <b-input v-model="edit.email"></b-input>
             </b-field>
             <b-field horizontal>
@@ -29,32 +29,6 @@
           </section>
         </div>
       </article>
-
-      <!-- <article v-if="journey.length > 0" class="message">
-        <div class="message-header">
-          <p>Mis Viajes</p>
-        </div>
-        <div v-for="(item, index) in journey" :key="index" class="message-body">
-          <ul>
-            <li>
-              <strong>Origen:</strong>
-              {{item.start_point.name }}
-            </li>
-            <li>
-              <strong>Destino:</strong>
-              {{ item.destiny_point.name }}
-            </li>
-            <li>
-              <strong>Precio:</strong>
-              {{ item.journey_price }}
-            </li>
-            <li>
-              <strong>Distancia:</strong>
-              {{ item.travel_distance }}
-            </li>
-          </ul>
-        </div>
-      </article>-->
     </div>
   </section>
 </template>
@@ -65,7 +39,6 @@ export default {
   components: {},
   data() {
     return {
-      /* journey: "", */
       requestHeaders: "",
       userId: "",
       userData: "",
@@ -83,7 +56,7 @@ export default {
       try {
         // con la baseUrl se usa asi? = this.axios.put(baseUrl + ':3000/users + this.userId + '/update)
         const send = await this.axios.put(
-          "http://192.168.0.106:3000/users/" + this.userId + "/update",
+          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.userId + "/update",
           formObject,
           this.requestHeaders
         );
@@ -101,7 +74,7 @@ export default {
 
       try {
         const result = await this.axios.get(
-          "http://192.168.0.106:3000/users/" + this.userId,
+          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.userId,
           this.requestHeaders
         );
         this.edit = result.data;
@@ -109,26 +82,11 @@ export default {
         throw new Error("Error al cargar los datos");
       }
     },
-    /* async loadJouerneyData() {
-      try {
-        const result = await this.axios.get(
-          "http://192.168.0.106:3000/journeys/me",
-          this.requestHeaders
-        );
-
-        this.journey = result.data;
-        console.log(this.journey);
-      } catch (e) {
-        console.log("Error al cargar los datos del Viaje");
-      }
-    }, */
     loadCurrentUserData() {
       let token = this.$store.state.token;
-      console.log(token);
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token }
       };
-      //this.loadJouerneyData();
       this.user();
     }
   },

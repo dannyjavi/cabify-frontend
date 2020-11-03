@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section v-if="journey !==''" class="section">
     <div class="container">
       <article class="message">
         <div class="message-header">
@@ -19,7 +19,17 @@
         </div>
       </article>
     </div>
+
+    <div
+          v-if="journey === '' "
+          class="message-body has-text-centered is-size-2"
+        >
+          <span class="icon is-large has-text-success">
+            <i class="fas fa-spinner fa-pulse"></i>
+          </span>
+        </div>
   </section>
+  
 </template>
 
 
@@ -41,7 +51,7 @@ export default {
 
     },
     async loadCurrentUserData() {
-      let token = this.$store.state.token;
+      let token = await this.$store.state.token;
 
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token },
@@ -50,49 +60,48 @@ export default {
     },
     async loadJourney() {
       try {
-        let id = this.$store.state.currentJourneyId;
-
+        let id = await this.$store.state.currentJourneyId;
+        console.log('id linea 54: ', id);
         let result = await this.axios.get(
-          "http://192.168.0.106:3000/journeys/" + id,
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/" + id,
           this.requestHeaders
         );
-        console.log(result.data);
         this.journey = result.data;
         this.loadDriverData()
         this.calculated()
       } catch (e) {
-        console.log("Error al cargar el viaje");
+        throw new Error("Error al cargar el viaje");
       }
     },
     async loadDriverData(){
       try{
-        console.log("AQUI "+this.journey.driver.user)
         let id = this.journey.driver.user
-        let result = await this.axios.get("http://192.168.0.106:3000/users/"+id, this.requestHeaders)
-        console.log("HOLA")
-        console.log(result.data)
+        let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/users/"+id, this.requestHeaders)
         this.driver = result.data
       }catch(e){
-        console.log("Error al cargar nombre del Conductor")
+        throw new Error("Error al cargar nombre del Conductor")
       }
      
     },
     async terminar(){
       try {
-        let id = this.$store.state.currentJourneyId;
+        let id = await this.$store.state.currentJourneyId;
         let result = await this.axios.patch(
-          "http://192.168.0.106:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
         );
-        console.log(result.data)
         this.$buefy.toast.open({
           duration: 2500,
           message: `Viaje terminado correctamente!`,
           position: "is-top",
           type: "is-info",
         });
+
+        if(result.status === 200){
+          this.$store.dispatch('isFinish', true)
+        }
         this.$router.push('/journey-driver')
       } catch (e) {
-        console.log("Error al cargar el viaje"+e);
+        throw new Error("Error al cargar el viaje");
       }
     }
   },
@@ -104,6 +113,3 @@ export default {
   },
 };
 </script>
-
-<style>
-</style>
