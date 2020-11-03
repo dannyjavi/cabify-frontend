@@ -42,19 +42,18 @@
       </div>
     </section>
 
-    <footer class="container mt-6 mb-6">
+    <footer class="container mt-5 mb-6">
       <div class="field">
         <p class="control has-text-centered mb-6">
           <router-link to="/register">
-            <a class="has-text-primary-light title is-4"
-              >Don't have an account yet? Sign up here!</a
-            >
+            <span class="has-text-primary-light title is-5"
+              >Don't have an account yet? <span class="has-text-warning" > Sign up here! </span> </span>
           </router-link>
         </p>
-        <br />
+        <!-- <br />
         <p class="control has-text-centered">
           <a class="has-text-primary-light title is-4">Forgot Password?</a>
-        </p>
+        </p> -->
       </div>
 
     </footer>
