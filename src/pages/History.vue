@@ -52,23 +52,28 @@ export default {
   computed: {},
   methods: {
     async loadJouerneyData() {
+      // console.log(this.$options.filters.pasarFecha())
       try {
         const result = await this.axios.get(
           "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
           this.requestHeaders
         );
+        
         let res = result.data;
         res.forEach((item, index) => {
+          // new Intl.DateTimeFormat('en-US', tiempo).format(date)
+          console.log(this.$options.filters.pasarFecha(item.arrived_date))
           this.data.push({
+
             id: index + 1,
             destiny_point: item.destiny_point.name,
             start_point: item.start_point.name,
-            arrived_date: item.arrived_date ,
+            arrived_date: this.$options.filters.pasarFecha(item.arrived_date) ,
             action: '<i class="far fa-trash-alt"></i>',
           });
         });
       } catch (e) {
-        throw new Error("Error al cargar los datos del Viaje");
+        throw new Error("Error al cargar los datos del Viaje"+e);
       }
     },
   },

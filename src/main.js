@@ -12,8 +12,9 @@ Vue.use(Buefy)
 
 
 Vue.filter('pasarFecha', (date)=>{
+if(!date) return "-"
   let tiempo = { year: 'numeric', month: 'short', day: 'numeric' };
-  return new Intl.DateTimeFormat('en-US', tiempo).format(date)
+    return new Intl.DateTimeFormat('en-US', tiempo).format(new Date(date))
 })
 Vue.filter("pasarDinero", (value)=>{
   return new Intl.NumberFormat("es-ES", {style: "currency", currency: "EUR"}).format(value)

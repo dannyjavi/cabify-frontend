@@ -28,7 +28,7 @@
             <strong>Destino:</strong> {{ journey.destiny_point.name }}
             <br />
             <strong>Distancia:</strong> {{journey.travel_distance }} Km <br />
-            <strong>Precio:</strong> {{ journey.journey_price | pasarDinero }} € <br />
+            <strong>Precio:</strong> {{ journey.journey_price | pasarDinero }} <br />
             <strong>Tipo de Vehículo:</strong> {{ journey.vehicle.type_vehicle }}  <br />
             <strong>Modelo:</strong> {{ journey.vehicle.vehicle_model }}  <br />
             <strong>Color:</strong> {{ journey.vehicle.color }}  <br />

@@ -4,7 +4,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import jwtDecode from 'jwt-decode'
 
-axios.defaults.baseURL = 'https://localhost';
+axios.defaults.baseURL = 'https://localhost:3000/';
 
 Vue.use(Vuex);
 Vue.use(VueAxios, axios)
