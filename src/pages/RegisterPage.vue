@@ -47,7 +47,7 @@
         <div class="field is-expanded">
           <div class="field has-addons mb-3">
             <p class="control">
-              <a class="button is-medium is-static"> +34 </a>
+              <a class="button is-medium is-static">+34</a>
             </p>
             <p class="control is-expanded">
               <input
@@ -67,7 +67,7 @@
               class="input is-medium is-size-5"
               type="email"
               placeholder="Email"
-              value=""
+              value
             />
             <span class="icon is-medium is-left">
               <i class="fas fa-envelope"></i>
@@ -109,7 +109,7 @@
               <button class="delete" aria-label="close"></button>
             </header>
           </div>
-        </div> -->
+        </div>-->
       </div>
     </div>
 
@@ -123,13 +123,13 @@
             <button
               @click="register"
               class="button is-dark is-focused is-fullwidth title is-4"
-            >
-              Create User
-            </button>
+            >Create User</button>
           </div>
         </div>
       </div>
     </div>
+        <b-loading :is-full-page="isFullPage" v-model="isLoading" :can-cancel="true"></b-loading>
+
   </div>
 </template>
 
@@ -146,50 +146,58 @@ export default {
         last_name: "",
         phone: "",
         email: "",
-        password: "",
+        password: ""
       },
+      isFullPage: true,
+      isLoading: false
     };
   },
 
   methods: {
+    openLoading() {
+      this.isLoading = true;
+    },
+    closeLoading() {
+      this.isLoading = false;
+    },
     async register() {
-      console.info(
-        "Enviamos los datos para solicitar el registro de un nuevo usuario"
-      );
       if (this.acepted === false) {
         this.$buefy.toast.open({
           duration: 2500,
           message: `Accept the terms and conditions of use`,
           position: "is-top",
-          type: "is-warning",
+          type: "is-warning"
         });
         return;
       }
       try {
+        this.openLoading()
         let result = await this.axios.post(
-          "http://192.168.0.106:3000/users",
+          "https://grupo3-backend-coffeby.herokuapp.com/users",
           this.registrationData
         );
-        console.info(result);
         this.$buefy.toast.open({
           duration: 2500,
           message: `You have registered successfully!`,
           position: "is-top",
-          type: "is-success",
+          type: "is-success"
         });
+        if (result.status === 200) {
+          this.closeLoading()
+        }
         this.$router.push("/login");
       } catch (e) {
-        console.log(e, this.registrationData);
+        this.closeLoading()
         this.$buefy.toast.open({
           duration: 2500,
           message: `Se ha producido un error al enviar el formulario`,
           position: "is-bottom",
-          type: "is-danger",
-        })
-        this.showError = true
+          type: "is-danger"
+        });
+        this.showError = true;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

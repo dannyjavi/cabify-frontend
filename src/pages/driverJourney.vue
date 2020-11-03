@@ -55,23 +55,17 @@ export default {
   },
   methods: {
     async loadDriverData(){
-     let id=this.$store.state.user.id
-     console.log(id)
+     let id = this.$store.state.user.id
      
      try{
-       console.log('loaddriverdata');
-       console.log(this.requestHeaders);
-      let result = await this.axios.get("http://192.168.0.106:3000/users/"+id , this.requestHeaders)
-      console.log(result.data);
-      console.log(result.data.driver.price_km)
+      let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/users/"+id , this.requestHeaders)
       this.price_km = result.data.driver.price_km
      }catch(e){
-       console.log("Error al cargar los datos del conducor"+e)
+       throw new Error("Error al cargar los datos del conductor")
      }
     },
     loadCurrentUserData() {
       let token = this.$store.state.token;
-      console.log(token)
       this.requestHeaders = {
         headers: { Authorization: "Bearer " + token }
       };
@@ -79,17 +73,16 @@ export default {
     },
     async loadJourneys() {
       try {
-        let result = await this.axios.get("http://192.168.0.106:3000/journeys",this.requestHeaders);
-        console.log(result.data)
+        let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/journeys",this.requestHeaders);
         this.journeys = result.data;
 
       } catch (e) {
-        console.log("Error al cargar viajes");
+        throw new Error("Error al cargar viajes");
       }
     },
 
     async aceptar(id) {
-      let viaje = await this.axios.get("http://192.168.0.106:3000/journeys/" + id, this.requestHeaders);
+      let viaje = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/journeys/" + id, this.requestHeaders);
       let lat1 =viaje.data.start_point.lat
       let long1=viaje.data.start_point.long
       let lat2=viaje.data.destiny_point.lat
@@ -99,18 +92,19 @@ export default {
 
       try {
 
-        console.log(this.requestHeaders);
-        console.log(id);
         let result = await this.axios.patch(
-          "http://192.168.0.106:3000/journeys/" + id,
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/" + id,
           {travel_distance:distance, journey_price:journeyPrice },
           this.requestHeaders
         );
-
+        if(result.status === 200){
+          this.$store.dispatch('notificacion','Viaje aceptado, un cafelito en camino')
+          this.$store.dispatch('isPending', false)
+        }
         this.$store.dispatch("loadJourneyId", id);
         this.$router.push("/in-journey-driver");
       } catch (e) {
-        console.log("Error al aceptar el viaje" + e);
+        throw new Error("Error al aceptar el viaje");
       }
     }
   },
@@ -119,11 +113,10 @@ export default {
     
     this.intervalId = setInterval(() => {
       this.loadJourneys()
-      console.log("RECARGADO")
+      console.log("Recargando ....")
     }, 5000);
   },
   destroyed() {
-    console.log("DESTROYED");
     clearInterval(this.intervalId);
   }
 };
@@ -138,8 +131,3 @@ function getKilometros(lat1,lon1,lat2,lon2){
   return d.toFixed(3); //Retorna tres decimales
 }
 </script>
-<style>
-/* .body{
-  height: 85vh;
-} */
-</style>

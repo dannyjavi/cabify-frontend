@@ -52,17 +52,14 @@ export default {
   computed: {},
   methods: {
     async loadJouerneyData() {
-      // console.log(this.$options.filters.pasarFecha())
       try {
         const result = await this.axios.get(
-          "http://192.168.0.106:3000/journeys/me",
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
           this.requestHeaders
         );
         
         let res = result.data;
         res.forEach((item, index) => {
-          // new Intl.DateTimeFormat('en-US', tiempo).format(date)
-          console.log(this.$options.filters.pasarFecha(item.arrived_date))
           this.data.push({
 
             id: index + 1,
@@ -73,7 +70,7 @@ export default {
           });
         });
       } catch (e) {
-        throw new Error("Error al cargar los datos del Viaje"+e);
+        throw new Error("Error al cargar los datos del Viaje");
       }
     },
   },
