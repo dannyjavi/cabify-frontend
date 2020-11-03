@@ -63,7 +63,7 @@ export default {
             id: index + 1,
             destiny_point: item.destiny_point.name,
             start_point: item.start_point.name,
-            arrived_date: item.arrived_date,
+            arrived_date: this.$options.filters.pasarFecha(item.arrived_date) ,
             action: '<i class="far fa-trash-alt"></i>',
           });
         });

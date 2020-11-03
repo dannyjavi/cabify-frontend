@@ -119,12 +119,12 @@ export default {
       } */
       try {
         let url_origen =
-          "http://api.openweathermap.org/data/2.5/weather?q=" +
+          "https://api.openweathermap.org/data/2.5/weather?q=" +
           this.form.origen +
           "&appid=3408896f1d019f9845f9f0726d4dab41&units=metric&lang=es";
 
         let url_destino =
-          "http://api.openweathermap.org/data/2.5/weather?q=" +
+          "https://api.openweathermap.org/data/2.5/weather?q=" +
           this.form.destino +
           "&appid=3408896f1d019f9845f9f0726d4dab41&units=metric&lang=es";
 
