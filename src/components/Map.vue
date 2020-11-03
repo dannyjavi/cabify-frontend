@@ -5,9 +5,9 @@
 <script>
 export default {
   name: "Map",
-  props: ['vehicles', 'currentPosition'],
+  props: ['userPosition', 'driverPosition'],
   mounted() {
-    let mymap = L.map("mapid").setView([36.72, -4.42], 13);
+    let mymap = L.map("mapid").fitBounds(this.userPosition, this.driverPosition);
     
     // mymap.locate({ enableHighAccuracy: true });
     // mymap.locate({ setView: true });

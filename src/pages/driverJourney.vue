@@ -7,6 +7,7 @@
       :item="item"
       @click="aceptar"
     />
+    <!-- <Map /> -->
 
     <section v-if="(journeys.length===0)" class="section">
       <div class="container">
@@ -35,6 +36,7 @@
 
 <script>
 import Card from "../components/journeyCard";
+import Map from "../components/Map"
 export default {
   name: "DriverJourney",
   data() {
@@ -46,7 +48,7 @@ export default {
     };
   },
   components: {
-    Card
+    Card, Map
   },
   created(){
     this.loadCurrentUserData()

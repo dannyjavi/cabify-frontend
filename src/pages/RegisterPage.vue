@@ -180,7 +180,12 @@ export default {
         this.$router.push("/login");
       } catch (e) {
         console.log(e, this.registrationData);
-        alert("Se ha producido un error al enviar el formulario");
+        this.$buefy.toast.open({
+          duration: 2500,
+          message: `Se ha producido un error al enviar el formulario`,
+          position: "is-bottom",
+          type: "is-danger",
+        })
         this.showError = true
       }
     },

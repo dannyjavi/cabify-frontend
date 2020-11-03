@@ -155,12 +155,17 @@ export default {
             Authorization: `Bearer ${token}`,
           },
         };
-        if (
-          (obj_travel.start_point === undefined) |
-          (obj_travel.destiny_point === undefined)
-        ) {
-          alert("tu ciudad no existe");
-        }
+        // if (
+        //   (obj_travel.start_point === undefined) |
+        //   (obj_travel.destiny_point === undefined)
+        // ) {
+        //   this.$buefy.toast.open({
+        //   duration: 2500,
+        //   message: `Tu ciudad no existe`,
+        //   position: "is-top",
+        //   type: "is-danger",
+        // });
+        // }
 
         const res = await this.axios.post(
           "http://localhost:3000/journeys",
@@ -171,12 +176,20 @@ export default {
 
         this.$router.push("/search");
       } catch (err) {
-        let msg = "No sabemos quien eres.";
-        this.$emit("showError", msg);
-        localStorage.setItem(
-          "Viajes",
-          this.form.origen + "#" + this.form.destino
-        );
+        this.$buefy.toast.open({
+          duration: 2500,
+          message: `Tu ciudad no existe`,
+          position: "is-top",
+          type: "is-danger",
+        });
+        if (this.$store.state.isAuth == false) {
+          let msg = "No sabemos quien eres.";
+          this.$emit("showError", msg);
+          localStorage.setItem(
+            "Viajes",
+            this.form.origen + "#" + this.form.destino
+          );
+        }
       }
     },
     async loadJourneys(context) {
