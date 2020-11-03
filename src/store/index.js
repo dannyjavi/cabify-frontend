@@ -12,6 +12,7 @@ Vue.use(VueAxios, axios)
 export default new Vuex.Store({
   state: {
     isAuth: false,
+    loader: false,
     user: null,
     token: null,
     currentJourneyId:null,
@@ -23,6 +24,9 @@ export default new Vuex.Store({
    }
   },
   mutations: {
+    setLoader(state,payload){
+      state.loader = payload
+    },
     setVehicles(state, payload) {
       state.vehicles = payload
     },
@@ -62,7 +66,7 @@ export default new Vuex.Store({
     },
     async loadVehicles(context) {
       try {
-        const url = 'https://grupo3-backend-coffeby.herokuapp.com/vehicles'
+        const url = 'http://192.168.0.106:3000/vehicles'
         const response = await Vue.axios.get(url)
         context.commit('setVehicles', response.data)
       } catch(err) {

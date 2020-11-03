@@ -54,7 +54,7 @@ export default {
     async loadJouerneyData() {
       try {
         const result = await this.axios.get(
-          "https://grupo3-backend-coffeby.herokuapp.com/journeys/histoy-driver",
+          "http://192.168.0.106:3000/journeys/histoy-driver",
           this.requestHeaders
         );
         let res = result.data;
@@ -63,7 +63,7 @@ export default {
             id: index + 1,
             destiny_point: item.destiny_point.name,
             start_point: item.start_point.name,
-            arrived_date: this.$options.filters.pasarFecha(item.arrived_date) ,
+            arrived_date: this.$options.filters.pasarFecha(item.arrived_date),
             action: '<i class="far fa-trash-alt"></i>',
           });
         });

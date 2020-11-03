@@ -55,7 +55,7 @@ export default {
       // console.log(this.$options.filters.pasarFecha())
       try {
         const result = await this.axios.get(
-          "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
+          "http://192.168.0.106:3000/journeys/me",
           this.requestHeaders
         );
         

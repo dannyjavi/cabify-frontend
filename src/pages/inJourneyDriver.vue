@@ -53,9 +53,10 @@ export default {
         let id = this.$store.state.currentJourneyId;
 
         let result = await this.axios.get(
-          "https://grupo3-backend-coffeby.herokuapp.com/journeys/" + id,
+          "http://192.168.0.106:3000/journeys/" + id,
           this.requestHeaders
         );
+        console.log(result.data);
         this.journey = result.data;
         this.loadDriverData()
         this.calculated()
@@ -67,7 +68,7 @@ export default {
       try{
         console.log("AQUI "+this.journey.driver.user)
         let id = this.journey.driver.user
-        let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/users/"+id, this.requestHeaders)
+        let result = await this.axios.get("http://192.168.0.106:3000/users/"+id, this.requestHeaders)
         console.log("HOLA")
         console.log(result.data)
         this.driver = result.data
@@ -80,7 +81,7 @@ export default {
       try {
         let id = this.$store.state.currentJourneyId;
         let result = await this.axios.patch(
-          "https://grupo3-backend-coffeby.herokuapp.com/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
+          "http://192.168.0.106:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
         );
         console.log(result.data)
         this.$buefy.toast.open({
