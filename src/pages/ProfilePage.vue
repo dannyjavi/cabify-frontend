@@ -83,7 +83,7 @@ export default {
       try {
         // con la baseUrl se usa asi? = this.axios.put(baseUrl + ':3000/users + this.userId + '/update)
         const send = await this.axios.put(
-          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.userId + "/update",
+          "http://192.168.0.106:3000/users/" + this.userId + "/update",
           formObject,
           this.requestHeaders
         );
@@ -101,7 +101,7 @@ export default {
 
       try {
         const result = await this.axios.get(
-          "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.userId,
+          "http://192.168.0.106:3000/users/" + this.userId,
           this.requestHeaders
         );
         this.edit = result.data;
@@ -112,7 +112,7 @@ export default {
     /* async loadJouerneyData() {
       try {
         const result = await this.axios.get(
-          "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
+          "http://192.168.0.106:3000/journeys/me",
           this.requestHeaders
         );
 

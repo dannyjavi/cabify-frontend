@@ -169,7 +169,12 @@ export default {
 <style lang="css" scoped>
 
 nav.navbar {
-  border-top: 0;
+  top: 0;
+  position: fixed;
+  width: 100%;
+}
+section{
+  margin-bottom: 80px;
 }
 
 </style>

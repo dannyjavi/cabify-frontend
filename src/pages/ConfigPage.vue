@@ -321,7 +321,7 @@ export default {
     //   console.log(this.currentUserId);
     //   try {
     //     let result = await this.axios.patch(
-    //       "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
+    //       "http://192.168.0.106:3000/users/" + this.currentUserId,
     //       this.registrationData
     //     );
     //     alert("TODO BIEN");
@@ -341,7 +341,7 @@ export default {
       );
       try {
         let result = await this.axios.patch(
-        "https://grupo3-backend-coffeby.herokuapp.com/users/" + this.currentUserId,
+        "http://192.168.0.106:3000/users/" + this.currentUserId,
         this.registrationData, this.requestHeaders);
         this.$buefy.toast.open({
           duration: 2500,
