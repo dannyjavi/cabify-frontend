@@ -159,22 +159,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/* html, body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  height: 100%;
-  background: #ECF0F3;
-} */
+
 nav.navbar {
   border-top: 0;
-  /* margin-bottom: 1rem; */
 }
-/* .navbar-item.brand-text {
-  font-weight: 300;
-}
-.navbar-item, .navbar-link {
-  font-size: 14px;
-  font-weight: 700;
-} */
+
 </style>

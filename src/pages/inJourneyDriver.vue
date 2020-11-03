@@ -11,7 +11,7 @@
             <strong>Destino:</strong> {{ journey.destiny_point.name }}
             <br />
             <strong>Distancia:</strong> {{journey.travel_distance }} Km <br />
-            <strong>Precio:</strong> {{ journey.journey_price }} €
+            <strong>Precio:</strong> {{ journey.journey_price | pasarDinero }} 
           </p>
         </div>
         <div class="p-3 container">
