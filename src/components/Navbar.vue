@@ -47,10 +47,16 @@
               >Home</router-link
             >
             <router-link
-              v-if="!isDriver | !driverProfile"
+              v-if="!isDriver | !driverProfile && pendiente"
               class="navbar-item"
               to="/order-page"
               >Buscar viaje</router-link
+            >
+            <router-link
+              v-if="!isDriver | !driverProfile && !pendiente"
+              class="navbar-item"
+              to="/search"
+              >Viaje actual</router-link
             >
             <router-link v-if="isLogged" class="navbar-item" to="/profile"
               >Account</router-link
@@ -91,6 +97,11 @@ export default {
   name: "NavBar",
   data() {
     return {
+      intervalId:"",
+      journey:"",
+      pendiente:"",
+      aceptado: true,
+      requestHeaders:"",
       menuClass: "",
       menuOptions: [
         { title: "Home", path: "/" },
@@ -109,7 +120,7 @@ export default {
     },
     user(){
       if (!this.$store.state.user) return;
-      console.log(this.$store.state.user.profiles.length)
+      // console.log(this.$store.state.user.profiles.length)
       return (this.$store.state.user.profiles.length === 1);
     },
     isDriver() {
@@ -128,6 +139,38 @@ export default {
     }
   },
   methods: {
+    loadCurrentUserData(){
+      let token = this.$store.state.token;
+      this.requestHeaders = {
+        headers: { Authorization: "Bearer " + token },
+      };
+      this.loadJourneys();
+    },
+    async loadJourneys(){
+      try {
+        let result = await this.axios.get(
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
+          this.requestHeaders
+        );
+
+        // console.log(result.data[0]);
+        // console.log(""+!this.journey.pending)
+        // console.log(""+!this.journey.pending)
+        // if(!this.journey.pending && !this.journey.end){
+        //   this.$buefy.toast.open({
+        //     duration: 2500,
+        //     message: "Viaje Aceptado",
+        //     type: "is-info"
+        //   });
+        //   return
+        // }
+        // console.log(this.journey.pending)
+        this.journey = result.data[0];
+        this.pendiente = this.journey.end
+      } catch (e) {
+        console.log("Error al cargar viajes" + e);
+      }
+    },
     toggleMenu() {
       if (this.menuClass == "") {
         this.menuClass = "is-active";
@@ -162,7 +205,20 @@ export default {
         return      
       } 
     },
-  }
+  },
+  mounted() {
+    console.log("MOUNTED");
+    this.loadJourneys();
+    this.intervalId = setInterval(() => {
+      this.loadJourneys()
+      console.log("RECARGADO")
+    }, 5000);
+  },
+  created() {
+    console.log("CREATED");
+    this.loadCurrentUserData();    
+  },
+
 };
 </script>
 
