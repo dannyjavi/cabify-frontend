@@ -54,7 +54,7 @@ export default {
     async loadJouerneyData() {
       try {
         const result = await this.axios.get(
-          "http://localhost:3000/journeys/me",
+          "http://localhost:3000/journeys/journeys/histoy-driver",
           this.requestHeaders
         );
         let res = result.data;
