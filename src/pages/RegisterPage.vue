@@ -158,7 +158,7 @@ export default {
       );
       if (this.acepted === false) {
         this.$buefy.toast.open({
-          duration: 5000,
+          duration: 2500,
           message: `Accept the terms and conditions of use`,
           position: "is-top",
           type: "is-warning",
@@ -172,7 +172,7 @@ export default {
         );
         console.info(result);
         this.$buefy.toast.open({
-          duration: 5000,
+          duration: 2500,
           message: `You have registered successfully!`,
           position: "is-top",
           type: "is-success",

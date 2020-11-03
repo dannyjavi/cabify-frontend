@@ -344,7 +344,7 @@ export default {
         "http://localhost:3000/users/" + this.currentUserId,
         this.registrationData, this.requestHeaders);
         this.$buefy.toast.open({
-          duration: 5000,
+          duration: 2500,
           message: "You are already a driver!",
           type: "is-success",
         });
@@ -354,7 +354,7 @@ export default {
         this.$router.push("/login");
       } catch (e) {
         this.$buefy.toast.open({
-          duration: 5000,
+          duration: 2500,
           message: "Something went wrong 😲",
           type: "is-danger",
         });

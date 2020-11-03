@@ -83,7 +83,12 @@ export default {
           "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
         );
         console.log(result.data)
-        alert('Viaje terminado correctamente')
+        this.$buefy.toast.open({
+          duration: 2500,
+          message: `Viaje terminado correctamente!`,
+          position: "is-top",
+          type: "is-info",
+        });
         this.$router.push('/journey-driver')
       } catch (e) {
         console.log("Error al cargar el viaje"+e);

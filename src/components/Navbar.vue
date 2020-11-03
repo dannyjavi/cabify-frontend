@@ -23,8 +23,10 @@
             Driver Mode
           </span>
           <a class="navbar-item" v-if="isLogged && isDriver">
-            <b-switch @click="driverSwitch"  v-model="driverProfile" class="ml-3">
+            <div @click="driverSwitch" >
+            <b-switch  v-model="driverProfile" class="ml-3">              
             </b-switch>
+            </div>
           </a>          
           <div
             @click="toggleMenu"
@@ -131,6 +133,7 @@ export default {
       this.driverProfile = true
       this.isSwitched = true
       this.$buefy.toast.open({
+        duration: 2500,
         message: "Successful logout!",
         type: "is-info"
       });
@@ -139,10 +142,12 @@ export default {
     },
     driverSwitch() {
       if (this.driverProfile == true) {
+        console.log('switch off')
         this.$router.push("/order-page")        
         return     
       }
       if (this.driverProfile == false) {
+        console.log('switch on')
         this.$router.push("/journey-driver")        
         return      
       } 

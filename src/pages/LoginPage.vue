@@ -83,6 +83,7 @@ export default {
           this.formLogin
         );
         this.$buefy.toast.open({
+          duration: 2500,
           message: "Successful login!",
           type: "is-success",
         });
@@ -99,7 +100,7 @@ export default {
         this.$router.push("/order-page");
       } catch (error) {
         this.$buefy.toast.open({
-          duration: 5000,
+          duration: 2500,
           message: `Incorrect email or password`,
           position: "is-bottom",
           type: "is-danger",
