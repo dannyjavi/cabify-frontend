@@ -1,13 +1,17 @@
 <template>
-  <section>
-    <b-table v-if="data.length > 0 " :data="data" :columns="columns" class="p-3 m-2"></b-table>
+  <section class="container p-3">
+    <b-table
+      v-if="data.length > 0"
+      :data="data"
+      :columns="columns"
+      class="p-3 m-2"
+    ></b-table>
     <b-message
-      v-if="data.length < 0"
-      title="Info with icon"
-      type="is-info"
-      has-icon
+      v-if="data.length === 0"
       aria-close-label="Close message"
-    >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id fermentum quam. Proin sagittis, nibh id hendrerit imperdiet, elit sapien laoreet elit</b-message>
+      class="column"
+      >No tienes ningún viaje realizado</b-message
+    >
   </section>
 </template>
 
@@ -23,31 +27,29 @@ export default {
           field: "id",
           label: "ID",
           width: "40",
-          numeric: true
+          numeric: true,
         },
         {
           field: "destiny_point",
-          label: "To"
+          label: "To",
         },
         {
           field: "start_point",
-          label: "From"
+          label: "From",
         },
         {
           field: "arrived_date",
           label: "Date",
-          centered: true
+          centered: true,
         },
         {
           field: "action",
-          label: "Delete"
-        }
-      ]
+          label: "Delete",
+        },
+      ],
     };
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
     async loadJouerneyData() {
       try {
@@ -62,21 +64,21 @@ export default {
             destiny_point: item.destiny_point.name,
             start_point: item.start_point.name,
             arrived_date: item.arrived_date,
-            action: '<i class="far fa-trash-alt"></i>'
+            action: '<i class="far fa-trash-alt"></i>',
           });
         });
       } catch (e) {
         throw new Error("Error al cargar los datos del Viaje");
       }
-    }
+    },
   },
   mounted() {
     let token = this.$store.state.token;
 
     this.requestHeaders = {
-      headers: { Authorization: "Bearer " + token }
+      headers: { Authorization: "Bearer " + token },
     };
     this.loadJouerneyData();
-  }
+  },
 };
 </script>
