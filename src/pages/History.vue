@@ -54,7 +54,7 @@ export default {
     async loadJouerneyData() {
       try {
         const result = await this.axios.get(
-          "http://localhost:3000/journeys/me",
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/me",
           this.requestHeaders
         );
         let res = result.data;

@@ -53,7 +53,7 @@ export default {
         let id = this.$store.state.currentJourneyId;
 
         let result = await this.axios.get(
-          "http://localhost:3000/journeys/" + id,
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/" + id,
           this.requestHeaders
         );
         this.journey = result.data;
@@ -67,7 +67,7 @@ export default {
       try{
         console.log("AQUI "+this.journey.driver.user)
         let id = this.journey.driver.user
-        let result = await this.axios.get("http://localhost:3000/users/"+id, this.requestHeaders)
+        let result = await this.axios.get("https://grupo3-backend-coffeby.herokuapp.com/users/"+id, this.requestHeaders)
         console.log("HOLA")
         console.log(result.data)
         this.driver = result.data
@@ -80,7 +80,7 @@ export default {
       try {
         let id = this.$store.state.currentJourneyId;
         let result = await this.axios.patch(
-          "http://localhost:3000/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
+          "https://grupo3-backend-coffeby.herokuapp.com/journeys/"+id+"/arrivedConfirmation",{},this.requestHeaders
         );
         console.log(result.data)
         this.$buefy.toast.open({
