@@ -46,13 +46,11 @@
               </div>
             </div>
           </div>
-          <div class="card-image">
-            <figure class="image">
-              <div id="mapid"></div>
-            </figure>
-          </div>
         </div>
       </div>
+    </div>
+    <div>
+      <div id="mapid"></div>
     </div>
   </div>
 </template>
@@ -193,6 +191,6 @@ export default {
 <style scoped>
 #mapid {
   height: 60vh;
-  width: 50vh;
+  width: 100%;
 }
 </style>
